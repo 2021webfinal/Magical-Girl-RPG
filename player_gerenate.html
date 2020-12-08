@@ -58,7 +58,7 @@
 		<label><input id="delete" class="button button2" type="button" value="請她走人"></label>
 		<div id="display"></div>
 		<div id="display2"></div>
-		<label><input id="check" class="button disabled" type="button" value="enter"></label>
+		<label><a href="file:///C:/Users/user/OneDrive/%E6%A1%8C%E9%9D%A2/%E7%B6%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/adventure.html"><input id="check" class="button disabled" type="button" value="enter"></a></label>
 		<script>
 			var p1,btt,btt2;
 			var gender,HP,atk,def,spd;
@@ -148,6 +148,7 @@
 			function money(){
 				save();
 				alert("You don't have enough money!");
+				localStorage.setItem("start_adventure",p1);
 				location.reload();
 			}
 			function save(){
