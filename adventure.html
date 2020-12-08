@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<title>冒險測試</title>
+		<style>
+			.ml3 {
+			  font-weight: 90;
+			  font-size: 2em;
+			  color: blue;
+			}
+			.ctbox {
+				border: solid 5px green;
+				background-color: lightgreen;
+				height: 250px;
+				width: 500px;
+				overflow:scroll;
+			　	display:inline;
+			}
+			#canvas {width: 250px;
+                     border: 1px solid #999999;
+                     border-collapse: collapse 
+					 }
+            td      { width: 2px; height: 2px; margin: 0px; padding: 0px; }
+            .blue   { background-color: blue; }
+            .red    { background-color: red; }
+            .black  { background-color: black;}
+            .white  { background-color: white;}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+	</head>
+	<body>
+		<table id = "canvas">
+			<tbody id="headbox"></tbody>
+		</table>
+		<div id="worldmap" >
+			<div id="map1" onmousemove="map1i(event)">光遠程設</div>
+			<div id="map2" onmousemove="map2i(event)">機率論</div>
+			<div id="map3" onmousemove="map3i(event)">微積分</div>
+			<div id="home" onmousemove="hi(event)">回家</div>
+		</div>
+		
+		　<div class="ctbox">
+			<p id="chatbox" class="ml3">你好我是對話框</p>
+		</div>
+		　
+			
+			
+		<script>
+			var talk = document.getElementById("chatbox");
+			var tmp_chat = 0;
+			var player_name;
+			function amt(){
+				var textWrapper = document.querySelector('.ml3');
+				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+				anime.timeline({loop: false})
+				.add({
+					targets: '.ml3 .letter',
+					opacity: [0,1],
+					easing: "easeInOutQuad",
+					duration: 250,
+					delay: (el, i) => 150 * (i+1)
+				});
+			}
+			function map1i(e) {
+				talk.innerHTML = "前往新手教學";
+				if(tmp_chat!=1)amt();
+				tmp_chat = 1;
+			}
+			function map2i(e) {
+				talk.innerHTML = "前往第二關";
+				if(tmp_chat!=2)amt();
+				tmp_chat = 2;
+			}
+			function map3i(e) {
+				talk.innerHTML = "前往地獄";
+				if(tmp_chat!=3)amt();
+				tmp_chat = 3;
+			}
+			function hi(e) {
+				talk.innerHTML = "重新選角";
+				if(tmp_chat!=4)amt();
+				tmp_chat = 4;
+			}
+			function gethead(){
+				var player_name=localStorage.getItem("start_adventure");
+				console.log(player_name);
+				var headcode=localStorage.getItem("canvas_"+player_name);
+				var tmp=document.getElementById("headbox").innerHTML=headcode;
+				console.log(tmp);
+			}
+			function start(){
+				gethead();
+				amt();
+			}
+			window.addEventListener( "load", start, false );
+		</script>
+	</body>
+</html>
