@@ -160,9 +160,7 @@
 			function remove(){
 				p1=document.getElementById("play_1").value;
 				localStorage.removeItem(p1);
-				localStorage.removeItem("canvas");
-				document.getElementById("tablebody").innerHTML="";
-				createCanvas();
+				localStorage.removeItem("canvas_"+p1);
 				window.alert('Its removed!');
 			}
 			window.addEventListener( "load", eve, false );
