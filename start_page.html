@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>start</title>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div id="start"><a href='player_gerenate.html'>創新角入坑</a></div>
+		<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="確定輸入"></div>
+		<div>遊戲說明</div>
+		<script>
+			function findPlayer(){
+			var name=document.getElementById("idname");
+			console.log(name.value);
+				var idn=localStorage.getItem(name.value);
+				if(!idn){
+					console.log(idn);
+					alert("404 not found!");
+				}
+				else{
+					localStorage.setItem("start_adventure",name.value);
+					window.location.href='adventure.html';
+				}
+			}
+			function start(){
+				document.getElementById("find").addEventListener("click",findPlayer,false);
+			}
+			window.addEventListener("load",start,false);
+		</script>
+	</body>
+</html>
