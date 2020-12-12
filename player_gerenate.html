@@ -58,12 +58,12 @@
 		<label><input id="delete" class="button button2" type="button" value="請她走人"></label>
 		<div id="display"></div>
 		<div id="display2"></div>
-		<label><a href="adventure.html"><input id="check" class="button disabled" type="button" value="enter"></a></label>
+		<label><input id="check" class="button disabled" type="button" value="enter"></label>
 		<script>
 			var p1,btt,btt2;
-			var gender,HP,atk,def,spd;
+			var gender,HP,atk,def,spd,sin,live;
 			var val={
-				gender,HP,atk,def,spd,
+				gender,HP,atk,def,spd,sin,live
 			};
 			function eve(){
 				btt=document.getElementById("start");
@@ -92,8 +92,7 @@
 				document.getElementById("tablebody").innerHTML="";
 				createCanvas();
 			}
-			function processMouseMove( e )
-			{        
+			function processMouseMove( e ){        
 				if ( e.target.tagName.toLowerCase() == "td" ){
 				   // turn the cell blue if the Ctrl key is pressed
 				   if ( e.ctrlKey ){
@@ -109,7 +108,6 @@
 				   if ( e.buttons==1){
 					  e.target.setAttribute( "class", "white");
 				   }
-				   
 				}
 			}
 			function judge(){
@@ -118,6 +116,8 @@
 				for(var i=0;i<p1.length;++i){
 					n+=p1.charCodeAt(i);
 				}
+				val.live=1;
+				val.sin=0;
 				val.gender=n%10;
 				val.atk=n%100;
 				val.def=(100-val.atk+n%10)%100;
@@ -146,10 +146,19 @@
 				btt2.addEventListener("click",money,false);
 			}
 			function money(){
-				save();
-				alert("You don't have enough money!");
-				localStorage.setItem("start_adventure",p1);
-				location.reload();
+				var moneyget=localStorage.getItem("$");
+				if(moneyget>=100){
+					save();
+					alert("generate player success!");
+					localStorage.setItem("start_adventure",p1);
+					moneyget-=100;
+					localStorage.setItem("$",moneyget);
+					document.location.href="adventure.html";
+				}
+				else{
+					alert("You don't have enough money!");
+					location.reload();
+				}
 			}
 			function save(){
 				var key=p1;
