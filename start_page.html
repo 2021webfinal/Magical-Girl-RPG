@@ -8,10 +8,11 @@
 		<div id="start"><a href='player_gerenate.html'>創新角入坑</a></div>
 		<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="確定輸入"></div>
 		<div>遊戲說明</div>
+		<div id="bug"><a href="mailto:sun1223god@gmail.com">回報bug</a></div>
 		<script>
 			function findPlayer(){
 			var name=document.getElementById("idname");
-			console.log(name.value);
+				console.log(name.value);
 				var idn=localStorage.getItem(name.value);
 				if(!idn){
 					console.log(idn);
@@ -24,6 +25,11 @@
 			}
 			function start(){
 				document.getElementById("find").addEventListener("click",findPlayer,false);
+				var money=localStorage.getItem("$");
+				console.log(money);
+				if(money==null){
+					localStorage.setItem("$",100);
+				}
 			}
 			window.addEventListener("load",start,false);
 		</script>
