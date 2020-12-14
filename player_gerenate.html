@@ -61,9 +61,9 @@
 		<label><input id="check" class="button disabled" type="button" value="enter"></label>
 		<script>
 			var p1,btt,btt2;
-			var gender,HP,atk,def,spd,sin,live;
+			var gender,HP,atk,def,spd,sin,live,lv,exp;
 			var val={
-				gender,HP,atk,def,spd,sin,live
+				gender,HP,atk,def,spd,sin,live,lv,exp
 			};
 			function eve(){
 				btt=document.getElementById("start");
@@ -116,6 +116,8 @@
 				for(var i=0;i<p1.length;++i){
 					n+=p1.charCodeAt(i);
 				}
+				val.lv=1;
+				val.exp=0;
 				val.live=1;
 				val.sin=0;
 				val.gender=n%10;
@@ -147,7 +149,11 @@
 			}
 			function money(){
 				var moneyget=localStorage.getItem("$");
-				if(moneyget>=100){
+				var exist=localStorage.getItem(p1);
+				if(exist!=null){
+					alert("這角色你已經召喚過了= =");
+				}
+				else if(moneyget>=100){
 					save();
 					alert("generate player success!");
 					localStorage.setItem("start_adventure",p1);
