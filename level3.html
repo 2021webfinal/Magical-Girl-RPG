@@ -1,0 +1,113 @@
+<html>
+	<head>
+		<title>level_3</title>
+		<style>
+			.ml3 {
+			  font-weight: 90;
+			  font-size: 2em;
+			  color: blue;
+			}
+			.ctbox {
+				border: solid 5px green;
+				background-color: lightgreen;
+				height: 250px;
+				width: 500px;
+				overflow:scroll;
+			　	display:inline;
+			}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+	</head>
+	<body>
+		<div>progress
+			<div id="progress">1</div>/20
+		</div>
+		<div><input id="go" type="button" value="前進"></div>
+		<div><input id="back" type="button" value="撤退"></div>
+		<div><input id="tool" type="button" value="道具"></div>
+		<div class="ctbox">
+			<p id="chatbox" class="ml3">進入關卡3</p>
+		</div>
+		<script>
+			var talk = document.getElementById("chatbox");
+			var back = document.getElementById("back");
+			var p=1,quitalt=0,money;
+			function amt(){
+				var textWrapper = document.querySelector('.ml3');
+				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+				anime.timeline({loop: false})
+				.add({
+					targets: '.ml3 .letter',
+					opacity: [0,1],
+					easing: "easeInOutQuad",
+					duration: 10,
+					delay: (el, i) => 150 * (i+1)
+				});
+			}
+			function boss_fight(){
+				talk.innerHTML = "期末考!!!";
+				amt();
+			}
+			function random_event(){
+				var r=Math.floor(Math.random()*3);
+				if(r==0){
+					talk.innerHTML = "遭遇隨堂考!";
+				}	
+				else if(r==1){
+					talk.innerHTML = "撿到錢~";
+					money+=10;
+				}
+				else{
+					talk.innerHTML = "啥都沒看到";
+				}
+				amt();
+			}
+			function go_step(){
+				++p;
+				document.getElementById("progress").innerHTML=p;
+				if(p==21){
+					document.getElementById("progress").innerHTML="end";
+					talk.innerHTML = "恭喜你通過了第一學期!";
+					localStorage.setItem("$",money);
+					localStorage.setItem("&Level_3",1);
+					amt();
+					back.value="光榮撤退";
+					quitalt=1;
+				}
+				else if(p==20){
+					boss_fight();
+					quitalt=0;
+				}
+				else if(p<20){
+					random_event();
+					quitalt=0;
+				}
+				else{
+					talk.innerHTML = "這前面啥都沒有了";
+					amt();
+					quitalt=1;
+				}
+			}
+			function go_home(){
+				talk.innerHTML = "你確定要離開ㄇ?這樣你一毛都拿不到喔(確定請再次點擊撤退紐)";
+				amt();
+				++quitalt;
+				if(quitalt==2){
+					document.location.href="adventure.html";
+				}
+			}
+			function use_t(){
+				quitalt=0;
+			}
+			function start(){
+				money=localStorage.getItem("$");
+				money=parseInt(money);
+				document.getElementById("go").addEventListener("click",go_step,false);
+				document.getElementById("back").addEventListener("click",go_home,false);
+				document.getElementById("tool").addEventListener("click",use_t,false);
+				amt();
+			}
+			window.addEventListener("load",start,false);
+		</script>
+	</body>
+</html>
