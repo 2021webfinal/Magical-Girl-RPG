@@ -40,7 +40,7 @@
 					targets: '.ml3 .letter',
 					opacity: [0,1],
 					easing: "easeInOutQuad",
-					duration: 50,
+					duration: 10,
 					delay: (el, i) => 150 * (i+1)
 				});
 			}
@@ -69,6 +69,7 @@
 					document.getElementById("progress").innerHTML="end";
 					talk.innerHTML = "恭喜你通過了第一學期!";
 					localStorage.setItem("$",money);
+					localStorage.setItem("&Level_1",1);
 					amt();
 					back.value="光榮撤退";
 					quitalt=1;
@@ -80,6 +81,11 @@
 				else if(p<10){
 					random_event();
 					quitalt=0;
+				}
+				else{
+					talk.innerHTML = "這前面啥都沒有了";
+					amt();
+					quitalt=1;
 				}
 			}
 			function go_home(){
