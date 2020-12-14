@@ -8,6 +8,7 @@
 		<div id="start"><a href='player_gerenate.html'>創新角入坑</a></div>
 		<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="確定輸入"></div>
 		<div>遊戲說明</div>
+		<div>英靈殿堂</div>
 		<div id="bug"><a href="mailto:sun1223god@gmail.com">回報bug</a></div>
 		<script>
 			function findPlayer(){
@@ -26,9 +27,21 @@
 			function start(){
 				document.getElementById("find").addEventListener("click",findPlayer,false);
 				var money=localStorage.getItem("$");
+				var l1c=localStorage.getItem("&Level_1");
+				var l2c=localStorage.getItem("&Level_2");
+				var l3c=localStorage.getItem("&Level_3");
 				console.log(money);
 				if(money==null){
 					localStorage.setItem("$",100);
+				}
+				if(l1c==null){
+					localStorage.setItem("&Level_1",0);
+				}
+				if(l2c==null){
+					localStorage.setItem("&Level_2",0);
+				}
+				if(l3c==null){
+					localStorage.setItem("&Level_3",0);
 				}
 			}
 			window.addEventListener("load",start,false);
