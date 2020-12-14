@@ -29,9 +29,10 @@
 	</head>
 	<body>
 		<div id="hellow"></div>
-		<table id = "canvas">
+		<a href="player_content.html">
+		<table id = "canvas" onmousemove="mapp(event)">
 			<tbody id="headbox"></tbody>
-		</table>
+		</table></a>
 		<div id="worldmap" >
 			<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">光遠程設</a></div>
 			<div id="map2" onmousemove="map2i(event)">機率論</div>
@@ -45,7 +46,7 @@
 		<script>
 			var talk = document.getElementById("chatbox");
 			var tmp_chat = 0;
-			var player_name;
+			var player_name=localStorage.getItem("start_adventure");
 			function amt(){
 				var textWrapper = document.querySelector('.ml3');
 				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -54,9 +55,16 @@
 					targets: '.ml3 .letter',
 					opacity: [0,1],
 					easing: "easeInOutQuad",
-					duration: 50,
+					duration: 10,
 					delay: (el, i) => 150 * (i+1)
 				});
+			}
+			function mapp(e) {
+				if(tmp_chat!=5){
+					talk.innerHTML = "看"+player_name+"的詳細數值";
+					amt();
+				}
+				tmp_chat = 5;
 			}
 			function map1i(e) {
 				if(tmp_chat!=1){
@@ -88,7 +96,7 @@
 			}
 			function gethead(){
 				var hell=document.getElementById("hellow");
-				var player_name=localStorage.getItem("start_adventure");
+				
 				hell.innerHTML="Hellow! "+player_name+"<br>";
 				console.log(player_name);
 				var headcode=localStorage.getItem("canvas_"+player_name);
@@ -98,6 +106,15 @@
 			function start(){
 				gethead();
 				amt();
+				var check_level1=localStorage.getItem("&Level_1");
+				var check_level2=localStorage.getItem("&Level_2");
+				var check_level3=localStorage.getItem("&Level_3");
+				if(check_level1=='1'){
+					document.getElementById("map2").innerHTML='<a href="level2.html" id="passlv2">機率論</a>';
+				}
+				if(check_level2=='1'){
+					document.getElementById("map3").innerHTML='<a href="level3.html" id="passlv3">微積分</a>';
+				}
 			}
 			window.addEventListener( "load", start, false );
 		</script>
