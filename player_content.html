@@ -1,8 +1,88 @@
 <html>
 	<head>
-		
+		<style>
+			#canvas {width: 1000px;
+                     border: 1px solid #999999;
+                     border-collapse: collapse 
+					 }
+            td      { width: 10px; height: 10px; margin: 0px; padding: 0px;opacity:0.1; }
+            .blue   { background-color: blue; }
+            .red    { background-color: red; }
+            .black  { background-color: black;}
+            .white  { background-color: white;}
+			.backg{
+				position:relative;
+				top:-250px;
+				z-index: -1;
+			}
+			.bk{
+				z-index: 1;
+			}
+		</style>
 	</head>
 	<body>
-		<div><a href="adventure.html">返回</div>
+		
+		<table>
+			<caption id="name"></caption>
+			<thead>
+				<tr>
+					<th colspan=2>角色能力值</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>等級</th>
+					<th id="lv"></th>
+				</tr>
+				<tr>
+					<th>經驗值</th>
+					<th id="exp"></th>
+				</tr>
+				<tr>
+					<th>生命值</th>
+					<th id="HP"></th>
+				</tr>
+				<tr>
+					<th>san值</th>
+					<th id="SP"></th>
+				</tr>
+				<tr>
+					<th>攻擊力</th>
+					<th id="atk"></th>
+				</tr>
+				<tr>
+					<th>防禦力</th>
+					<th id="def"></th>
+				</tr>
+				<tr>
+					<th>速度</th>
+					<th id="spd"></th>
+				</tr>
+			</tbody>
+		</table>
+		<div class="bk"><a href="adventure.html">返回</a></div>
+		<div class="backg"><table><tbody id="dishead" ></tbody></table></div>
+		<script>
+			var player_name=localStorage.getItem("start_adventure");
+			var content=JSON.parse(localStorage.getItem(player_name));
+			var head=localStorage.getItem("canvas_"+player_name);
+			function start(){
+				var display_name=document.getElementById("name");
+				display_name.innerHTML=player_name;
+				var display_head=document.getElementById("dishead");
+				display_head.innerHTML=head;
+				console.log(display_head.innerHTML);
+				console.log(content);
+				document.getElementById("lv").innerHTML=content.lv;
+				document.getElementById("exp").innerHTML=content.exp;
+				document.getElementById("def").innerHTML=content.def;
+				document.getElementById("HP").innerHTML=content.HP+"/"+content.MAXHP;
+				document.getElementById("SP").innerHTML=content.SP+"/"+content.MAXSP;
+				document.getElementById("atk").innerHTML=content.atk;
+				document.getElementById("def").innerHTML=content.def;
+				document.getElementById("spd").innerHTML=content.spd;
+			}
+			window.addEventListener("load",start,false);
+		</script>
 	</body>
 </html>
