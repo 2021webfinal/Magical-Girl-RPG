@@ -52,6 +52,7 @@
 			<tbody id = "tablebody"></tbody>
 		</table>
 		<input id = "clearCanvas" value = "清除畫布" type="button">
+		<a href="start_page.html"><input value = "回上頁" type="button"></a>
 		<br>
 		<label>輸入名子<input id="play_1" type="text"></label>
 		<label><input id="start" class="button button1" type="button" value="召喚!"></label>
@@ -61,9 +62,9 @@
 		<label><input id="check" class="button disabled" type="button" value="enter"></label>
 		<script>
 			var p1,btt,btt2;
-			var gender,HP,atk,def,spd,sin,live,lv,exp;
+			var gender,HP,SP,MAXHP,MAXSP,atk,def,spd,sin,live,lv,exp;
 			var val={
-				gender,HP,atk,def,spd,sin,live,lv,exp
+				gender,HP,SP,MAXHP,MAXSP,atk,def,spd,sin,live,lv,exp
 			};
 			function eve(){
 				btt=document.getElementById("start");
@@ -129,10 +130,14 @@
 				val.def+=p1.length%18;
 				val.spd=Math.floor((100-(val.def*2+val.atk)/10)/10);
 				val.HP=Math.floor((val.def*2+val.atk)*(10-val.spd)/10);
+				val.SP=Math.floor(Math.abs(100-val.HP));
+				val.MAXHP=val.HP;
+				val.MAXSP=val.SP;
 				var markup="<table border='1' width='50%'><thead><caption>p1's total ascll value = " + n + "</caption></thead>";
 				if(val.gender!=0)markup+="<tbody><tr><td>gender</td><td>female</td></tr></tbody>";
 				else markup+="<tbody><tr><td>gender</td><td>male</td></tr></tbody>";
 				markup+="<tbody><tr><td>HP</td><td>"+val.HP+"</td></tr></tbody>";
+				markup+="<tbody><tr><td>SP</td><td>"+val.SP+"</td></tr></tbody>";
 				markup+="<tbody><tr><td>Atk</td><td>"+val.atk+"</td></tr></tbody>";
 				markup+="<tbody><tr><td>Def</td><td>"+val.def+"</td></tr></tbody>";
 				markup+="<tbody><tr><td>Spd</td><td>"+val.spd+"</td></tr></tbody>";
