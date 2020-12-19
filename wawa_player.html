@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>wawa</title>
+    <style type="text/CSS">
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: lightblue;
+            font-family: Perpetua;
+        }
+        table, td, th {
+            border: 1px solid black;
+            padding: 4px;
+        }
+        th {
+            text-align: center;
+            color: white;
+            background-color: darkblue;
+        }
+        tr.oddrow {
+            background-color: white;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="#">
+			<p>如果你啥都沒看到，那恭喜你，還沒有任何magic girl死在你手上~</p>
+			<a href="start_page.html"><input type="button" value="回開頭"></a>
+            <input type="button" value="刪除遊戲資料" id="removeAllButton">
+    </form>
+    <hr>
+	<div id="display"></div>
+</body>
+	<script type="text/javascript">
+		var tags;
+		function remove(){
+			localStorage.clear();
+			window.alert('你好棒喔，2刷ㄟ');
+			load();
+		}
+		function load(){
+			var l=localStorage.length;
+			tags = [];
+			for(var i=0;i<l;++i){
+				tags[i]=localStorage.key(i);
+			}
+			tags.sort();
+			var markup = "<table><thead><th>名子</th><th>死因</th><th>等級</th><th>數據詳細</th></thead>";
+			for(var tag in tags){
+				var check=localStorage.getItem(tags[tag]);
+				if(check[0]=='{'){
+					var code=JSON.parse(check);
+					console.log(code);
+					if(code.live==0){
+						markup+="<tr>";
+						markup+="<td>"+tags[tag]+"</td>";
+						markup+="<td>機率論</td>";
+						markup+="<td>"+code.lv+"</td>";
+						markup+="<td><a href='https://www.youtube.com/watch?v=OFRrQU5Yxdw&list=PLzRLTL4wcSuC7KiqN4AuzuoaFaeRHa6ca&index=17'>"+"這裡我不知道要寫啥"+"</a></td>";
+						markup+="</tr>";
+					}
+				}
+			}
+			markup += "</table>";
+			document.getElementById("display").innerHTML = markup;
+		}
+		function start(){
+			var remoAB=document.getElementById("removeAllButton");
+			remoAB.addEventListener("click",remove,false);
+			load();
+		}
+		window.addEventListener("load",start,false);
+		//document.getElementById("display").innerHTML = myJSON;
+    </script>
+</html>
