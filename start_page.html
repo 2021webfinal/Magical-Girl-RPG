@@ -5,11 +5,13 @@
 		</style>
 	</head>
 	<body>
-		<div id="start"><a href='player_gerenate.html'>創新角入坑</a></div>
+		<div id="start"><a href='player_gerenate.html'>創新角入坑(花費100元)</a></div>
 		<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="確定輸入"></div>
 		<div>遊戲說明</div>
 		<div><a href="wawa_player.html">英靈殿堂</a></div>
+		<div>拼拼圖賺錢</div>
 		<div id="bug"><a href="mailto:sun1223god@gmail.com">回報bug</a></div>
+		<div id="money_display"></div>
 		<script>
 			function findPlayer(){
 				var name=document.getElementById("idname");
@@ -52,6 +54,7 @@
 				if(l3c==null){
 					localStorage.setItem("&Level_3",0);
 				}
+				document.getElementById("money_display").innerHTML="你現在還有:"+money+"元";
 			}
 			window.addEventListener("load",start,false);
 		</script>
