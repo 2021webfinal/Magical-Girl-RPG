@@ -28,10 +28,26 @@
 		<div class="ctbox">
 			<p id="chatbox" class="ml3">進入關卡1</p>
 		</div>
+		<div id="battle_display" class="fight_screen">
+			<input id="attack" type="button" value="攻擊">
+			<input id="skill" type="button" value="技能">
+			<input id="run_out" type="button" value="逃跑">
+			<div id="p1_state">
+			</div>
+			<div id="monster">
+			</div>
+		</div>
 		<script>
+			var battle=0;
+			var bd = document.getElementById("battle_display");
+			var p1s = document.getElementById("p1_state");
+			var mons = document.getElementById("monster");
 			var talk = document.getElementById("chatbox");
 			var back = document.getElementById("back");
+			var player_name=localStorage.getItem("start_adventure");
+			var state=JSON.parse(localStorage.getItem(player_name));
 			var p=1,quitalt=0,money;
+			var step,test_HP;
 			function amt(){
 				var textWrapper = document.querySelector('.ml3');
 				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -44,6 +60,39 @@
 					delay: (el, i) => 150 * (i+1)
 				});
 			}
+			function fight(){
+				bd.style.visibility= "visible";
+				console.log(state);
+				step=1;
+				test_HP=100;
+				state_load();
+			}
+			function go_atk(){
+				++step;
+				talk.innerHTML = "第"+step+"回合,你打了test一下造成了"+state.atk+"點傷害!";
+				amt();
+				test_HP-=state.atk;
+				state_load();
+			}
+			function go_skill(){
+				alert("這個目前啥也不會");
+			}
+			function runaway(){
+				test_HP=-1;
+				talk.innerHTML = "成功逃跑了";
+				amt();
+				state_load();
+			}
+			function state_load(){
+				p1s.innerHTML= "魔法少女 "+player_name+"還剩下"+state.MAXHP+"/"+state.HP+"的生命值";
+				mons.innerHTML="測試怪還有"+test_HP+"的生命值";
+				if(state.HP<=0||test_HP<=0){
+					battle=0;
+					bd.style.visibility= "hidden";
+					talk.innerHTML+="test被你打爆了!";
+					amt();
+				}
+			}
 			function boss_fight(){
 				talk.innerHTML = "期末考!!!";
 				amt();
@@ -52,6 +101,8 @@
 				var r=Math.floor(Math.random()*3);
 				if(r==0){
 					talk.innerHTML = "遭遇隨堂考!";
+					battle=1;
+					fight();
 				}	
 				else if(r==1){
 					talk.innerHTML = "撿到錢~";
@@ -63,29 +114,34 @@
 				amt();
 			}
 			function go_step(){
-				++p;
-				document.getElementById("progress").innerHTML=p;
-				if(p==11){
-					document.getElementById("progress").innerHTML="end";
-					talk.innerHTML = "恭喜你通過了第一學期!";
-					localStorage.setItem("$",money);
-					localStorage.setItem("&Level_1",1);
-					amt();
-					back.value="光榮撤退";
-					quitalt=1;
-				}
-				else if(p==10){
-					boss_fight();
-					quitalt=0;
-				}
-				else if(p<10){
-					random_event();
-					quitalt=0;
+				if(battle==1){
+					alert("你還在打架ㄟ想跑去哪?");
 				}
 				else{
-					talk.innerHTML = "這前面啥都沒有了";
-					amt();
-					quitalt=1;
+					++p;
+					document.getElementById("progress").innerHTML=p;
+					if(p==11){
+						document.getElementById("progress").innerHTML="end";
+						talk.innerHTML = "恭喜你通過了第一學期!";
+						localStorage.setItem("$",money);
+						localStorage.setItem("&Level_1",1);
+						amt();
+						back.value="光榮撤退";
+						quitalt=1;
+					}
+					else if(p==10){
+						boss_fight();
+						quitalt=0;
+					}
+					else if(p<10){
+						random_event();
+						quitalt=0;
+					}
+					else{
+						talk.innerHTML = "這前面啥都沒有了";
+						amt();
+						quitalt=1;
+					}
 				}
 			}
 			function go_home(){
@@ -97,9 +153,14 @@
 				}
 			}
 			function use_t(){
+				alert("你翻了一下包包，然後發現你啥都沒帶");
 				quitalt=0;
 			}
 			function start(){
+				document.getElementById("attack").addEventListener("click",go_atk,false);
+				document.getElementById("skill").addEventListener("click",go_skill,false);
+				document.getElementById("run_out").addEventListener("click",runaway,false);
+				bd.style.visibility= "hidden";
 				money=localStorage.getItem("$");
 				money=parseInt(money);
 				document.getElementById("go").addEventListener("click",go_step,false);
