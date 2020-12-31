@@ -36,30 +36,36 @@
 				display: none;
 			}
 			#canvas { width: 400px;
-                     border: 1px solid #999999;
+                     border:8px #FFD382 groove;
                      border-collapse: collapse }
             td      { width: 4px; height: 4px; margin: 0px; padding: 0px; }
             .blue   { background-color: blue; }
             .red    { background-color: red; }
-            .black   {background-color: black;}
-            .white    {background-color: white;}
+            .black  { background-color: black;}
+            .white  { background-color: white;}
 		</style>
 	</head>
 	<body>
-		<table id = "canvas">
-			<caption>請繪製角色頭項(ctrl=藍色,shift=紅色,alt=黑色)
-			 <br> 按滑鼠左鍵擦掉 </caption>
-			<tbody id = "tablebody"></tbody>
-		</table>
-		<input id = "clearCanvas" value = "清除畫布" type="button">
-		<a href="start_page.html"><input value = "回上頁" type="button"></a>
-		<br>
-		<label>輸入名子<input id="play_1" type="text"></label>
-		<label><input id="start" class="button button1" type="button" value="召喚!"></label>
-		<label><input id="delete" class="button button2" type="button" value="請她走人"></label>
-		<div id="display"></div>
-		<div id="display2"></div>
-		<label><input id="check" class="button disabled" type="button" value="enter"></label>
+		<div id="all">
+			<div id="gerenate_step1">
+				<table id = "canvas">
+					<caption>繪製角色頭項<br>(ctrl=藍色,shift=紅色,alt=黑色)
+					 <br> 按滑鼠左鍵擦掉 </caption>
+					<tbody id = "tablebody"></tbody>
+				</table>
+				<input id = "clearCanvas" value = "清除畫布" type="button">
+				<a href="start_page.html"><input value = "回上頁" type="button"></a>
+			</div>
+			<br>
+			<div id="gerenate_step2">
+				<label>輸入名子:<input id="play_1" type="text"></label>
+				<label><input id="start" class="button button1" type="button" value="召喚!"></label>
+				<label><input id="delete" class="button button2" type="button" value="請她走人"></label>
+				<div id="display"></div>
+				<div id="display2"></div>
+				<label><input id="check" class="button disabled" type="button" value="enter"></label>
+			</div>
+		</div>
 		<script>
 			var p1,btt,btt2;
 			var gender,HP,SP,MAXHP,MAXSP,atk,def,spd,sin,live,lv,exp;
@@ -133,7 +139,8 @@
 				val.SP=Math.floor(Math.abs(100-val.HP));
 				val.MAXHP=val.HP;
 				val.MAXSP=val.SP;
-				var markup="<table border='1' width='50%'><thead><caption>p1's total ascll value = " + n + "</caption></thead>";
+				console.log(n);
+				var markup="<table border='2' width='100%'><thead></thead>";
 				if(val.gender!=0)markup+="<tbody><tr><td>gender</td><td>female</td></tr></tbody>";
 				else markup+="<tbody><tr><td>gender</td><td>male</td></tr></tbody>";
 				markup+="<tbody><tr><td>HP</td><td>"+val.HP+"</td></tr></tbody>";
