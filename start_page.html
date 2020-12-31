@@ -1,16 +1,42 @@
 <html>
 	<head>
-		<title>start</title>
+		<title>start_page</title>
 		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+				min-height: 100vh;
+				font-family: Hack, monospace;
+			}
+			div {
+				color: #727272;
+				text-align: center;
+			}
+			p {
+				margin: 16px;
+				font-size: 96px;
+				color: #ccc;
+				text-transform: uppercase;
+				font-weight: 600;
+				transition: all 1s ease-in-out;
+				position: relative;
+			}
+
 		</style>
 	</head>
 	<body>
-		<div id="start"><a href='player_gerenate.html'>創新角入坑(花費100元)</a></div>
-		<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="確定輸入"></div>
-		<div>遊戲說明</div>
-		<div><a href="wawa_player.html">英靈殿堂</a></div>
-		<div>拼拼圖賺錢</div>
-		<div id="bug"><a href="mailto:sun1223god@gmail.com">回報bug</a></div>
+		<div id="The_game_title"><p data-item="Rohit">變身.RPG</p></div>
+		<div id="menu">
+			<div id="start"><a href='player_gerenate.html'>創新角入坑(花費100元)</a></div>
+			<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="確定輸入"></div>
+			<div>遊戲說明</div>
+			<div><a href="wawa_player.html">英靈殿堂</a></div>
+			<div>拼拼圖賺錢</div>
+			<div id="bug"><a href="mailto:sun1223god@gmail.com">回報bug</a></div>
+		</div>
 		<div id="money_display"></div>
 		<script>
 			function findPlayer(){
@@ -44,6 +70,7 @@
 				console.log(money);
 				if(money==null){
 					localStorage.setItem("$",100);
+					location.reload();
 				}
 				if(l1c==null){
 					localStorage.setItem("&Level_1",0);
@@ -54,7 +81,7 @@
 				if(l3c==null){
 					localStorage.setItem("&Level_3",0);
 				}
-				document.getElementById("money_display").innerHTML="你現在還有:"+money+"元";
+				document.getElementById("money_display").innerHTML="你現在有:"+money+"元";
 			}
 			window.addEventListener("load",start,false);
 		</script>
