@@ -60,12 +60,39 @@
 				</tr>
 			</tbody>
 		</table>
+		<table>
+			<caption id="name"></caption>
+			<thead>
+				<tr>
+					<th colspan=2>背包</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>飯糰</th>
+					<th id="riceball"></th>
+				</tr>
+				<tr>
+					<th>HP藥劑</th>
+					<th id="redtea"></th>
+				</tr>
+				<tr>
+					<th>鳳凰の卵</th>
+					<th id="teaegg"></th>
+				</tr>
+				<tr>
+					<th>涼麵</th>
+					<th id="coldnoodles"></th>
+				</tr>
+			</tbody>
+		</table>
 		<div class="bk"><a href="adventure.html">返回</a></div>
 		<div class="backg"><table><tbody id="dishead" ></tbody></table></div>
 		<script>
 			var player_name=localStorage.getItem("start_adventure");
 			var content=JSON.parse(localStorage.getItem(player_name));
 			var head=localStorage.getItem("canvas_"+player_name);
+			var backpack=JSON.parse(localStorage.getItem("&backpack"));
 			function start(){
 				var display_name=document.getElementById("name");
 				display_name.innerHTML=player_name;
@@ -81,6 +108,10 @@
 				document.getElementById("atk").innerHTML=content.atk;
 				document.getElementById("def").innerHTML=content.def;
 				document.getElementById("spd").innerHTML=content.spd;
+				document.getElementById("riceball").innerHTML="還有"+backpack.riceball+"個";
+				document.getElementById("redtea").innerHTML="還剩下"+backpack.redtea+"瓶";
+				document.getElementById("teaegg").innerHTML="還有"+backpack.teaegg+"個";
+				document.getElementById("coldnoodles").innerHTML="還有"+backpack.beefnoodles+"碗";
 			}
 			window.addEventListener("load",start,false);
 		</script>
