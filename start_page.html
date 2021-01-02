@@ -32,13 +32,17 @@
 		<div id="menu">
 			<div id="start"><a href='player_gerenate.html'>創新角入坑(花費100元)</a></div>
 			<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="確定輸入"></div>
-			<div>遊戲說明</div>
+			<div id="inform">遊戲說明</div>
 			<div><a href="wawa_player.html">英靈殿堂</a></div>
 			<div><a href="earn_money.html">拼拼圖賺錢</a></div>
 			<div id="bug"><a href="mailto:sun1223god@gmail.com">回報bug</a></div>
 		</div>
 		<div id="money_display"></div>
 		<script>
+			var riceball,redtea,teaegg,beefnoodles;
+			var tool={
+				riceball,redtea,teaegg,beefnoodles
+			};
 			function findPlayer(){
 				var name=document.getElementById("idname");
 				console.log(name.value);
@@ -61,16 +65,29 @@
 					}
 				}
 			}
+			function alt_inf(){
+				alert("遊戲目標:\n1.想辦法把三關打完ㄅ\n2.或者賺大錢\n3.享受遊戲的過程");
+				alert("注意事項:\n1.人被殺，就會死\n2.沒錢，就不能花錢\n3.升級並不會提升整體數值，但可以讓你打人更痛，被打更不痛");
+			}
 			function start(){
+				document.getElementById("inform").addEventListener("click",alt_inf,false);
 				document.getElementById("find").addEventListener("click",findPlayer,false);
 				var money=localStorage.getItem("$");
 				var l1c=localStorage.getItem("&Level_1");
 				var l2c=localStorage.getItem("&Level_2");
 				var l3c=localStorage.getItem("&Level_3");
+				var backpack=localStorage.getItem("&backpack");
 				console.log(money);
 				if(money==null){
 					localStorage.setItem("$",100);
 					location.reload();
+				}
+				if(backpack==null){
+					tool.riceball=0;
+					tool.redtea=0;
+					tool.teaegg=0;
+					tool.beefnoodles=0;
+					localStorage.setItem("&backpack",JSON.stringify(tool));
 				}
 				if(l1c==null){
 					localStorage.setItem("&Level_1",0);
