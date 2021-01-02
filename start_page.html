@@ -21,7 +21,6 @@
 				align-items: center;
 				position: relative;
 				min-height: 100vh;
-				font-family: Hack, monospace;
 				background-color: #c49d98;
 				background-image: url("background2.png");
 				background-size: contain;
@@ -56,6 +55,7 @@
 			a{
 				color: white;
 				text-decoration: none;
+				
 
 			}
 			a:hover{
@@ -71,19 +71,36 @@
 			#money_display{
 				color: white;
 			}
+			#find{
+				background-color: #c49d98;
+				color:white;
+				border: 0;
+				font-size: 35px;
+				font-family: word;
+				height: 30px;
+			}
+			#find:hover{
+				background-color: white;
+				color: #c49d98;
+			}
+			.c:hover{
+				background-color: white;
+				color: #c49d98;
+				
+			}
 		</style>
 	</head>
 	<body>
 		<div id="The_game_title"><span data-item="Rohit" id="t">變身</span><span id="rpg">.rpg</span></div>
 		<div id="menu">
 			<div id="start"><a href='player_gerenate.html'>創建新角</a></div>
-			<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="召喚"></div>
-			<div id="inform">遊戲說明</div>
+			<div ><span class="c">讀取角色</span><input type="text" id="idname"><input type="button" id="find" value="<-召喚此人"></div>
+			<div id="inform" ><span class="c">遊戲說明</span></div>
 			<div><a href="wawa_player.html" class="gray">英靈殿堂</a></div>
 			<div><a href="earn_money.html">拼拼圖賺錢</a></div>
 			<div id="bug" ><a href="mailto:sun1223god@gmail.com" class="gray">回報bug</a></div>
 		</div>
-		<div id="money_display" ></div>
+		<div id="money_display"></div>
 		<script>
 			var riceball,redtea,teaegg,beefnoodles;
 			var tool={
