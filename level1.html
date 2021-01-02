@@ -120,8 +120,6 @@
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*1.35);
 					talk.innerHTML = "第"+step+"回合<br>"+"你對test使用了<span class='aboriginal'>原著民爆擊的啦</span><br>造成了"+damage+"點傷害!<br>test對你的學分造成了1點傷害!";
 					enemy.HP-=damage;
-					sanjudge();
-					state_load();
 				}
 				else if(state.gender==3){
 					step++;
@@ -131,8 +129,6 @@
 					state.HP=Math.min(state.MAXHP,state.HP+heal);
 					state.SP-=10;
 					enemy.HP-=damage;
-					sanjudge();
-					state_load();
 				}
 				else if(state.gender==4){
 					step++;
@@ -140,8 +136,6 @@
 					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>超量治癒</span><br>你回復了"+heal+"點生命值<br>test對你的學分造成了1點傷害!";
 					state.HP+=heal;
 					state.SP-=15;
-					sanjudge();
-					state_load();
 				}
 				else if(state.gender==5){
 					step++;
@@ -150,16 +144,12 @@
 					combo+=0.1;
 					state.SP-=5;
 					enemy.HP-=damage;
-					sanjudge();
-					state_load();
 				}
 				else if(state.gender==6){
 					step++;
 					var healSP=Math.floor(state.MAXSP/3);
 					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>氣定神閒</span><br>你回復了"+healSP+"點精神<br>test對你的學分造成了1點傷害!";
 					state.SP=Math.min(state.SP+healSP,state.MAXSP);
-					sanjudge();
-					state_load();
 				}
 				else if(state.gender==7){
 					step++;
@@ -168,8 +158,6 @@
 					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>復仇反擊</span><br>造成了"+damage+"點傷害!<br>test對你的學分造成了1點傷害!";
 					state.SP-=8;
 					enemy.HP-=damage;
-					sanjudge();
-					state_load();
 				}
 				else if(state.gender==8){
 					step++;
@@ -178,14 +166,14 @@
 					money+=1;
 					enemy.HP-=damage;
 					state.SP-=1;
-					sanjudge();
-					state_load();
 				}
 				else if(state.gender==9){
 					step++;
 					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>看破</span><br>你無視了他的防禦<br>test對你的學分造成了1點傷害!";
 					state.SP-=10;
 					enemy.def=0;
+				}
+				if(state.gender!=1&&state.gender!=0&&mb==0){
 					sanjudge();
 					state_load();
 				}
@@ -218,7 +206,6 @@
 			}
 			function state_load(){
 				p1s.innerHTML= "魔法少女 "+player_name+"還剩下"+state.HP+"/"+state.MAXHP+"的生命值跟"+state.SP+"/"+state.MAXSP+"的san值";
-				
 				mons.innerHTML="測試怪還有"+enemy.HP+"的生命值";
 				mons.innerHTML+="<img class='wooden' src='wooden.png'>";
 				if(loser==1){
@@ -287,6 +274,10 @@
 					if(p==11){
 						document.getElementById("progress").innerHTML="end";
 						talk.innerHTML = "恭喜你通過了第一學期!";
+						if(localStorage.getItem("&Level_1")=='0'){
+							talk.innerHTML += "這是你首次通關新手教學的獎勵(200$)!";
+							money+=200;
+						}
 						localStorage.setItem("$",money);
 						localStorage.setItem("&Level_1",1);
 						amt();
