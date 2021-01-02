@@ -21,6 +21,9 @@
 				color: red;
 				font-size: 1.35em;
 			}
+			.wooden{
+				width:200px;height:200px;
+			}
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
@@ -215,7 +218,9 @@
 			}
 			function state_load(){
 				p1s.innerHTML= "魔法少女 "+player_name+"還剩下"+state.HP+"/"+state.MAXHP+"的生命值跟"+state.SP+"/"+state.MAXSP+"的san值";
+				
 				mons.innerHTML="測試怪還有"+enemy.HP+"的生命值";
+				mons.innerHTML+="<img class='wooden' src='wooden.png'>";
 				if(loser==1){
 					battle=0;
 					bd.style.visibility= "hidden";
