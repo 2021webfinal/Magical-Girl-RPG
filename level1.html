@@ -40,8 +40,13 @@
 			<div id="monster">
 			</div>
 		</div>
+		<div id="kill_or_forgive" class="choose">
+			<input id="kill" type="button" value="剁!"></input>
+			<input id="forgive" type="button" value="放他走"></input>
+		</div>
 		<script>
 			var battle=0;
+			var kof = document.getElementById("kill_or_forgive");
 			var bd = document.getElementById("battle_display");
 			var p1s = document.getElementById("p1_state");
 			var mons = document.getElementById("monster");
@@ -67,17 +72,6 @@
 					delay: (el, i) => 150 * (i+1)
 				});
 			}
-			function fast_amt(){
-				var textWrapper = document.querySelector('.ml3');
-				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-				anime.timeline({loop: false})
-				.add({
-					targets: '.ml3 .letter',
-					opacity: [0,1],
-					duration: 1,
-					delay: (el, i) => 15 * (i+1)
-				});
-			}
 			//以下戰鬥
 			function fight(){
 				bd.style.visibility= "visible";
@@ -95,8 +89,7 @@
 			function go_atk(){
 				step++;
 				var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50)));
-				talk.innerHTML = "第"+step+"回合......"+"你對test攻擊......造成了"+damage+"點傷害!......test對你的學分造成了1點傷害!";
-				fast_amt();
+				talk.innerHTML = "第"+step+"回合<br>"+"你對test攻擊<br>造成了"+damage+"點傷害!<br>test對你的學分造成了1點傷害!";
 				enemy.HP-=damage;
 				state_load();
 			}
@@ -111,8 +104,7 @@
 			}
 			function go_look(){
 				step++;
-				talk.innerHTML = "第"+step+"回合......"+"你觀察了test......被當成作弊獲得了一隻警告!(但F12好像出現了甚麼)";
-				fast_amt();
+				talk.innerHTML = "第"+step+"回合<br>"+"你觀察了test<br>被當成作弊獲得了一隻警告!(但F12好像出現了甚麼)";
 				console.log(enemy);
 			}
 			function state_load(){
@@ -125,11 +117,28 @@
 				else if(enemy.HP<=0){
 					battle=0;
 					bd.style.visibility= "hidden";
-					talk.innerHTML="第"+step+"回合......"+"test被你打爆了!......你獲得了"+enemy.exp+"點經驗值......你獲得了1$!";
-					money+=1;
-					state.exp+=1;
-					fast_amt();
+					kof.style.visibility= "visible";
+					talk.innerHTML="你戰勝了test，現在他任憑你處置，你會......?";
+					amt();
 				}
+			}
+			function kill(){
+				talk.innerHTML="第"+step+"回合<br>"+"test被你打爆了!<br>你獲得了"+enemy.exp+"點經驗值<br>你獲得了1$!";
+				money+=1;
+				state.exp+=1;
+				state.sin-=100;
+				if(state.exp>=100&&state.lv<=10){
+					state.exp=0;
+					state.lv+=1;
+					talk.innerHTML+="<br>魔法少女"+player_name+"升級了!現在等級"+state.lv;
+				}
+				kof.style.visibility= "hidden";
+			}
+			function forgive(){
+				talk.innerHTML="第"+step+"回合<br>"+"你戰勝了test並且放了他<br>你獲得了1$!";
+				money+=1;
+				state.sin+=1;
+				kof.style.visibility= "hidden";
 			}
 			//以上
 			function boss_fight(){
@@ -144,7 +153,7 @@
 					fight();
 				}	
 				else if(r==1){
-					talk.innerHTML = "撿到錢~";
+					talk.innerHTML = "撿到10元~";
 					money+=10;
 				}
 				else{
@@ -188,6 +197,7 @@
 				amt();
 				++quitalt;
 				if(quitalt==2){
+					localStorage.setItem(player_name,JSON.stringify(state));
 					document.location.href="adventure.html";
 				}
 			}
@@ -196,6 +206,9 @@
 				quitalt=0;
 			}
 			function start(){
+				kof.style.visibility="hidden";
+				document.getElementById("kill").addEventListener("click",kill,false);
+				document.getElementById("forgive").addEventListener("click",forgive,false);
 				document.getElementById("take_look").addEventListener("click",go_look,false);
 				document.getElementById("attack").addEventListener("click",go_atk,false);
 				document.getElementById("skill").addEventListener("click",go_skill,false);
