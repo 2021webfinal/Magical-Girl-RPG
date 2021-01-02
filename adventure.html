@@ -33,10 +33,11 @@
 		<table id = "canvas" onmousemove="mapp(event)">
 			<tbody id="headbox"></tbody>
 		</table></a>
+		<div id="money_display"></div>
 		<div id="worldmap" >
 			<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">光遠程設</a></div>
-			<div id="map2" onmousemove="map2i(event)">機率論</div>
-			<div id="map3" onmousemove="map3i(event)">微積分</div>
+			<div id="map2" onmousemove="map2i(event)">未解鎖關卡</div>
+			<div id="map3" onmousemove="map3i(event)">未解鎖關卡</div>
 			<div id="tool_shop" onmousemove="tooli(event)">7-11</div>
 			<div id="hotel" onmousemove="hoteli(event)">便宜到靠北旅館</div>
 			<a href="start_page.html"><div id="home" onmousemove="hi(event)">回家</div></a>
@@ -49,6 +50,8 @@
 			var talk = document.getElementById("chatbox");
 			var tmp_chat = 0;
 			var player_name=localStorage.getItem("start_adventure");
+			var money=localStorage.getItem("$");
+			money=parseInt(money);
 			function amt(){
 				var textWrapper = document.querySelector('.ml3');
 				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -110,9 +113,23 @@
 				}
 				tmp_chat = 4;
 			}
+			function sleep(){
+				if(money<10){
+					alert("沒錢還敢睡啊?");
+				}
+				else{
+					alert("謝謝光臨");
+					money-=10;
+					var state=JSON.parse(localStorage.getItem(player_name));
+					state.HP=state.MAXHP;
+					state.SP=state.MAXSP;
+					localStorage.setItem(player_name,JSON.stringify(state));
+					localStorage.setItem('$',money);
+					location.reload();
+				}
+			}
 			function gethead(){
 				var hell=document.getElementById("hellow");
-				
 				hell.innerHTML="Hellow! "+player_name+"<br>";
 				console.log(player_name);
 				var headcode=localStorage.getItem("canvas_"+player_name);
@@ -122,6 +139,8 @@
 			function start(){
 				gethead();
 				amt();
+				document.getElementById("money_display").innerHTML="你的錢包還有"+money+"元";
+				document.getElementById("hotel").addEventListener("click",sleep,false);
 				var check_level1=localStorage.getItem("&Level_1");
 				var check_level2=localStorage.getItem("&Level_2");
 				var check_level3=localStorage.getItem("&Level_3");
