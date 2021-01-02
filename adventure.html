@@ -42,7 +42,6 @@
 			<div id="hotel" onmousemove="hoteli(event)">便宜到靠北旅館</div>
 			<a href="start_page.html"><div id="home" onmousemove="hi(event)">回家</div></a>
 		</div>
-		
 		　<div class="ctbox">
 			<p id="chatbox" class="ml3">你好我是對話框</p>
 		</div>
@@ -51,6 +50,7 @@
 			var tmp_chat = 0;
 			var player_name=localStorage.getItem("start_adventure");
 			var money=localStorage.getItem("$");
+			var backpack=JSON.parse(localStorage.getItem("&backpack"));
 			money=parseInt(money);
 			function amt(){
 				var textWrapper = document.querySelector('.ml3');
@@ -128,6 +128,40 @@
 					location.reload();
 				}
 			}
+			function buy(){
+				var b,arr=[39,10,10,119];
+				var u = parseInt(window.prompt( "請輸入要購買的商品\n0.離開\n1.三角飯糰(龍蝦沙拉風味):$39\n2.麥香紅茶:10$\n3.茶葉蛋:10$\n4.牛肉麵:$119" ));
+				if(u>4||u<1){
+					alert("謝謝您的光臨!");
+				}
+				else{
+						b = parseInt(window.prompt("請輸入要購買的數量"));
+						if(b<=0||isFinite(b)==0){
+							alert("抱歉先生我們只收正整數喔~");
+						}
+						else if(b*parseInt(arr[u-1])>money){
+							alert("抱歉先生我們這裡只收現金不接受刷卡喔~(你的錢好像不太夠)");
+						}
+						else{
+							money-=b*arr[u-1];
+							if(u==1){
+								backpack.riceball+=b;
+							}
+							else if(u==2){
+								backpack.redtea+=b;
+							}
+							else if(u==3){
+								backpack.teaegg+=b;
+							}
+							else if(u==4){
+								backpack.beefnoodles+=b;
+							}
+							localStorage.setItem("&backpack",JSON.stringify(backpack));
+							localStorage.setItem("$",money);
+							alert("一共是"+b*arr[u-1]+"元，謝謝光臨");
+						}
+				}
+			}
 			function gethead(){
 				var hell=document.getElementById("hellow");
 				hell.innerHTML="Hellow! "+player_name+"<br>";
@@ -141,6 +175,7 @@
 				amt();
 				document.getElementById("money_display").innerHTML="你的錢包還有"+money+"元";
 				document.getElementById("hotel").addEventListener("click",sleep,false);
+				document.getElementById("tool_shop").addEventListener("click",buy,false);
 				var check_level1=localStorage.getItem("&Level_1");
 				var check_level2=localStorage.getItem("&Level_2");
 				var check_level3=localStorage.getItem("&Level_3");
