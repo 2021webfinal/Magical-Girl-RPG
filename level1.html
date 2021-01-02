@@ -45,7 +45,6 @@
 			<input id="forgive" type="button" value="放他走"></input>
 		</div>
 		<script>
-			var low_san=0;
 			var battle=0;
 			var kof = document.getElementById("kill_or_forgive");
 			var bd = document.getElementById("battle_display");
@@ -55,7 +54,6 @@
 			var back = document.getElementById("back");
 			var player_name=localStorage.getItem("start_adventure");
 			var state=JSON.parse(localStorage.getItem(player_name));
-			var backpack=JSON.parse(localStorage.getItem("&backpack"));
 			var p=1,quitalt=0,money;
 			var step;
 			var loser;
@@ -93,7 +91,6 @@
 				var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50)));
 				talk.innerHTML = "第"+step+"回合<br>"+"你對test攻擊<br>造成了"+damage+"點傷害!<br>test對你的學分造成了1點傷害!";
 				enemy.HP-=damage;
-				sanjudge();
 				state_load();
 			}
 			function go_skill(){
@@ -103,17 +100,15 @@
 				loser=1;
 				talk.innerHTML = "成功逃跑了，但你的成績掉了不少";
 				amt();
-				sanjudge();
 				state_load();
 			}
 			function go_look(){
 				step++;
-				sanjudge();
 				talk.innerHTML = "第"+step+"回合<br>"+"你觀察了test<br>被當成作弊獲得了一隻警告!(但F12好像出現了甚麼)";
 				console.log(enemy);
 			}
 			function state_load(){
-				p1s.innerHTML= "魔法少女 "+player_name+"還剩下"+state.HP+"/"+state.MAXHP+"的生命值跟"+state.SP+"/"+state.MAXSP+"的san值";
+				p1s.innerHTML= "魔法少女 "+player_name+"還剩下"+state.MAXHP+"/"+state.HP+"的生命值";
 				mons.innerHTML="測試怪還有"+enemy.HP+"的生命值";
 				if(loser==1){
 					battle=0;
@@ -128,7 +123,6 @@
 				}
 			}
 			function kill(){
-				sanjudge();
 				talk.innerHTML="第"+step+"回合<br>"+"test被你打爆了!<br>你獲得了"+enemy.exp+"點經驗值<br>你獲得了1$!";
 				money+=1;
 				state.exp+=1;
@@ -141,7 +135,6 @@
 				kof.style.visibility= "hidden";
 			}
 			function forgive(){
-				sanjudge();
 				talk.innerHTML="第"+step+"回合<br>"+"你戰勝了test並且放了他<br>你獲得了1$!";
 				money+=1;
 				state.sin+=1;
@@ -174,7 +167,6 @@
 				}
 				else{
 					++p;
-					sanjudge();
 					document.getElementById("progress").innerHTML=p;
 					if(p==11){
 						document.getElementById("progress").innerHTML="end";
@@ -209,84 +201,8 @@
 					document.location.href="adventure.html";
 				}
 			}
-			function sanjudge(){
-				if(state.SP<=0){
-					var l=Math.random();
-					if(l<0.5){
-						alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
-						state.HP-=5;
-						alert("魔法少女"+player_name+"對自己造成了5點傷害");
-						diejudge();
-					}
-				}
-			}
-			function diejudge(){
-				if(state.HP<=0){
-					alert("魔法少女"+player_name+"死了");
-					state.live=0;
-					localStorage.setItem(player_name,JSON.stringify(state));
-					window.location.href="start_page.html";
-				}
-			}
 			function use_t(){
-				if(battle==1){
-					alert("我不覺得在戰鬥的時候敵人會讓你有機會吃午餐");
-				}
-				else{
-					if(backpack.riceball+backpack.redtea+backpack.teaegg+backpack.beefnoodles==0){
-						alert("你翻了一下包包，然後發現你啥都沒帶");
-					}
-					else{
-						u = parseInt(window.prompt( "你要吃啥?\n0.隨便阿\n1.過期飯糰\n2.HP藥劑\n3.鳳凰の卵\n4.涼麵"));
-						if(u>4||u<1){
-							alert("你好像又不餓了，收起了背包");
-						}
-						else if(u==1){
-							if(backpack.riceball==0){
-								alert("你的背包裡好像沒這東西...");
-							}
-							else{
-								backpack.riceball-=1;
-								alert("你吃了幾口放了5天的龍蝦沙拉飯糰，感到一陣噁心，但至少填飽了肚子(HP+10,SP-3)");
-								state.HP=Math.min(state.HP+10,state.MAXHP);
-								state.SP-=3;
-							}
-						}
-						else if(u==2){
-							if(backpack.redtea==0){
-								alert("你的背包裡好像沒這東西...");
-							}
-							else{
-								backpack.redtea-=1;
-								alert("你喝了一口HP藥劑，SP回復了(SP+5)");
-								state.SP=Math.min(state.SP+5,state.MAXSP);
-							}
-						}
-						else if(u==3){
-							if(backpack.teaegg==0){
-								alert("你的背包裡好像沒這東西...");
-							}
-							else{
-								backpack.teaegg-=1;
-								alert("你吃的很飽，但你的口很渴");
-							}
-						}
-						else if(u==4){
-							if(backpack.beefnoodles==0){
-								alert("你的背包裡好像沒這東西...");
-							}
-							else{
-								backpack.beefnoodles-=1;
-								alert("你吃了這碗放了好久的牛肉麵，吃完一肚子火(HP+50,SP+10,ATK+1)");
-								state.HP=Math.min(state.SP+10,state.MAXSP);
-								state.SP=Math.min(state.HP+50,state.MAXSP);
-								state.ATK++;
-							}
-						}
-						sanjudge();
-						localStorage.setItem("&backpack",JSON.stringify(backpack));
-					}
-				}
+				alert("你翻了一下包包，然後發現你啥都沒帶");
 				quitalt=0;
 			}
 			function start(){

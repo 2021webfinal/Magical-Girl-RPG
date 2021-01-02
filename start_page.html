@@ -2,6 +2,18 @@
 	<head>
 		<title>start_page</title>
 		<style>
+			@font-face {
+				font-family: title;
+				src: url("genkai-mincho.ttf");
+       		}
+			@font-face {
+				font-family: start;
+				src: url("YunusH.ttf");
+        	}
+			@font-face {
+				font-family: word;
+				src: url("Silver.ttf");
+        	}
 			body {
 				display: flex;
 				flex-direction: column;
@@ -10,34 +22,68 @@
 				position: relative;
 				min-height: 100vh;
 				font-family: Hack, monospace;
+				background-color: #c49d98;
+				background-image: url("background2.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				color: white;
+				font-family: word;
+				font-size: 55px;
 			}
 			div {
 				color: #727272;
 				text-align: center;
 			}
-			p {
-				margin: 16px;
-				font-size: 96px;
-				color: #ccc;
+			#The_game_title {
+				margin: 50px;
+				margin-top: 150px;
+				margin-bottom: 100px;
+				font-size: 200px;
+				color: white;
+				font-family: title;
 				text-transform: uppercase;
 				font-weight: 600;
 				transition: all 1s ease-in-out;
 				position: relative;
 			}
+			#t{
+				text-align: center;
+			}
+			#rpg{
+				font-size: 46px;
+	
+			}
+			a{
+				color: white;
+				text-decoration: none;
 
+			}
+			a:hover{
+				background-color: white;
+				color: #c49d98;
+			}
+			#inform{
+				color: white;
+			}
+			.gray{
+				color: #727272;
+			}
+			#money_display{
+				color: white;
+			}
 		</style>
 	</head>
 	<body>
-		<div id="The_game_title"><p data-item="Rohit">變身.RPG</p></div>
+		<div id="The_game_title"><span data-item="Rohit" id="t">變身</span><span id="rpg">.rpg</span></div>
 		<div id="menu">
-			<div id="start"><a href='player_gerenate.html'>創新角入坑(花費100元)</a></div>
-			<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="確定輸入"></div>
+			<div id="start"><a href='player_gerenate.html'>創建新角</a></div>
+			<div>讀取角色<input type="text" id="idname"><input type="button" id="find" value="召喚"></div>
 			<div id="inform">遊戲說明</div>
-			<div><a href="wawa_player.html">英靈殿堂</a></div>
+			<div><a href="wawa_player.html" class="gray">英靈殿堂</a></div>
 			<div><a href="earn_money.html">拼拼圖賺錢</a></div>
-			<div id="bug"><a href="mailto:sun1223god@gmail.com">回報bug</a></div>
+			<div id="bug" ><a href="mailto:sun1223god@gmail.com" class="gray">回報bug</a></div>
 		</div>
-		<div id="money_display"></div>
+		<div id="money_display" ></div>
 		<script>
 			var riceball,redtea,teaegg,beefnoodles;
 			var tool={
@@ -57,7 +103,7 @@
 				else{
 					var code=JSON.parse(idn);
 					if(code.live==0){
-						alert(name.value+"她已經...被拉進垃圾車了...");
+						alert(name.value+"他已經...被拉進垃圾車了...");
 					}
 					else{
 						localStorage.setItem("start_adventure",name.value);
