@@ -1,7 +1,11 @@
 <html>
 	<head>
-		<title>角色生成</title>
+		<title>創建角色</title>
 		<style>
+			@font-face {
+				font-family: word;
+				src: url("Silver.ttf");
+        	}
 			.button {
 				background-color: #4CAF50; /* Green */
 				border: none;
@@ -14,57 +18,92 @@
 				transition-duration: 0.4s;
 				cursor: pointer;
 			}
-			.button1 {
-				background-color: white; 
-				color: black; 
-				border: 2px solid #4CAF50;
+			
+			
+			
+			#canvas { width: 400px;
+                     border:8px #FFD382 groove;
+                     border-collapse: collapse }
+            td      { width: 4px; height: 4px; margin: 0px; padding: 0px; }
+            .blue   { background-color: 	#ffdfd1; }
+			.yellow   { background-color: 	rgb(255, 242, 170); }
+            .red    { background-color:	#f7c2d4; }
+            .black  { background-color: rgb(185, 229, 255);}
+            .white  { background-color: white;}
+			body{
+				background-color: #c49d98;
+				background-image: url("background2.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				font-family: word;
+				font-size: 40px;
+				color: white;
+			}
+			div{
+				text-align: center;
+			}
+			#gerenate_step2{
+				margin-top: 200px;
+			}
+			table{
+				margin-left: auto;
+				margin-right: auto;
+				margin-bottom: 20px;
+			}
+			.button{
+				
+				background-color: #c49d98;
+				color:white;
+				border: 0;
+				font-size: 35px;
+				font-family: word;
+				height: 30px;
+			
+			}
+			.button:hover{
+				background-color: white;
+				color: #c49d98;
 			}
 			.button1:hover {
 				background-color: #4CAF50;
 				color: white;
 			}
-			.button2 {
-				background-color: white; 
-				color: black; 
-				border: 2px solid red;
-			}
 			.button2:hover {
 				background-color: red;
 				color: white;
 			}
+			table{
+				font-size: 30px;
+				color: white;
+				border-color:white;
+			}
 			.disabled {
 				display: none;
 			}
-			#canvas { width: 400px;
-                     border:8px #FFD382 groove;
-                     border-collapse: collapse }
-            td      { width: 4px; height: 4px; margin: 0px; padding: 0px; }
-            .blue   { background-color: blue; }
-            .red    { background-color: red; }
-            .black  { background-color: black;}
-            .white  { background-color: white;}
 		</style>
 	</head>
 	<body>
 		<div id="all">
+			<div id="gerenate_step2">
+				<label>輸入角色名字：<input id="play_1" type="text"></label>
+			</div>
 			<div id="gerenate_step1">
+				<p>繪製角色頭像<br>(ctrl=皮膚色,shift=粉紅色,alt=粉藍色,meta=粉黃色) / 按滑鼠左鍵擦掉</p>
 				<table id = "canvas">
-					<caption>繪製角色頭項<br>(ctrl=藍色,shift=紅色,alt=黑色)
-					 <br> 按滑鼠左鍵擦掉 </caption>
 					<tbody id = "tablebody"></tbody>
 				</table>
-				<input id = "clearCanvas" value = "清除畫布" type="button">
-				<a href="start_page.html"><input value = "回上頁" type="button"></a>
+				<input  class="button" id = "clearCanvas" value = "清除畫布" type="button">
+				<a href="start_page.html"><input class="button" value = "回上頁" type="button"></a>
+				<br>
+				<label><input id="start" class="button" type="button" value="召喚!"></label>
+				
+				<div class="d" id="display"></div>
+				<div class="d" id="display2"></div>
+				<label><input id="check" class="button disabled button1" type="button" value="確認創建"></label>
+				<label><input id="delete" class="button button2 disabled" type="button" value="請她走人"></label>
 			</div>
 			<br>
-			<div id="gerenate_step2">
-				<label>輸入名子:<input id="play_1" type="text"></label>
-				<label><input id="start" class="button button1" type="button" value="召喚!"></label>
-				<label><input id="delete" class="button button2" type="button" value="請她走人"></label>
-				<div id="display"></div>
-				<div id="display2"></div>
-				<label><input id="check" class="button disabled" type="button" value="enter"></label>
-			</div>
+			
 		</div>
 		<script>
 			var p1,btt,btt2;
@@ -112,6 +151,9 @@
 				   if ( e.altKey){
 					  e.target.setAttribute( "class", "black");
 				   }
+				   if ( e.metaKey){
+					  e.target.setAttribute( "class", "yellow");
+				   }
 				   if ( e.buttons==1){
 					  e.target.setAttribute( "class", "white");
 				   }
@@ -140,7 +182,7 @@
 				val.MAXHP=val.HP;
 				val.MAXSP=val.SP;
 				console.log(n);
-				var markup="<table border='2' width='50%'><thead></thead>";
+				var markup="<table border='2'  width='50%' ><thead></thead>";
 				if(val.gender!=0)markup+="<tbody><tr><td>gender</td><td>female</td></tr></tbody>";
 				else markup+="<tbody><tr><td>gender</td><td>male</td></tr></tbody>";
 				markup+="<tbody><tr><td>HP</td><td>"+val.HP+"</td></tr></tbody>";
@@ -151,7 +193,9 @@
 				markup+="</table>"
 				document.getElementById("display").innerHTML=markup;
 				var b2=document.getElementById("check");
+				var b3=document.getElementById("delete");
 				b2.style.display="inline";
+				b3.style.display="inline";
 				check2();
 				document.getElementById("display2").innerHTML="Are you sure?";
 			}
@@ -163,7 +207,7 @@
 				var moneyget=localStorage.getItem("$");
 				var exist=localStorage.getItem(p1);
 				if(exist!=null){
-					alert("這角色你已經召喚過了= =");
+					alert("這角色已經曾被召喚過了= =");
 				}
 				else if(moneyget>=100){
 					save();
@@ -174,7 +218,7 @@
 					document.location.href="adventure.html";
 				}
 				else{
-					alert("You don't have enough money!");
+					alert("你並沒有足夠的錢創建新角色！");
 					location.reload();
 				}
 			}
@@ -188,7 +232,7 @@
 				p1=document.getElementById("play_1").value;
 				localStorage.removeItem(p1);
 				localStorage.removeItem("canvas_"+p1);
-				window.alert('Its removed!');
+				window.alert('她已消失在黑暗力量的洪流裡了');
 			}
 			window.addEventListener( "load", eve, false );
 		</script>
