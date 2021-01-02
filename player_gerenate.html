@@ -181,6 +181,7 @@
 				val.spd=Math.floor((100-(val.def*2+val.atk)/10)/10);
 				val.HP=Math.floor((val.def*2+val.atk)*(10-val.spd)/10);
 				val.SP=Math.floor(Math.abs(100-val.HP));
+				if(val.HP<50)val.HP+=50;
 				val.MAXHP=val.HP;
 				val.MAXSP=val.SP;
 				console.log(n);
