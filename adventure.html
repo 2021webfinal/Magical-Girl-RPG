@@ -37,6 +37,8 @@
 			<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">光遠程設</a></div>
 			<div id="map2" onmousemove="map2i(event)">機率論</div>
 			<div id="map3" onmousemove="map3i(event)">微積分</div>
+			<div id="tool_shop" onmousemove="tooli(event)">7-11</div>
+			<div id="hotel" onmousemove="hoteli(event)">便宜到靠北旅館</div>
 			<a href="start_page.html"><div id="home" onmousemove="hi(event)">回家</div></a>
 		</div>
 		
@@ -86,6 +88,20 @@
 					amt();
 				}
 				tmp_chat = 3;
+			}
+			function tooli(e) {
+				if(tmp_chat!=6){
+					talk.innerHTML = "買點道具";
+					amt();
+				}
+				tmp_chat = 6;
+			}
+			function hoteli(e) {
+				if(tmp_chat!=7){
+					talk.innerHTML = "就是RPG都會有的那種，10$回滿HP,SP";
+					amt();
+				}
+				tmp_chat = 7;
 			}
 			function hi(e) {
 				if(tmp_chat!=4){
