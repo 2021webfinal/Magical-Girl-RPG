@@ -2,6 +2,40 @@
     <title>15money</title>
     <meta charset="utf-8" />
     <style type="text/css">
+		@font-face {
+			font-family: title;
+			src: url("genkai-mincho.ttf");
+		}
+		@font-face {
+			font-family: start;
+			src: url("YunusH.ttf");
+		}
+		@font-face {
+			font-family: word;
+			src: url("Silver.ttf");
+		}
+		body {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			background-color: #c49d98;
+			background-image: url("background2.png");
+			background-size: contain;
+			background-repeat: no-repeat;
+			color: white;
+			font-family: word;
+			background-position-x: center;
+			overflow: -moz-hidden-unscrollable;
+		}
+		#all{
+			position:absolute;
+			top:150px;
+		}
+		table {
+			border-collapse: collapse;
+			border: 5px solid black;
+		}
         caption, td {
             font-weight: bold;
             font-family: helvetica, arial, sans-serif;
@@ -13,7 +47,6 @@
         td {
             font-size: 4em;
             color: blue;
-            border: 2px solid gray;
             padding: 5px;
         }
         div {
@@ -28,7 +61,7 @@
 			position:absolute;
 			top:0;
 			left:0;
-			width: 555px;
+			width: 580px;
 		}
     </style>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -42,47 +75,49 @@
 	<audio id="winaudio">
             <source src="applause.mp3" type="audio/mpeg">
     </audio>
-    <table id="board" border="1">
-        <caption>15-money</caption>
-        <tbody>
-            <tr>
-                <td onclick="doClick( 0, 0 )" id="cell00"></td>
-                <td onclick="doClick( 0, 1 )" id="cell01"></td>
-                <td onclick="doClick( 0, 2 )" id="cell02"></td>
-                <td onclick="doClick( 0, 3 )" id="cell03"></td>
-            </tr>
-            <tr>
-                <td onclick="doClick( 1, 0 )" id="cell10"></td>
-                <td onclick="doClick( 1, 1 )" id="cell11"></td>
-                <td onclick="doClick( 1, 2 )" id="cell12"></td>
-                <td onclick="doClick( 1, 3 )" id="cell13"></td>
-            </tr>
-            <tr>
-                <td onclick="doClick( 2, 0 )" id="cell20"></td>
-                <td onclick="doClick( 2, 1 )" id="cell21"></td>
-                <td onclick="doClick( 2, 2 )" id="cell22"></td>
-                <td onclick="doClick( 2, 3 )" id="cell23"></td>
-            </tr>
-            <tr>
-                <td onclick="doClick( 3, 0 )" id="cell30"></td>
-                <td onclick="doClick( 3, 1 )" id="cell31"></td>
-                <td onclick="doClick( 3, 2 )" id="cell32"></td>
-                <td onclick="doClick( 3, 3 )" id="cell33"></td>
-            </tr>
-        </tbody>
-    </table>
-    <p>
-        <button ><a href="start_page.html">回首頁</a></button>
-        <button onclick="gotoLastStep()" id="laststepBtn">作弊</button>
-        <button onclick="importData()" id="importBtn">重玩</button>
-        <button onclick="switchBGM()" id="bgmBtn">開/關BGM</button>
-    </p>
-    <div id="msg"></div>
-	<img id="ldin">
+	<div id="all">
+		<table id="board">
+			<caption>別碰，我怕癢</caption>
+			<tbody>
+				<tr>
+					<td onclick="doClick( 0, 0 )" id="cell00"></td>
+					<td onclick="doClick( 0, 1 )" id="cell01"></td>
+					<td onclick="doClick( 0, 2 )" id="cell02"></td>
+					<td onclick="doClick( 0, 3 )" id="cell03"></td>
+				</tr>
+				<tr>
+					<td onclick="doClick( 1, 0 )" id="cell10"></td>
+					<td onclick="doClick( 1, 1 )" id="cell11"></td>
+					<td onclick="doClick( 1, 2 )" id="cell12"></td>
+					<td onclick="doClick( 1, 3 )" id="cell13"></td>
+				</tr>
+				<tr>
+					<td onclick="doClick( 2, 0 )" id="cell20"></td>
+					<td onclick="doClick( 2, 1 )" id="cell21"></td>
+					<td onclick="doClick( 2, 2 )" id="cell22"></td>
+					<td onclick="doClick( 2, 3 )" id="cell23"></td>
+				</tr>
+				<tr>
+					<td onclick="doClick( 3, 0 )" id="cell30"></td>
+					<td onclick="doClick( 3, 1 )" id="cell31"></td>
+					<td onclick="doClick( 3, 2 )" id="cell32"></td>
+					<td onclick="doClick( 3, 3 )" id="cell33"></td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			<button ><a href="start_page.html">回首頁</a></button>
+			<button onclick="gotoLastStep()" id="laststepBtn">作弊</button>
+			<button onclick="importData()" id="importBtn">重玩</button>
+			<button onclick="switchBGM()" id="bgmBtn">開/關BGM</button>
+		</p>
+		<div id="msg"></div>
+		<img id="ldin">
+	</div>
     <script>
+		var click_time=0;
 		var mg=document.getElementById("ldin");
 		var cheat=0;
-		console.log(mg);
         var zx=0,zy=0,sd=document.getElementById("getaudio"),wd=document.getElementById("winaudio");
 		sd.muted=true;
 		sd.loop=true;
@@ -195,6 +230,11 @@
 				sd.muted=true;
 		}
         function doClick(x,y){
+			click_time++;
+			console.log(click_time);
+			if(click_time%100==0){
+				alert("你已經點了我"+click_time+"次了，點爽沒?");
+			}
             if(document.getElementById("msg").innerHTML=="這一格好像能點"){
                 var tmpx=document.getElementById("cell"+x+y).innerHTML;
                 document.getElementById("cell"+x+y).innerHTML="";
