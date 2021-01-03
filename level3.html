@@ -62,6 +62,7 @@
 			var mb=0;
 			var low_san=0;
 			var battle=0;
+			var forgave = document.getElementById("forgive");
 			var oos = document.getElementById("open_or_skip");
 			var kof = document.getElementById("kill_or_forgive");
 			var bd = document.getElementById("battle_display");
@@ -291,6 +292,9 @@
 					battle=0;
 					bd.style.visibility= "hidden";
 					kof.style.visibility= "visible";
+					if(state.sin<-500){
+						forgave.style.visibility = "hidden";
+					}
 					talk.innerHTML="你戰勝了"+enemy.name+"，現在他任憑你處置，你會......?";
 					mb=0;
 					amt();
@@ -459,7 +463,7 @@
 				}
 				else if(state.SP<=0){
 					var l=Math.random();
-					if(l<0.5){
+					if(l<0.6){
 						alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
 						state.HP-=5;
 						alert("魔法少女"+player_name+"對自己造成了5點傷害");
