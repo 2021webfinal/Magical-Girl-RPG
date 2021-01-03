@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>index</title>
+	<meta charset = "utf-8"/>
+	<style>
+        @font-face {
+            font-family: start;
+            src: url("YunusH.ttf");
+        }
+		img{
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        body{
+            font-family: start;
+            margin: 0px;
+            overflow: hidden;
+            background-color: #c49d98;
+        }
+        video{
+            z-index: 0;
+            position: absolute;
+        }
+        /* #test{
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 100vw;
+            height: 18vh;
+        }
+        
+        #test p{
+            text-align: center;
+            font-size: 6vh;
+            font-weight: bold;
+            margin-top: 5vh;
+            color: #9b7b77;
+        } */
+    </style>
+    <link rel="icon" href="heart.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="heart.ico" type="image/x-icon" />
+    <!--小圖示要再改-->
+	<script >
+        var count=0;
+        function start(){
+            document.addEventListener("click",play,false);
+        }
+        function play(){
+            if(count==0){
+                var vid=document.getElementById("mp4");
+                vid.play();
+                vid.onended= function(){
+                    document.getElementById("click").innerHTML="<a href='loading.html'><img src='blank.png'></a>"
+                    //網址記得修掉
+                }
+            } 
+            count++;
+        }
+        
+        window.addEventListener("load",start,false);
+	</script>
+</head>
+
+<body>
+    <video id="mp4" style = "max-height: 100vh; width: 100vw;">
+        <source src="start.mp4" type="video/mp4">
+    </video>
+    <!-- <div id = "test">
+        <p>START</p>
+    </div> -->
+    <div id="click" ></div>
+</body>
+<!--晚點要修正RWD-->
+</html>
