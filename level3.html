@@ -317,6 +317,10 @@
 					talk.innerHTML+="<br>魔法少女"+player_name+"升級了!現在等級"+state.lv;
 				}
 				kof.style.visibility= "hidden";
+				if(boss_f==1){
+					localStorage.setItem("&end",3);
+					window.location.href='end.html';
+				}
 			}
 			function forgive(){
 				sanjudge();
@@ -324,6 +328,16 @@
 				money+=3;
 				state.sin+=2;
 				kof.style.visibility= "hidden";
+				if(boss_f==1){
+					if(state.sin>10){
+						localStorage.setItem("&end",1);
+						window.location.href='end.html';
+					}
+					else{
+						localStorage.setItem("&end",2);
+						window.location.href='end.html';
+					}
+				}
 			}
 			//以上
 			function boss_fight(){
