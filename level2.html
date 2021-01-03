@@ -446,15 +446,22 @@
 				}
 			}
 			function sanjudge(){
-				if(state.SP<=0){
+				if(state.SP<50){
+					alert("魔法少女"+player_name+"的精神崩潰了!");
+					state.HP-=20;
+					state.SP-=5;
+					state.def=floor(state.def*0.8);
+				}
+				else if(state.SP<=0){
 					var l=Math.random();
 					if(l<0.5){
 						alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
 						state.HP-=5;
 						alert("魔法少女"+player_name+"對自己造成了5點傷害");
-						diejudge();
 					}
 				}
+				localStorage.setItem(player_name,JSON.stringify(state));
+				diejudge();
 			}
 			function diejudge(){
 				if(state.HP<=0){
