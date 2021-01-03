@@ -148,22 +148,27 @@
 				}
 			}
 			function enemy_turn(){
-				var hurt=Math.floor(Math.random()*(enemy.atk-state.def/10)*(1+(enemy.lv-state.lv)*0.1));
-				console.log(enemy.atk);
-				console.log(state.def);
-				console.log(enemy.lv);
-				console.log(state.lv);
-				talk.innerHTML+="<br>"+enemy.name+"攻擊<br>你受到了"+hurt+"點傷害!";
-				state.HP-=hurt;
-				if(boss_f==1){
-					var boss_s=Math.random()*0.3;
-					var boss_check=Math.random();
-					if(boss_s>boss_check){
-						talk.innerHTML = "<br>茲茲的觸手放出電流讓你麻痺了!";
-						mb=1;
+				var atk_type=Math.random();
+				if(atk_type>0.5){
+					var hurt=Math.floor(Math.random()*(enemy.atk-state.def/10)*(1+(enemy.lv-state.lv)*0.1));
+					talk.innerHTML+="<br>"+enemy.name+"攻擊<br>你受到了"+hurt+"點傷害!";
+					state.HP-=hurt;
+					if(boss_f==1){
+						var boss_s=Math.random()*0.3;
+						var boss_check=Math.random();
+						if(boss_s>boss_check){
+							talk.innerHTML = "<br>茲茲的觸手放出電流讓你麻痺了!";
+							mb=1;
+						}
 					}
+					diejudge();
 				}
-				diejudge();
+				else{
+					var spirit=Math.floor(enemy.atk/4*(1+(enemy.lv-state.lv)*0.1));
+					talk.innerHTML+="<br>"+enemy.name+"對你使用精神衝擊<br>你受到了"+spirit+"點精神傷害!";
+					state.SP-=spirit;
+					sanjudge();
+				}
 			}
 			function go_skill(){
 				if(state.gender==1||state.gender==0)alert("這個人啥也不會");
@@ -446,11 +451,11 @@
 				}
 			}
 			function sanjudge(){
-				if(state.SP<50){
+				if(state.SP<-50){
 					alert("魔法少女"+player_name+"的精神崩潰了!");
 					state.HP-=20;
 					state.SP-=5;
-					state.def=floor(state.def*0.8);
+					state.def=Math.floor(state.def*0.8);
 				}
 				else if(state.SP<=0){
 					var l=Math.random();
