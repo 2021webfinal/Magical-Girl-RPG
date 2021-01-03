@@ -1,0 +1,20 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<p id="end_display"></p>
+		<script>
+			var idn=localStorage.getItem("&end");
+			var dp=document.getElementById("end_display");
+			if(idn==3){
+				dp.innerHTML="你把BOSS剁了而且吸收了他，最終你也變成了瘋狗在召喚峽谷無情開剁......";
+			}
+			else if(idn==2){
+				dp.innerHTML="你戰勝了BOSS並且原諒了他，但是之前被你吸收的魔物以及逃跑時留下的敵人殘渣在你體內吞噬了你";
+			}
+			else if(idn==1){
+				dp.innerHTML="雖然身為魔法少女的一員，但你始終深信著魔物是可以跟人類和平共存的，所以你一路走來完全沒有奪走過任何的生命，你的精神值得嘉許(如果你沒開掛的話^^)</p><br>就這樣在你的努力下，世界跟我的期末專案回復了和平......"
+			}
+		</script>
+	</body>
+</html>
