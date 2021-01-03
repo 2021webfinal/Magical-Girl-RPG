@@ -37,6 +37,10 @@
 		<div class="ctbox">
 			<p id="chatbox" class="ml3">進入關卡2</p>
 		</div>
+		<div id="open_or_skip" class="choose">
+			<input id="open" type="button" value="打開看看"></input>
+			<input id="skip" type="button" value="還是算了..."></input>
+		</div>
 		<div id="battle_display" class="fight_screen">
 			<input id="attack" type="button" value="攻擊">
 			<input id="skill" type="button" value="技能">
@@ -58,6 +62,7 @@
 			var mb=0;
 			var low_san=0;
 			var battle=0;
+			var oos = document.getElementById("open_or_skip");
 			var kof = document.getElementById("kill_or_forgive");
 			var bd = document.getElementById("battle_display");
 			var p1s = document.getElementById("p1_state");
@@ -319,9 +324,56 @@
 				amt();
 				fight();
 			}
+			function open(){
+				var kr=Math.floor(Math.random()*10);
+				if(kr==0){
+					var damage=Math.floor(state.MAXHP*0.1);
+					talk.innerHTML = "寶箱爆炸了...你受到了"+damage+"點傷害!";
+					state.HP-=damage;
+					diejudge();
+				}
+				else if(kr==1){
+					var damage=Math.floor(state.MAXSP*0.1);
+					talk.innerHTML = "寶箱飛出一堆蟑螂...你受到了"+damage+"點精神傷害!";
+					state.SP-=damage
+					sanjudge();
+				}
+				else if(kr==2){
+					talk.innerHTML = "這箱子裡啥都沒裝...";
+				}
+				else if(kr==3){
+					talk.innerHTML = "這箱子裡面有錢ㄟ~($+50)";
+					money+=50;
+				}
+				else if(kr==4){
+					talk.innerHTML = "你在箱子裡找到一個不知道放了多久的飯糰...";
+					backpack.riceball++;
+					localStorage.setItem("&backpack",JSON.stringify(backpack));
+				}
+				else if(kr==5){
+					talk.innerHTML = "你在箱子裡找到一杯不知道放了多久的紅茶...";
+					backpack.redtea++;
+					localStorage.setItem("&backpack",JSON.stringify(backpack));
+				}
+				else if(kr==6){
+					talk.innerHTML = "你在箱子裡找到一顆因為放太久已經變成皮蛋的茶葉蛋...";
+					backpack.teaegg++;
+					localStorage.setItem("&backpack",JSON.stringify(backpack));
+				}
+				else{
+					talk.innerHTML = "你在箱子裡找到一張紙條，上面寫著'裡面的東西已經被太陽拿走了^^'......";
+				}
+				amt();
+				oos.style.visibility="hidden";
+			}
+			function skip(){
+				talk.innerHTML = "你無視了箱子...";
+				amt();
+				oos.style.visibility="hidden";
+			}
 			function random_event(){
 				gogo=0;
-				var r=Math.floor(Math.random()*3);
+				var r=Math.floor(Math.random()*4);
 				if(r==0){
 					talk.innerHTML = "遭遇隨堂考!";
 					battle=1;
@@ -331,12 +383,18 @@
 					talk.innerHTML = "撿到10元~";
 					money+=10;
 				}
-				else{
+				else if(r==2){
 					talk.innerHTML = "啥都沒看到";
+				}
+				else{
+					talk.innerHTML = "發現了奇怪的箱子!";
+					oos.style.visibility="visible";
 				}
 				amt();
 			}
 			function go_step(){
+				oos.style.visibility="hidden";
+				kof.style.visibility= "hidden";
 				if(gogo==1){
 					alert("你也太急了吧?");
 				}
@@ -480,7 +538,10 @@
 				quitalt=0;
 			}
 			function start(){
+				oos.style.visibility="hidden";
 				kof.style.visibility="hidden";
+				document.getElementById("open").addEventListener("click",open,false);
+				document.getElementById("skip").addEventListener("click",skip,false);
 				document.getElementById("kill").addEventListener("click",kill,false);
 				document.getElementById("forgive").addEventListener("click",forgive,false);
 				document.getElementById("take_look").addEventListener("click",go_look,false);
