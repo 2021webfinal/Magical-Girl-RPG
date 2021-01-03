@@ -266,6 +266,7 @@
 				amt();
 			}
 			function go_step(){
+				kof.style.visibility= "hidden";
 				if(gogo==1){
 					alert("你也太急了吧?");
 				}
@@ -403,6 +404,7 @@
 				quitalt=0;
 			}
 			function start(){
+				alert("這裡是訓練新手的地方，你只要一直往前走就能通關，怪物不會打人，當你戰勝他們，你可以選擇殺死並且吸收他們或者放過他們，當然你也可以直接走掉，不過並不建議這樣做。在這裡探險毫無風險可言，但相對的你能遇到的地圖事件也比較少。");
 				kof.style.visibility="hidden";
 				document.getElementById("kill").addEventListener("click",kill,false);
 				document.getElementById("forgive").addEventListener("click",forgive,false);
