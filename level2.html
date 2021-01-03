@@ -52,6 +52,7 @@
 			<input id="forgive" type="button" value="放他走"></input>
 		</div>
 		<script>
+			var gogo=0;
 			var boss_f=0;
 			var combo=1;
 			var mb=0;
@@ -312,12 +313,14 @@
 			}
 			//以上
 			function boss_fight(){
+				gogo=0;
 				talk.innerHTML = "BOSS茲茲出現了!!!";
 				boss_f=1;
 				amt();
 				fight();
 			}
 			function random_event(){
+				gogo=0;
 				var r=Math.floor(Math.random()*3);
 				if(r==0){
 					talk.innerHTML = "遭遇隨堂考!";
@@ -334,7 +337,10 @@
 				amt();
 			}
 			function go_step(){
-				if(battle==1){
+				if(gogo==1){
+					alert("你也太急了吧?");
+				}
+				else if(battle==1){
 					alert("你還在打架ㄟ想跑去哪?");
 				}
 				else{
@@ -352,11 +358,17 @@
 						quitalt=1;
 					}
 					else if(p==15){
-						boss_fight();
+						talk.innerHTML = "前進中...";
+						gogo=1;
+						amt();
+						setTimeout(boss_fight,1000);
 						quitalt=0;
 					}
 					else if(p<15){
-						random_event();
+						talk.innerHTML = "前進中...";
+						gogo=1;
+						amt();
+						setTimeout(random_event,1000);
 						quitalt=0;
 					}
 					else{
@@ -389,9 +401,21 @@
 			function diejudge(){
 				if(state.HP<=0){
 					alert("魔法少女"+player_name+"死了");
-					state.live=0;
-					localStorage.setItem(player_name,JSON.stringify(state));
-					window.location.href="start_page.html";
+					again = parseInt(window.prompt("是否要吃茶葉蛋復活?(是/否=輸入1/other)"));
+					if(again==1&&backpack.teaegg>0){
+						alert(player_name+"復活了!但心靈跟肉體受到了重創(HP上限跟SP上限-10%)");
+						state.MAXHP=Math.floor(state.MAXHP*0.9);
+						state.MAXSP=Math.floor(state.MAXSP*0.9);
+						state.HP=1;
+						state.SP=1;
+						localStorage.setItem(player_name,JSON.stringify(state));
+					}
+					else{
+						alert("由於沒有茶葉蛋，魔法少女"+player_name+"化成了碎片消失在空中...");
+						state.live=0;
+						localStorage.setItem(player_name,JSON.stringify(state));
+						window.location.href="start_page.html";
+					}
 				}
 			}
 			function use_t(){
