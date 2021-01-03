@@ -18,7 +18,9 @@
 				height: 250px;
 				width: 500px;
 				overflow: -moz-hidden-unscrollable;
-			　	display: inline;
+				position:absolute;
+				left: 100px;
+				bottom: 50px;
 			}
 			#canvas {width: 250px;
                      border: 1px solid #999999;
@@ -60,24 +62,110 @@
 				background-color: white;
 				color: #c49d98;
 			}
+			#hellow{
+				margin-top: 160px;
+			}
+			#qaq{
+				margin-top: 170px;
+				left: 100px;
+				position:absolute;
+			}
+			#ouo{
+				position:absolute;
+				right: 250px;
+			}
+			/* #money_display{
+				position:absolute;
+				right: 50px;
+				bottom: 20px;
+			} */
+			#qwq{
+				bottom: 50px;
+				right: 230px;
+				position:absolute;
+			}
+			#qaq table{
+				border-collapse: separate;
+				display: block;
+			}
+			#qaq tr{
+				border: 1px solid #c49d98;
+			}
+			#qaq td{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color: #c49d98;
+				border-radius: 10px;
+				color: #FFF;
+				
+			}
+			#qwq table{
+				border-collapse: separate;
+				display: block;
+			}
+			#qwq tr{
+				border: 1px solid #c49d98;
+			}
+			#qwq td{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color: #c49d98;
+				border-radius: 10px;
+				color: #FFF;
+				
+			}
+			#worldmap{
+				margin-top: 40px;
+				width: 435px;
+				font-size: 40px;
+				text-align: center;
+				height: 290px;
+			}
+			#worldmap2{
+				margin-top: 40px;
+				width: 205px;
+				font-size: 40px;
+				text-align: center;
+				height: 200px;
+			}
+			#canvas{
+				margin-top: 15px;
+			}
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
 	<body>
-		<div id="hellow"></div>
-		<a href="player_content.html">
-		<table id = "canvas" onmousemove="mapp(event)">
-			<tbody id="headbox"></tbody>
-		</table></a>
-		<div id="money_display"></div>
-		<div id="worldmap" >
-			<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">新手練習</a></div>
-			<div id="map2" onmousemove="map2i(event)">未解鎖關卡</div>
-			<div id="map3" onmousemove="map3i(event)">未解鎖關卡</div>
-			<div id="tool_shop" onmousemove="tooli(event)" ><span class="h">路邊的雜貨店</span></div>
-			<div id="hotel" onmousemove="hoteli(event)"><span class="h">可疑的旅館</span></div>
-			<a href="start_page.html">回家<div id="home" onmousemove="hi(event)"></div></a>
+		<div id="ouo">
+			<div id="hellow"></div>
+			<a href="player_content.html">
+			<table id = "canvas" onmousemove="mapp(event)">
+				<tbody id="headbox"></tbody>
+			</table></a>
+			
 		</div>
+		
+		<table id="qaq">
+				<tr>
+					<td><div id="worldmap"  >
+						<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">• 新手練習  </a></div>
+						<div id="map2" onmousemove="map2i(event)">• 初級挑戰  </div>
+						<div id="map3" onmousemove="map3i(event)">• 魔王挑戰  </div>
+						<div id="tool_shop" onmousemove="tooli(event)" ><span class="h">• 路邊的雜貨店  </span></div>
+						<div id="hotel" onmousemove="hoteli(event)"><span class="h">• 可疑的旅館  </span></div>
+						<div id="home" onmousemove="hi(event)"><a href="start_page.html">• 回家  </div></a>
+					</td>
+				</tr>
+		</table>
+		<table id="qwq">
+				<tr>
+					<td><div id="worldmap2"  >
+						<div>狀態</div>
+						<div>HP: / SP:</div>
+						<div>錢包</div>
+						<div id="money_display"></div>
+					</td>
+				</tr>
+		</table>
 		　<div class="ctbox">
 			<p id="chatbox" class="ml3">你好我是對話框ฅ>ω<ฅ</p>
 		</div>
@@ -97,7 +185,7 @@
 					opacity: [0,1],
 					easing: "easeInOutQuad",
 					duration: 10,
-					delay: (el, i) => 100 * (i+1)
+					delay: (el, i) => 90 * (i+1)
 				});
 			}
 			function mapp(e) {
@@ -109,6 +197,8 @@
 			}
 			function map1i(e) {
 				if(tmp_chat!=1){
+					var m1=document.getElementById("map1");
+					m1.innerHTML="<a href='level1.html' id='passlv1'>> 新手練習 <</a>";
 					talk.innerHTML = "前往新手教學➞";
 					amt();
 				}
@@ -116,6 +206,8 @@
 			}
 			function map2i(e) {
 				if(tmp_chat!=2){
+					var m2=document.getElementById("map2");
+					m2.innerHTML="<a href='level2.html' id='passlv1'>> 初級挑戰 <</a>";
 					talk.innerHTML = "前往第二關➞";
 					amt();
 				}
@@ -123,6 +215,8 @@
 			}
 			function map3i(e) {
 				if(tmp_chat!=3){
+					var m3=document.getElementById("map3");
+					m3.innerHTML="<a href='level3.html' id='passlv1'>> 魔王挑戰 <</a>";
 					talk.innerHTML = "前往地獄⤵";
 					amt();
 				}
@@ -130,13 +224,17 @@
 			}
 			function tooli(e) {
 				if(tmp_chat!=6){
-					talk.innerHTML = "買點道具";
+					var m=document.getElementById("tool_shop");
+					m.innerHTML="<span class='h'>> 路邊的雜貨店 <</span>";
+					talk.innerHTML = "販賣各式各樣的道具";
 					amt();
 				}
 				tmp_chat = 6;
 			}
 			function hoteli(e) {
 				if(tmp_chat!=7){
+					var m4=document.getElementById("hotel");
+					m4.innerHTML="<span class='h'>> 可疑的旅館 <</span>";
 					talk.innerHTML = "就是RPG都會有的那種，10$回滿HP,SP";
 					amt();
 				}
@@ -144,6 +242,8 @@
 			}
 			function hi(e) {
 				if(tmp_chat!=4){
+					var m5=document.getElementById("home");
+					m5.innerHTML="<a href='start_page.html'>> 回家 <</span>";
 					talk.innerHTML = "重新選角";
 					amt();
 				}
@@ -209,17 +309,17 @@
 			function start(){
 				gethead();
 				amt();
-				document.getElementById("money_display").innerHTML="你的錢包還有"+money+"元";
+				document.getElementById("money_display").innerHTML="$： "+money+"元";
 				document.getElementById("hotel").addEventListener("click",sleep,false);
 				document.getElementById("tool_shop").addEventListener("click",buy,false);
 				var check_level1=localStorage.getItem("&Level_1");
 				var check_level2=localStorage.getItem("&Level_2");
 				var check_level3=localStorage.getItem("&Level_3");
 				if(check_level1=='1'){
-					document.getElementById("map2").innerHTML='<a href="level2.html" id="passlv2">初級挑戰</a>';
+					document.getElementById("map2").innerHTML='<a href="level2.html" id="passlv2">•   初級挑戰</a>';
 				}
 				if(check_level2=='1'){
-					document.getElementById("map3").innerHTML='<a href="level3.html" id="passlv3">地獄大魔王</a>';
+					document.getElementById("map3").innerHTML='<a href="level3.html" id="passlv3">• 魔王挑戰</a>';
 				}
 			}
 			window.addEventListener( "load", start, false );
