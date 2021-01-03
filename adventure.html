@@ -1,29 +1,65 @@
 <html>
 	<head>
-		<title>冒險測試</title>
+		<title>十字路口</title>
+		<meta charset="UTF-8">
 		<style>
+			@font-face {
+				font-family: word;
+				src: url("Silver.ttf");
+        	}
 			.ml3 {
 			  font-weight: 90;
-			  font-size: 2em;
-			  color: blue;
+			  font-size: 1.8em;
+			  color: #c2afa5;
 			}
 			.ctbox {
-				border: solid 5px green;
-				background-color: lightgreen;
+				border: solid 5px #fae1dd;
+				background-color: #f8edeb;
 				height: 250px;
 				width: 500px;
-				overflow:scroll;
-			　	display:inline;
+				overflow: -moz-hidden-unscrollable;
+			　	display: inline;
 			}
 			#canvas {width: 250px;
                      border: 1px solid #999999;
                      border-collapse: collapse 
 					 }
             td      { width: 2px; height: 2px; margin: 0px; padding: 0px; }
-            .blue   { background-color: blue; }
-            .red    { background-color: red; }
-            .black  { background-color: black;}
+            .blue   { background-color: 	#ffdfd1; }
+			.yellow   { background-color: 	rgb(255, 242, 170); }
+            .red    { background-color:	#f7c2d4; }
+            .black  { background-color: rgb(185, 229, 255);}
             .white  { background-color: white;}
+			body{
+				background-color: #c49d98;
+				background-image: url("background2.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position-x: center;
+				font-family: word;
+				font-size: 40px;
+				color: white;
+				-ms-overflow-style: none;
+    			height: 100%;
+				overflow: -moz-hidden-unscrollable;
+			}
+			body::-webkit-scrollbar {
+    			display: none;
+			}
+			a{
+				color: white;
+				text-decoration: none;
+				
+
+			}
+			a:hover{
+				background-color: white;
+				color: #c49d98;
+			}
+			.h:hover{
+				background-color: white;
+				color: #c49d98;
+			}
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
@@ -35,15 +71,15 @@
 		</table></a>
 		<div id="money_display"></div>
 		<div id="worldmap" >
-			<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">光遠程設</a></div>
+			<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">新手練習</a></div>
 			<div id="map2" onmousemove="map2i(event)">未解鎖關卡</div>
 			<div id="map3" onmousemove="map3i(event)">未解鎖關卡</div>
-			<div id="tool_shop" onmousemove="tooli(event)">7-11</div>
-			<div id="hotel" onmousemove="hoteli(event)">便宜到靠北旅館</div>
-			<a href="start_page.html"><div id="home" onmousemove="hi(event)">回家</div></a>
+			<div id="tool_shop" onmousemove="tooli(event)" ><span class="h">路邊的雜貨店</span></div>
+			<div id="hotel" onmousemove="hoteli(event)"><span class="h">可疑的旅館</span></div>
+			<a href="start_page.html">回家<div id="home" onmousemove="hi(event)"></div></a>
 		</div>
 		　<div class="ctbox">
-			<p id="chatbox" class="ml3">你好我是對話框</p>
+			<p id="chatbox" class="ml3">你好我是對話框ฅ>ω<ฅ</p>
 		</div>
 		<script>
 			var talk = document.getElementById("chatbox");
@@ -61,7 +97,7 @@
 					opacity: [0,1],
 					easing: "easeInOutQuad",
 					duration: 10,
-					delay: (el, i) => 150 * (i+1)
+					delay: (el, i) => 100 * (i+1)
 				});
 			}
 			function mapp(e) {
@@ -73,21 +109,21 @@
 			}
 			function map1i(e) {
 				if(tmp_chat!=1){
-					talk.innerHTML = "前往新手教學";
+					talk.innerHTML = "前往新手教學➞";
 					amt();
 				}
 				tmp_chat = 1;
 			}
 			function map2i(e) {
 				if(tmp_chat!=2){
-					talk.innerHTML = "前往第二關";
+					talk.innerHTML = "前往第二關➞";
 					amt();
 				}
 				tmp_chat = 2;
 			}
 			function map3i(e) {
 				if(tmp_chat!=3){
-					talk.innerHTML = "前往地獄";
+					talk.innerHTML = "前往地獄⤵";
 					amt();
 				}
 				tmp_chat = 3;
@@ -115,10 +151,10 @@
 			}
 			function sleep(){
 				if(money<10){
-					alert("沒錢還敢睡啊?");
+					alert("「沒錢還敢睡啊?」你被旅館主人趕出店門。");
 				}
 				else{
-					alert("謝謝光臨");
+					alert("你花了10元，在有些破舊的旅館內意外地睡了個好眠，HP與SP都回滿了！");
 					money-=10;
 					var state=JSON.parse(localStorage.getItem(player_name));
 					state.HP=state.MAXHP;
@@ -130,17 +166,17 @@
 			}
 			function buy(){
 				var b,arr=[39,10,10,119];
-				var u = parseInt(window.prompt( "請輸入要購買的商品\n0.離開\n1.三角飯糰(龍蝦沙拉風味):$39\n2.麥香紅茶:10$\n3.茶葉蛋:10$\n4.牛肉麵:$119" ));
+				var u = parseInt(window.prompt( "請輸入要購買的商品\n0.離開\n1.三角飯糰(龍蝦沙拉風味):$39\n2.麥香紅茶:$10\n3.茶葉蛋:$10\n4.牛肉麵:$119\n" ));
 				if(u>4||u<1){
 					alert("謝謝您的光臨!");
 				}
 				else{
 						b = parseInt(window.prompt("請輸入要購買的數量"));
 						if(b<=0||isFinite(b)==0){
-							alert("抱歉先生我們只收正整數喔~");
+							alert("抱歉我們只收正整數喔~");
 						}
 						else if(b*parseInt(arr[u-1])>money){
-							alert("抱歉先生我們這裡只收現金不接受刷卡喔~(你的錢好像不太夠)");
+							alert("抱歉我們這裡只收現金不接受刷卡喔~(你的錢好像不太夠)");
 						}
 						else{
 							money-=b*arr[u-1];
@@ -164,7 +200,7 @@
 			}
 			function gethead(){
 				var hell=document.getElementById("hellow");
-				hell.innerHTML="Hellow! "+player_name+"<br>";
+				hell.innerHTML="Hello! "+player_name+"<br>";
 				console.log(player_name);
 				var headcode=localStorage.getItem("canvas_"+player_name);
 				var tmp=document.getElementById("headbox").innerHTML=headcode;
@@ -180,10 +216,10 @@
 				var check_level2=localStorage.getItem("&Level_2");
 				var check_level3=localStorage.getItem("&Level_3");
 				if(check_level1=='1'){
-					document.getElementById("map2").innerHTML='<a href="level2.html" id="passlv2">機率論</a>';
+					document.getElementById("map2").innerHTML='<a href="level2.html" id="passlv2">初級挑戰</a>';
 				}
 				if(check_level2=='1'){
-					document.getElementById("map3").innerHTML='<a href="level3.html" id="passlv3">微積分</a>';
+					document.getElementById("map3").innerHTML='<a href="level3.html" id="passlv3">地獄大魔王</a>';
 				}
 			}
 			window.addEventListener( "load", start, false );
