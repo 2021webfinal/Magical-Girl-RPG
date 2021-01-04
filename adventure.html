@@ -20,7 +20,7 @@
 				overflow: -moz-hidden-unscrollable;
 				position:absolute;
 				left: 100px;
-				bottom: 50px;
+				bottom: 0px;
 			}
 			#canvas {width: 250px;
                      border: 1px solid #999999;
@@ -51,8 +51,6 @@
 			a{
 				color: white;
 				text-decoration: none;
-				
-
 			}
 			a:hover{
 				background-color: white;
@@ -74,12 +72,7 @@
 				position:absolute;
 				right: 250px;
 			}
-			/* #money_display{
-				position:absolute;
-				right: 50px;
-				bottom: 20px;
-			} */
-			#qwq{
+			#qwq{	
 				bottom: 50px;
 				right: 230px;
 				position:absolute;
@@ -97,7 +90,6 @@
 				background-color: #c49d98;
 				border-radius: 10px;
 				color: #FFF;
-				
 			}
 			#qwq table{
 				border-collapse: separate;
@@ -112,7 +104,6 @@
 				background-color: #c49d98;
 				border-radius: 10px;
 				color: #FFF;
-				
 			}
 			#worldmap{
 				margin-top: 40px;
@@ -150,15 +141,13 @@
 			<table id = "canvas" onmousemove="mapp(event)">
 				<tbody id="headbox"></tbody>
 			</table></a>
-			
 		</div>
-		
 		<table id="qaq">
 				<tr>
-					<td><div id="worldmap"  >
+					<td><div id="worldmap">
 						<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">新手練習  </a></div>
-						<div id="map2" onmousemove="map2i(event)">初級挑戰  </div>
-						<div id="map3" onmousemove="map3i(event)">魔王挑戰  </div>
+						<div id="map2" onmousemove="map2i(event)">未知地點  </div>
+						<div id="map3" onmousemove="map3i(event)">未知地點  </div>
 						<div id="tool_shop" onmousemove="tooli(event)" ><span class="h">路邊的雜貨店  </span></div>
 						<div id="hotel" onmousemove="hoteli(event)"><span class="h">可疑的旅館  </span></div>
 						<div id="home" onmousemove="hi(event)"><a href="start_page.html">回家  </div></a>
@@ -167,21 +156,23 @@
 		</table>
 		<table id="qwq">
 				<tr>
-					<td><div id="worldmap2"  >
+					<td><div id="worldmap2">
 						<div>狀態</div>
-						<div>HP: / SP:</div>
+						<div id="HP"></div>
+						<div id="SP"></div>
 						<div>錢包</div>
 						<div id="money_display"></div>
 					</td>
 				</tr>
 		</table>
-		　<div class="ctbox">
+		<div class="ctbox">
 			<p id="chatbox" class="ml3">你好我是對話框ฅ>ω<ฅ</p>
 		</div>
 		<script>
 			var talk = document.getElementById("chatbox");
 			var tmp_chat = 0;
 			var player_name=localStorage.getItem("start_adventure");
+			var content=JSON.parse(localStorage.getItem(player_name));
 			var money=localStorage.getItem("$");
 			var backpack=JSON.parse(localStorage.getItem("&backpack"));
 			money=parseInt(money);
@@ -206,7 +197,6 @@
 			}
 			function map1i(e) {
 				if(tmp_chat!=1){
-					
 					talk.innerHTML = "前往新手教學➞";
 					amt();
 				}
@@ -214,23 +204,26 @@
 			}
 			function map2i(e) {
 				if(tmp_chat!=2){
-					
-					talk.innerHTML = "前往第二關➞";
+					if(document.getElementById('map2').innerHTML=="未知地點  ")
+						talk.innerHTML = "通過新手練習以解鎖此關卡";
+					else
+						talk.innerHTML = "前往第二關➞";
 					amt();
 				}
 				tmp_chat = 2;
 			}
 			function map3i(e) {
 				if(tmp_chat!=3){
-					
-					talk.innerHTML = "前往地獄⤵";
+					if(document.getElementById('map3').innerHTML=="未知地點  ")
+						talk.innerHTML = "通過初級挑戰以解鎖此關卡";
+					else 
+						talk.innerHTML = "前往地獄⤵";
 					amt();
 				}
 				tmp_chat = 3;
 			}
 			function tooli(e) {
 				if(tmp_chat!=6){
-					
 					talk.innerHTML = "販賣各式各樣的道具";
 					amt();
 				}
@@ -238,7 +231,6 @@
 			}
 			function hoteli(e) {
 				if(tmp_chat!=7){
-					
 					talk.innerHTML = "就是RPG都會有的那種，10$回滿HP,SP";
 					amt();
 				}
@@ -246,7 +238,6 @@
 			}
 			function hi(e) {
 				if(tmp_chat!=4){
-					
 					talk.innerHTML = "重新選角";
 					amt();
 				}
@@ -298,6 +289,7 @@
 							localStorage.setItem("&backpack",JSON.stringify(backpack));
 							localStorage.setItem("$",money);
 							alert("一共是"+b*arr[u-1]+"元，謝謝光臨");
+							location.reload();
 						}
 				}
 			}
@@ -312,6 +304,8 @@
 			function start(){
 				gethead();
 				amt();
+				document.getElementById("HP").innerHTML="HP： "+content.HP+"/"+content.MAXHP;
+				document.getElementById("SP").innerHTML="SP： "+content.SP+"/"+content.MAXSP;
 				document.getElementById("money_display").innerHTML="$： "+money+"元";
 				document.getElementById("hotel").addEventListener("click",sleep,false);
 				document.getElementById("tool_shop").addEventListener("click",buy,false);
