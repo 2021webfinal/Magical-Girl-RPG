@@ -1,96 +1,218 @@
 <html>
 	<head>
+		<title>角色資訊</title>
+		<meta charset="UTF-8">
 		<style>
+			@font-face {
+				font-family: word;
+				src: url("Silver.ttf");
+        	}
+			
+			body{
+				background-color: #c49d98;
+				background-image: url("background2.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position-x: center;
+				font-family: word;
+				font-size: 40px;
+				color: white;
+				-ms-overflow-style: none;
+    			height: 100%;
+				overflow: -moz-hidden-unscrollable;
+			}
+			body::-webkit-scrollbar {
+    			display: none;
+			}
 			#canvas {width: 1000px;
                      border: 1px solid #999999;
-                     border-collapse: collapse 
+                     border-collapse: collapse ;
+					 width: 10px; height: 10px; margin: 0px; padding: 0px;opacity:0.1;
 					 }
-            td      { width: 10px; height: 10px; margin: 0px; padding: 0px;opacity:0.1; }
-            .blue   { background-color: blue; }
-            .red    { background-color: red; }
-            .black  { background-color: black;}
-            .white  { background-color: white;}
+            /* td      { width: 10px; height: 10px; margin: 0px; padding: 0px;opacity:0.1; } */
+            .blue   { background-color: 	#fccdb8; }
+			.yellow   { background-color: 	rgb(255, 217, 0); }
+            .red    { background-color:#ffa2c1; }
+            .black  { background-color:  rgb(135, 210, 253);}
+            .white  { background-color: #c49d98;}
 			.backg{
-				position:relative;
-				top:-250px;
+				position: absolute;;
+				bottom:0px;
+				right: 10;
 				z-index: -1;
 			}
 			.bk{
 				z-index: 1;
 			}
+			table{
+				font-size: 40px;
+			}
+			#one{
+				margin-top: 200px;
+				left: 100px;
+				position:absolute;
+				
+			}
+			#one table{
+				border-collapse: separate;
+				display: block;
+				border-spacing: 0;
+			}
+			#one tr{
+				border: 1px solid #c49d98;
+			}
+			#one td{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color: #c49d98;
+				border-radius: 10px;
+				color: #FFF;
+				text-align: center;
+				
+			}
+			a{
+				text-decoration: none;
+				color:white;
+
+			}
+			#ouo{
+				margin-top: 20px;
+				
+			}
+			#ouo td:hover{
+				background-color: white;
+				color: #c49d98;
+			}
+			a:hover{
+				color: #c49d98;
+			}
+			#ouo table{
+				border-collapse: separate;
+				display: block;
+				border-spacing: 0;
+			}
+			#ouo tr{
+				border: 1px solid #c49d98;
+			}
+			#ouo td{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color: #c49d98;
+				border-radius: 10px;
+				color: #FFF;
+				text-align: center;
+				
+			}
+			#oxo{
+				margin-top: 200px;
+				right: 200px;
+				position:absolute;
+			}
+			#oxo table{
+				border-collapse: separate;
+				display: block;
+				border-spacing: 0;
+			}
+			#oxo tr{
+				border: 1px solid #c49d98;
+			}
+			#oxo td{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color: #c49d98;
+				border-radius: 10px;
+				color: #FFF;
+				text-align: center;
+				
+			}
+			
 		</style>
 	</head>
 	<body>
+		<div id="one">
+			<table>
+			<caption id="name"></caption>
+			<thead>
+				<tr>
+					<th colspan=2>✧ ﾟ ･ : * 角 色 能 力 值 * : ･ ﾟ ✧</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>等級</td>
+					<td id="lv"></td>
+				</tr>
+				<tr>
+					<td>技能說明</td>
+					<td id="skill"></td>
+				</tr>
+				<tr>
+					<td>經驗值</td>
+					<td id="exp"></td>
+				</tr>
+				<tr>
+					<td>生命值</td>
+					<td id="HP"></td>
+				</tr>
+				<tr>
+					<td>san值</td>
+					<td id="SP"></td>
+				</tr>
+				<tr>
+					<td>攻擊力</td>
+					<td id="atk"></td>
+				</tr>
+				<tr>
+					<td>防禦力</td>
+					<td id="def"></td>
+				</tr>
+				<tr>
+					<td>速度</td>
+					<td id="spd"></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div id="oxo">
+			<table>
+						<caption id="name"></caption>
+						<thead>
+							<tr>
+								<th colspan=2>✿ ‧ ₊  背 包 ₊ ‧ ✿</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>飯米團米團</td>
+								<td id="riceball"></td>
+							</tr>
+							<tr>
+								<td>HP藥劑</td>
+								<td id="redtea"></td>
+							</tr>
+							<tr>
+								<td>鳳凰の卵</td>
+								<td id="teaegg"></td>
+							</tr>
+							<tr>
+								<td>牛肉麵</td>
+								<td id="coldnoodles"></td>
+							</tr>
+						</tbody>
+					</table>
+				<table id="ouo">
+				<tr>
+					<td>
+						<div class="bk"><a href="adventure.html">返回</a></div>
+					</td>
+				</tr>
+			</table>	
+		</div>
+		<div id="icon">
+			<img src="icon.png">
+		</div>
 		
-		<table>
-			<caption id="name"></caption>
-			<thead>
-				<tr>
-					<th colspan=2>角色能力值</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>等級</th>
-					<th id="lv"></th>
-				</tr>
-				<tr>
-					<th>技能說明</th>
-					<th id="skill"></th>
-				</tr>
-				<tr>
-					<th>經驗值</th>
-					<th id="exp"></th>
-				</tr>
-				<tr>
-					<th>生命值</th>
-					<th id="HP"></th>
-				</tr>
-				<tr>
-					<th>san值</th>
-					<th id="SP"></th>
-				</tr>
-				<tr>
-					<th>攻擊力</th>
-					<th id="atk"></th>
-				</tr>
-				<tr>
-					<th>防禦力</th>
-					<th id="def"></th>
-				</tr>
-				<tr>
-					<th>速度</th>
-					<th id="spd"></th>
-				</tr>
-			</tbody>
-		</table>
-		<table>
-			<caption id="name"></caption>
-			<thead>
-				<tr>
-					<th colspan=2>背包</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>飯糰</th>
-					<th id="riceball"></th>
-				</tr>
-				<tr>
-					<th>HP藥劑</th>
-					<th id="redtea"></th>
-				</tr>
-				<tr>
-					<th>鳳凰の卵</th>
-					<th id="teaegg"></th>
-				</tr>
-				<tr>
-					<th>涼麵</th>
-					<th id="coldnoodles"></th>
-				</tr>
-			</tbody>
-		</table>
-		<div class="bk"><a href="adventure.html">返回</a></div>
+		
 		<div class="backg"><table><tbody id="dishead" ></tbody></table></div>
 		<script>
 			var player_name=localStorage.getItem("start_adventure");
@@ -106,36 +228,36 @@
 				console.log(content);
 				document.getElementById("lv").innerHTML=content.lv;
 				if(content.gender==0||content.gender==1){
-					document.getElementById("skill").innerHTML="很不巧這個人啥也不會";
+					document.getElementById("skill").innerHTML="你是最幸運的玩家，擁有了最稀有的技能【什麼也不會】☆消耗0SP";
 				}
 				else if(content.gender==2){
-					document.getElementById("skill").innerHTML="原著民爆擊的啦:你的下一招有1.35倍傷害加成，但是你會因此暈眩一回合...";
+					document.getElementById("skill").innerHTML="【原住民爆擊的啦】下一招有1.35倍傷害加成，但也因此暈眩一回合☆消耗10SP";
 				}
 				else if(content.gender==3){
-					document.getElementById("skill").innerHTML="吸血:從敵人身上吸取生命...消耗10SP";
+					document.getElementById("skill").innerHTML="【奪取你的靈魂】從敵人身上汲取生命，並轉為自己的HP☆消耗10SP";
 				}
 				else if(content.gender==4){
-					document.getElementById("skill").innerHTML="超量治癒:回半寫，永動機完成...消耗15SP";
+					document.getElementById("skill").innerHTML="【超量治癒】回復最大生命一半的HP☆消耗15SP";
 				}
 				else if(content.gender==5){
-					document.getElementById("skill").innerHTML="連擊星:能越打越痛的技能，雖然是抄來了...消耗5SP";
+					document.getElementById("skill").innerHTML="【連擊星】能越打越痛☆消耗5SP";
 				}
 				else if(content.gender==6){
-					document.getElementById("skill").innerHTML="氣定神閒:能回SP，真。永動機!";
+					document.getElementById("skill").innerHTML="【氣定神閒】能回復SP☆消耗5SP";
 				}
 				else if(content.gender==7){
-					document.getElementById("skill").innerHTML="復仇反擊:血量越少傷害越高的技能...消耗8SP";
+					document.getElementById("skill").innerHTML="【復仇反擊】血量越少傷害越高☆消耗消耗8SP";
 				}
 				else if(content.gender==8){
-					document.getElementById("skill").innerHTML="客+1及:你可以偷錢...消耗1SP";
+					document.getElementById("skill").innerHTML="【客+1擊】你可以偷取對手的錢，放入自己的背包內☆消耗1SP";
 				}
 				else if(content.gender==9){
-					document.getElementById("skill").innerHTML="看破:你看透了對手的弱點，接下來將無視他的防禦...消耗10SP";
+					document.getElementById("skill").innerHTML="【看破紅塵】你看透了對手的弱點，接下來將無視他的防禦☆消耗10SP";
 				}
 				document.getElementById("exp").innerHTML=content.exp;
 				document.getElementById("def").innerHTML=content.def;
-				document.getElementById("HP").innerHTML=content.HP+"/"+content.MAXHP;
-				document.getElementById("SP").innerHTML=content.SP+"/"+content.MAXSP;
+				document.getElementById("HP").innerHTML=content.HP+" / "+content.MAXHP;
+				document.getElementById("SP").innerHTML=content.SP+" / "+content.MAXSP;
 				document.getElementById("atk").innerHTML=content.atk;
 				document.getElementById("def").innerHTML=content.def;
 				document.getElementById("spd").innerHTML=content.spd;
