@@ -9,7 +9,6 @@
 				src: url("Silver.ttf");
         	}
 			.ml3 {
-			  
 			  font-weight: 90;
 			  font-size: 1.2em;
 			  color: #c2afa5;
@@ -23,6 +22,9 @@
 				position:absolute;
 				left: 100px;
 				bottom: 50px;
+			}
+			#n{
+				text-align:right;
 			}
 			body{
 				background-color: #c49d98;
@@ -48,7 +50,10 @@
 				font-size: 1.35em;
 			}
 			.wooden{
-				width:250px;height:250px;
+				width:450px;height:450px;
+				position:absolute;
+				left:-450px;
+				top:-50px;
 			}
 			#bg{
 				z-index: -1;
@@ -61,12 +66,10 @@
 				top: 20px;
 				left: 40%;
 				font-size: 60px;
-
 			}
 			#chatbox{
 				margin-left: 10px;
 			}
-			
 			#go , #back , #tool{
 				border: 3px solid #FFF;
 				padding: 10px 30px;
@@ -77,6 +80,9 @@
 				font-family: word;
 				font-size: 55px;
 				margin-right: 20px;
+			}
+			img{
+				align:left;
 			}
 			#ouo {
 				position: absolute;
@@ -103,7 +109,6 @@
 				top: 39%;
 				position: absolute;
 				left: 15%;
-				
 			}
 			#kill , #forgive{
 				border: 3px solid #FFF;
@@ -319,20 +324,18 @@
 				
 				</div></div></div>
 		</div>
-
 		<div id="p">˗ˏˋ ​progress
 			<span id="progress">1</span> / 10 ˎˊ˗
 			<div id="n">
 				<div id="monster"  class="fight_screen"></div>
 				<div id="p1_state" class="fight_screen" ></div>
 			</div>
-			
 		</div>
 		<div id="ouo">
 			<input id="go" type="button" value="前進">
 			<input id="back" type="button" value="撤退">
 			<input id="tool" type="button" value="道具">	
-			</div>
+		</div>
 		<div class="ctbox">
 			<p id="chatbox" class="ml3">歡迎來到新手訓練場˙ˇ˙</p>
 		</div>
@@ -341,7 +344,6 @@
 			<input id="skill" type="button" value="技能">
 			<input id="run_out" type="button" value="逃跑">
 			<input id="take_look" type="button" value="偵查">
-			
 			</div>
 		</div>
 		<div id="kill_or_forgive" class="choose">
@@ -508,7 +510,6 @@
 				p1s.innerHTML= "魔法少女 "+player_name+"還剩下:<br>"+state.HP+" / "+state.MAXHP+" 的生命值跟 "+state.SP+" / "+state.MAXSP+" 的san值";
 				mons.innerHTML="<img class='wooden' src='wooden.png'><br>";
 				mons.innerHTML+="小木頭怪還有"+enemy.HP+"的生命值";
-				
 				if(loser==1){
 					battle=0;
 					bd.style.visibility= "hidden";
@@ -706,9 +707,12 @@
 				quitalt=0;
 			}
 			function start(){
-				alert("你發現了門口有一張泛黃的紙條，你決定撿起來閱讀");
-				alert("上面寫滿了陌生的語言，意外的是，你竟然可以輕鬆的解讀內容：")
-				alert("「致各位魔法少女：\n\n這裡是訓練新生的地方，你只要走到盡頭就能通關。\n這裡的怪物不會打人，當你戰勝它們，你可以選擇「殺死並且吸收它們」或者「放過它們」，當然你也可以直接走掉，不過並不建議這樣做。\n在這裡探險毫無風險可言，但相對的你能遇到的地圖事件也比較少，方便你更快的熟悉你的魔法技能。\n那麼，祝各位順利\n\nH」");
+				if(localStorage.getItem("Is_of_level1")!='1'){
+					alert("你發現了門口有一張泛黃的紙條，你決定撿起來閱讀");
+					alert("上面寫滿了陌生的語言，意外的是，你竟然可以輕鬆的解讀內容：")
+					alert("「致各位魔法少女：\n\n這裡是訓練新生的地方，你只要走到盡頭就能通關。\n這裡的怪物不會打人，當你戰勝它們，你可以選擇「殺死並且吸收它們」或者「放過它們」，當然你也可以直接走掉，不過並不建議這樣做。\n在這裡探險毫無風險可言，但相對的你能遇到的地圖事件也比較少，方便你更快的熟悉你的魔法技能。\n那麼，祝各位順利\n\nH」");
+				}
+				localStorage.setItem("Is_of_level1",'1');
 				kof.style.visibility="hidden";
 				document.getElementById("kill").addEventListener("click",kill,false);
 				document.getElementById("forgive").addEventListener("click",forgive,false);
