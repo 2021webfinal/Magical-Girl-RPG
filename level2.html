@@ -365,6 +365,16 @@
 					backpack.teaegg++;
 					localStorage.setItem("&backpack",JSON.stringify(backpack));
 				}
+				else if(kr==7){
+					talk.innerHTML = "你發現了紅色的果實，你發揮勤儉的美德把它吃掉了(攻擊+1)";
+					state.atk+=1;
+					localStorage.setItem(player_name,JSON.stringify(state));
+				}
+				else if(kr==8){
+					talk.innerHTML = "你發現了藍色的果實，你發揮勤儉的美德把它吃掉了(防禦+1)";
+					state.def+=1;
+					localStorage.setItem(player_name,JSON.stringify(state));
+				}
 				else{
 					talk.innerHTML = "你在箱子裡找到一張紙條，上面寫著'裡面的東西已經被太陽拿走了^^'......";
 				}
@@ -413,9 +423,14 @@
 					document.getElementById("progress").innerHTML=p;
 					if(p==16){
 						document.getElementById("progress").innerHTML="end";
-						talk.innerHTML = "恭喜你通過了第一學期!";
+						talk.innerHTML = "恭喜你通過了初級關卡(獎勵100$)!";
+						if(localStorage.getItem("&Level_2")=='0'){
+							talk.innerHTML = "恭喜你首次通關初級關卡(獎勵500$)!";
+							money+=400;
+						}
+						money+=100;
 						localStorage.setItem("$",money);
-						localStorage.setItem("&Level_1",1);
+						localStorage.setItem("&Level_2",1);
 						amt();
 						back.value="光榮撤退";
 						quitalt=1;
@@ -550,6 +565,7 @@
 				quitalt=0;
 			}
 			function start(){
+				alert("從這裡開始出現的敵人會開始對你發動攻擊；相對的關卡的報酬也變豐富了，請自行拿捏好當中取捨");
 				oos.style.visibility="hidden";
 				kof.style.visibility="hidden";
 				document.getElementById("open").addEventListener("click",open,false);
