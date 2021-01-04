@@ -131,6 +131,15 @@
 			#canvas{
 				margin-top: 15px;
 			}
+			#worldmap div::before{
+				content:"• ";
+			}
+			#worldmap div:hover::before{
+				content:"> ";
+			}
+			#worldmap div:hover::after{
+				content:" <";
+			}
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
@@ -147,12 +156,12 @@
 		<table id="qaq">
 				<tr>
 					<td><div id="worldmap"  >
-						<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">• 新手練習  </a></div>
-						<div id="map2" onmousemove="map2i(event)">• 初級挑戰  </div>
-						<div id="map3" onmousemove="map3i(event)">• 魔王挑戰  </div>
-						<div id="tool_shop" onmousemove="tooli(event)" ><span class="h">• 路邊的雜貨店  </span></div>
-						<div id="hotel" onmousemove="hoteli(event)"><span class="h">• 可疑的旅館  </span></div>
-						<div id="home" onmousemove="hi(event)"><a href="start_page.html">• 回家  </div></a>
+						<div id="map1" onmousemove="map1i(event)"><a href="level1.html" id="passlv1">新手練習  </a></div>
+						<div id="map2" onmousemove="map2i(event)">初級挑戰  </div>
+						<div id="map3" onmousemove="map3i(event)">魔王挑戰  </div>
+						<div id="tool_shop" onmousemove="tooli(event)" ><span class="h">路邊的雜貨店  </span></div>
+						<div id="hotel" onmousemove="hoteli(event)"><span class="h">可疑的旅館  </span></div>
+						<div id="home" onmousemove="hi(event)"><a href="start_page.html">回家  </div></a>
 					</td>
 				</tr>
 		</table>
@@ -197,8 +206,7 @@
 			}
 			function map1i(e) {
 				if(tmp_chat!=1){
-					var m1=document.getElementById("map1");
-					m1.innerHTML="<a href='level1.html' id='passlv1'>> 新手練習 <</a>";
+					
 					talk.innerHTML = "前往新手教學➞";
 					amt();
 				}
@@ -206,8 +214,7 @@
 			}
 			function map2i(e) {
 				if(tmp_chat!=2){
-					var m2=document.getElementById("map2");
-					m2.innerHTML="<a href='level2.html' id='passlv1'>> 初級挑戰 <</a>";
+					
 					talk.innerHTML = "前往第二關➞";
 					amt();
 				}
@@ -215,8 +222,7 @@
 			}
 			function map3i(e) {
 				if(tmp_chat!=3){
-					var m3=document.getElementById("map3");
-					m3.innerHTML="<a href='level3.html' id='passlv1'>> 魔王挑戰 <</a>";
+					
 					talk.innerHTML = "前往地獄⤵";
 					amt();
 				}
@@ -224,8 +230,7 @@
 			}
 			function tooli(e) {
 				if(tmp_chat!=6){
-					var m=document.getElementById("tool_shop");
-					m.innerHTML="<span class='h'>> 路邊的雜貨店 <</span>";
+					
 					talk.innerHTML = "販賣各式各樣的道具";
 					amt();
 				}
@@ -233,8 +238,7 @@
 			}
 			function hoteli(e) {
 				if(tmp_chat!=7){
-					var m4=document.getElementById("hotel");
-					m4.innerHTML="<span class='h'>> 可疑的旅館 <</span>";
+					
 					talk.innerHTML = "就是RPG都會有的那種，10$回滿HP,SP";
 					amt();
 				}
@@ -242,8 +246,7 @@
 			}
 			function hi(e) {
 				if(tmp_chat!=4){
-					var m5=document.getElementById("home");
-					m5.innerHTML="<a href='start_page.html'>> 回家 <</span>";
+					
 					talk.innerHTML = "重新選角";
 					amt();
 				}
@@ -316,10 +319,10 @@
 				var check_level2=localStorage.getItem("&Level_2");
 				var check_level3=localStorage.getItem("&Level_3");
 				if(check_level1=='1'){
-					document.getElementById("map2").innerHTML='<a href="level2.html" id="passlv2">•   初級挑戰</a>';
+					document.getElementById("map2").innerHTML='<a href="level2.html" id="passlv2">初級挑戰</a>';
 				}
 				if(check_level2=='1'){
-					document.getElementById("map3").innerHTML='<a href="level3.html" id="passlv3">• 魔王挑戰</a>';
+					document.getElementById("map3").innerHTML='<a href="level3.html" id="passlv3">魔王挑戰</a>';
 				}
 			}
 			window.addEventListener( "load", start, false );
