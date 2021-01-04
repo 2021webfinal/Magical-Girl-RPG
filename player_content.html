@@ -48,7 +48,7 @@
 				font-size: 40px;
 			}
 			#one{
-				margin-top: 200px;
+				margin-top: 175px;
 				left: 100px;
 				position:absolute;
 				
@@ -104,7 +104,7 @@
 				
 			}
 			#oxo{
-				margin-top: 200px;
+				margin-top: 175px;
 				right: 200px;
 				position:absolute;
 			}
@@ -228,31 +228,31 @@
 				console.log(content);
 				document.getElementById("lv").innerHTML=content.lv;
 				if(content.gender==0||content.gender==1){
-					document.getElementById("skill").innerHTML="你是最幸運的玩家，擁有了最稀有的技能【什麼也不會】☆消耗0SP";
+					document.getElementById("skill").innerHTML="你是最幸運的玩家，擁有了最稀有的技能<br>【什麼也不會】☆消耗0SP";
 				}
 				else if(content.gender==2){
-					document.getElementById("skill").innerHTML="【原住民爆擊的啦】下一招有1.35倍傷害加成，但也因此暈眩一回合☆消耗10SP";
+					document.getElementById("skill").innerHTML="【原住民爆擊的啦】下一招有1.35倍傷害加成，<br>但也因此暈眩一回合☆消耗10SP";
 				}
 				else if(content.gender==3){
-					document.getElementById("skill").innerHTML="【奪取你的靈魂】從敵人身上汲取生命，並轉為自己的HP☆消耗10SP";
+					document.getElementById("skill").innerHTML="【奪取你的靈魂】從敵人身上汲取生命，<br>並轉為自己的HP☆消耗10SP";
 				}
 				else if(content.gender==4){
-					document.getElementById("skill").innerHTML="【超量治癒】回復最大生命一半的HP☆消耗15SP";
+					document.getElementById("skill").innerHTML="【超量治癒】回復最大生命一半的HP<br>☆消耗15SP";
 				}
 				else if(content.gender==5){
-					document.getElementById("skill").innerHTML="【連擊星】能越打越痛☆消耗5SP";
+					document.getElementById("skill").innerHTML="【嚶嚶嚶拿小拳拳捶你胸口】<br>能越打越痛☆消耗5SP";
 				}
 				else if(content.gender==6){
 					document.getElementById("skill").innerHTML="【氣定神閒】能回復SP☆消耗5SP";
 				}
 				else if(content.gender==7){
-					document.getElementById("skill").innerHTML="【復仇反擊】血量越少傷害越高☆消耗消耗8SP";
+					document.getElementById("skill").innerHTML="【復仇反擊】血量越少傷害越高<br>☆消耗消耗8SP";
 				}
 				else if(content.gender==8){
-					document.getElementById("skill").innerHTML="【客+1擊】你可以偷取對手的錢，放入自己的背包內☆消耗1SP";
+					document.getElementById("skill").innerHTML="【客+1擊】你可以偷取對手的錢，<br>放入自己的背包內☆消耗1SP";
 				}
 				else if(content.gender==9){
-					document.getElementById("skill").innerHTML="【看破紅塵】你看透了對手的弱點，接下來將無視他的防禦☆消耗10SP";
+					document.getElementById("skill").innerHTML="【看破紅塵】你看透了對手的弱點，<br>接下來將無視他的防禦☆消耗10SP";
 				}
 				document.getElementById("exp").innerHTML=content.exp;
 				document.getElementById("def").innerHTML=content.def;
