@@ -26,7 +26,10 @@
 				localStorage.setItem(player,JSON.stringify(state));
 			}
 			else if(idn==1){
-				dp.innerHTML="雖然身為魔法少女的一員，但你始終深信著魔物是可以跟人類和平共存的，所以你一路走來完全沒有奪走過任何的生命，你的精神值得嘉許(如果你沒開掛的話^^)</p><br>就這樣在你的努力下，世界跟我的期末專案回復了和平......(happy-end)";
+				dp.innerHTML="雖然身為魔法少女的一員，但你始終深信著魔物是可以跟人類和平共存的，所以你一路走來完全沒有奪走過任何的生命，你的精神值得嘉許(如果你沒開掛的話^^)</p><br>就這樣在你的努力下，世界跟我的期末專案回復了和平......最終魔法少女"+player+"也決定退隱江湖回歸平常的生活(happy-end)";
+				state.live=0;
+				state.gender=13;
+				localStorage.setItem(player,JSON.stringify(state));
 			}
 		</script>
 	</body>
