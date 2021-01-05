@@ -31,7 +31,6 @@
 				font-size: 55px;
 				background-position-x: center;
 				overflow: -moz-hidden-unscrollable;
-
 			}
 			body::-webkit-scrollbar {
     			display: none;
@@ -57,7 +56,6 @@
 			}
 			#rpg{
 				font-size: 46px;
-	
 			}
 			a{
 				color: white;
@@ -92,7 +90,6 @@
 				background-color: white;
 				color: #c49d98;
 			}
-		
 			#idname{
 				border-bottom:1px #c49d98; 
 				font-family: word;
@@ -123,7 +120,22 @@
 				var name=document.getElementById("idname");
 				console.log(name.value);
 				var idn=localStorage.getItem(name.value);
-				if(!idn){
+				if(name.value=="&go_to_HE"){
+					alert("密碼輸入成功-即將跳轉至Happy_End");
+					localStorage.setItem("&end",1);
+					location.href="end.html";
+				}
+				else if(name.value=="&go_to_NE"){
+					alert("密碼輸入成功-即將跳轉至Normal_End");
+					localStorage.setItem("&end",2);
+					location.href="end.html";
+				}
+				else if(name.value=="&go_to_BE"){
+					alert("密碼輸入成功-即將跳轉至Bad_End");
+					localStorage.setItem("&end",3);
+					location.href="end.html";
+				}
+				else if(!idn){
 					console.log(idn);
 					alert("404 not found!");
 				}
