@@ -78,7 +78,6 @@
 				left: 40%;
 				font-size: 60px;
 				margin: 0;
-
 			}
 			#go , #back , #tool{
 				border: 3px solid #FFF;
@@ -116,7 +115,6 @@
 				top: 39%;
 				position: absolute;
 				left: 15%;
-				
 			}
 			#kill , #forgive,#open,#skip{
 				border: 3px solid #FFF;
@@ -132,7 +130,6 @@
 			img{
 				align:left;
 			}
-			
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
@@ -362,15 +359,14 @@
 			<input id="kill" type="button" value="給予最後的制裁並汲取其能量"></input>
 			<input id="forgive" type="button" value="賦予神聖的慈悲使其回歸自然"></input>
 		</div>
-		
-		
 		<div id="open_or_skip" class="choose">
 			<input id="open" type="button" value="打開看看"></input>
 			<input id="skip" type="button" value="還是算了..."></input>
 		</div>
-		
-
 		<script>
+			var pd=localStorage.getItem("&philosopher's_stone");
+			var sanj=0;
+			var thh=localStorage.getItem("&thief");
 			var gogo=0;
 			var boss_f=0;
 			var combo=1;
@@ -496,14 +492,14 @@
 					mb=1;
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*1.35);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對test使用了<span class='aboriginal'>原著民爆擊的啦</span><br>造成了"+damage+"點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對"+enemy.name+"使用了<span class='aboriginal'>原著民爆擊的啦</span><br>造成了"+damage+"點傷害!";
 					enemy.HP-=damage;
 				}
 				else if(state.gender==3){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50)));
 					var heal=Math.floor(damage/10);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>吸血</span><br>造成了"+damage+"點傷害!<br>你回復了"+heal+"點生命值";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對"+enemy.name+"用<span class='aboriginal'>吸血</span><br>造成了"+damage+"點傷害!<br>你回復了"+heal+"點生命值";
 					state.HP=Math.min(state.MAXHP,state.HP+heal);
 					state.SP-=10;
 					enemy.HP-=damage;
@@ -518,7 +514,7 @@
 				else if(state.gender==5){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*combo);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>連擊星</span><br>造成了"+damage+"點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對"+enemy.name+"用<span class='aboriginal'>連擊星</span><br>造成了"+damage+"點傷害!";
 					combo+=0.1;
 					state.SP-=5;
 					enemy.HP-=damage;
@@ -533,21 +529,21 @@
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*combo);
 					damage = Math.floor(damage*(1+0.01*(state.MAXHP-state.HP)));
-					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>復仇反擊</span><br>造成了"+damage+"點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對"+enemy.name+"用<span class='aboriginal'>復仇反擊</span><br>造成了"+damage+"點傷害!";
 					state.SP-=8;
 					enemy.HP-=damage;
 				}
 				else if(state.gender==8){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*0.85);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>客+1及</span><br>造成了"+damage+"點傷害!<br>你偷了三塊錢";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對"+enemy.name+"用<span class='aboriginal'>客+1及</span><br>造成了"+damage+"點傷害!<br>你偷了三塊錢";
 					money+=3;
 					enemy.HP-=damage;
 					state.SP-=1;
 				}
 				else if(state.gender==9){
 					step++;
-					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>看破</span><br>你無視了他的防禦";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對"+enemy.name+"用<span class='aboriginal'>看破</span><br>你無視了他的防禦";
 					state.SP-=10;
 					enemy.def=0;
 				}
@@ -650,13 +646,13 @@
 			}
 			function open(){
 				var kr=Math.floor(Math.random()*10);
-				if(kr==0){
+				if(kr==0&&thh!='1'){
 					var damage=Math.floor(state.MAXHP*0.1);
 					talk.innerHTML = "寶箱爆炸了!!!你受到了"+damage+"點傷害!";
 					state.HP-=damage;
 					diejudge();
 				}
-				else if(kr==1){
+				else if(kr==1&&thh!='1'){
 					var damage=Math.floor(state.MAXSP*0.1);
 					talk.innerHTML = "寶箱飛出一堆蟲蟲TAT你受到了"+damage+"點精神傷害!";
 					state.SP-=damage
@@ -756,6 +752,10 @@
 						quitalt=1;
 					}
 					else if(p==15){
+						if(pd=='1'){
+							state.HP=Math.min(state.HP+3,state.MAXHP);
+							state.SP=Math.min(state.SP+1,state.MAXSP);
+						}
 						talk.innerHTML = "前進中...";
 						gogo=1;
 						amt();
@@ -763,6 +763,10 @@
 						quitalt=0;
 					}
 					else if(p<15){
+						if(pd=='1'){
+							state.HP=Math.min(state.HP+3,state.MAXHP);
+							state.SP=Math.min(state.SP+1,state.MAXSP);
+						}
 						talk.innerHTML = "前進中...";
 						gogo=1;
 						amt();
@@ -795,10 +799,16 @@
 				else if(state.SP<=0){
 					var l=Math.random();
 					if(l<0.5){
-						alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
+						if(sanj==0){
+							alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
+							sanj=1;
+						}
 						state.HP-=5;
 						alert("魔法少女"+player_name+"對自己造成了5點傷害");
 					}
+				}
+				else{
+					sanj=0;
 				}
 				localStorage.setItem(player_name,JSON.stringify(state));
 				diejudge();
@@ -818,6 +828,7 @@
 					else{
 						alert("由於沒有茶葉蛋，魔法少女"+player_name+"化成了碎片消失在空中...");
 						state.live=0;
+						state.gender=15;
 						localStorage.setItem(player_name,JSON.stringify(state));
 						window.location.href="start_page.html";
 					}
@@ -885,7 +896,10 @@
 				quitalt=0;
 			}
 			function start(){
-				alert("從這裡開始出現的敵人會開始對你發動攻擊；相對的關卡的報酬也變豐富了，請自行拿捏好當中取捨");
+				if(localStorage.getItem("Is_of_level2")!='1'){
+					alert("從這裡開始出現的敵人會開始對你發動攻擊；相對的關卡的報酬也變豐富了，請自行拿捏好當中取捨");
+					localStorage.setItem("Is_of_level2",1);
+				}
 				oos.style.visibility="hidden";
 				kof.style.visibility="hidden";
 				document.getElementById("open").addEventListener("click",open,false);
