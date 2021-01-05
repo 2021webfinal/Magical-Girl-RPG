@@ -126,7 +126,6 @@
 				font-size: 55px;
 				margin-right: 25px;
 			}
-			
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
@@ -324,7 +323,6 @@
 				</defs>
 				<rect x="0" y="0" width="1920" height="1080" fill="url(#ldbk-photon-2cqblw99fy6-lg)" mask="url(#ldbk-photon-2cqblw99fy6-mask)"></rect></g>
 				</svg></div>
-				
 				</div></div></div>
 		</div>
 		<div id="p">˗ˏˋ ​progress
@@ -354,6 +352,8 @@
 			<input id="forgive" type="button" value="賦予神聖的慈悲使其回歸自然"></input>
 		</div>
 		<script>
+			var pd=localStorage.getItem("&philosopher's_stone");
+			var sanj=0;
 			var gogo=0;
 			var combo=1;
 			var mb=0;
@@ -598,6 +598,10 @@
 						quitalt=1;
 					}
 					else if(p==10){
+						if(pd=='1'){
+							state.HP=Math.min(state.HP+3,state.MAXHP);
+							state.SP=Math.min(state.SP+1,state.MAXSP);
+						}
 						talk.innerHTML = "前進中...";
 						gogo=1;
 						amt();
@@ -605,6 +609,10 @@
 						quitalt=0;
 					}
 					else if(p<10){
+						if(pd=='1'){
+							state.HP=Math.min(state.HP+3,state.MAXHP);
+							state.SP=Math.min(state.SP+1,state.MAXSP);
+						}
 						talk.innerHTML = "前進中...";
 						gogo=1;
 						amt();
@@ -632,11 +640,18 @@
 				if(state.SP<=0){
 					var l=Math.random();
 					if(l<0.5){
-						alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
+						if(sanj==0){
+							alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
+							sanj=1;
+						}
 						state.HP-=5;
 						alert("魔法少女"+player_name+"對自己造成了5點傷害");
+						localStorage.setItem(player_name,JSON.stringify(state));
 						diejudge();
 					}
+				}
+				else{
+					sanj=0;
 				}
 			}
 			function diejudge(){
@@ -644,6 +659,7 @@
 					alert("魔法少女"+player_name+"死了，(死於新手教學)");
 					alert("獲得成就: 你是鬼吧");
 					state.live=0;
+					state.gender=14;
 					localStorage.setItem(player_name,JSON.stringify(state));
 					window.location.href="start_page.html";
 				}
