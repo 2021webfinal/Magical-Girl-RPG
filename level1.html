@@ -18,10 +18,13 @@
 				background-color: #f8edebec;
 				height: 250px;
 				width: 500px;
-				overflow: -moz-hidden-unscrollable;
+				overflow: auto;
 				position:absolute;
 				left: 100px;
 				bottom: 50px;
+			}
+			.ctbox::-webkit-scrollbar {
+    			display: none;
 			}
 			#n{
 				text-align:right;
@@ -69,6 +72,8 @@
 			}
 			#chatbox{
 				margin-left: 10px;
+				margin-top: 10px;
+				margin-bottom: 0;
 			}
 			#go , #back , #tool{
 				border: 3px solid #FFF;
@@ -121,9 +126,7 @@
 				font-size: 55px;
 				margin-right: 25px;
 			}
-			#Kill{
-				margin-right: 20%;
-			}
+			
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
@@ -583,7 +586,7 @@
 					document.getElementById("progress").innerHTML=p;
 					if(p==11){
 						document.getElementById("progress").innerHTML="end";
-						talk.innerHTML = "恭喜你通過了第一學期!";
+						talk.innerHTML = "恭喜你通過了新手訓練!";
 						if(localStorage.getItem("&Level_1")=='0'){
 							talk.innerHTML += "這是你首次通關新手教學的獎勵(200$)!";
 							money+=200;
