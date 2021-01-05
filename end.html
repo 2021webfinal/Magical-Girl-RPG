@@ -5,13 +5,25 @@
 		<p id="end_display"></p>
 		<a href="index.html"><input type="button" value="回去"></a>
 		<script>
+			var player=localStorage.getItem("start_adventure");
+			var state=JSON.parse(localStorage.getItem(player));
 			var idn=localStorage.getItem("&end");
 			var dp=document.getElementById("end_display");
 			if(idn==3){
-				dp.innerHTML="你把BOSS剁了而且吸收了他，最終你也變成了瘋狗在召喚峽谷無情開剁......(bad-end)";
+				alert("獲得了'盜賊の小手':之後的角色開寶箱時將不會再遇到不利事件");
+				dp.innerHTML="你把BOSS剁了而且吸收了他，而且將BOSS的屍體帶回並做成了手套當成戰利品，但是過去的戰鬥使你嗜血成性，不久後便受不了平淡的生活離開了......(bad-end)<br>";	
+				localStorage.setItem("&thief",1);
+				state.live=0;
+				state.gender=11;
+				localStorage.setItem(player,JSON.stringify(state));
 			}
 			else if(idn==2){
-				dp.innerHTML="你戰勝了BOSS並且原諒了他，但是之前被你吸收的魔物以及逃跑時留下的敵人殘渣在你體內吞噬了你(normal-end)";
+				alert("獲得了'賢者之石':之後的角色在冒險中行動時將逐漸恢復HP和SP(效果不可疊加)");
+				dp.innerHTML="你戰勝了BOSS並且原諒了他，但是之前被你吸收的魔物以及逃跑時留下的敵人殘渣在你體內吞噬了你，魔法少女"+player+"化成了碎片，消失在半空中，BOSS為了報答你的不殺之恩將那些碎片收集起來用魔力製成了一顆紅寶石(normal-end)";
+				localStorage.setItem("&philosopher's_stone",1);
+				state.live=0;
+				state.gender=12;
+				localStorage.setItem(player,JSON.stringify(state));
 			}
 			else if(idn==1){
 				dp.innerHTML="雖然身為魔法少女的一員，但你始終深信著魔物是可以跟人類和平共存的，所以你一路走來完全沒有奪走過任何的生命，你的精神值得嘉許(如果你沒開掛的話^^)</p><br>就這樣在你的努力下，世界跟我的期末專案回復了和平......(happy-end)";
