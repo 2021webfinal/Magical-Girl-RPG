@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -61,9 +60,29 @@
 						ck=1;
 						markup+="<tr>";
 						markup+="<td>"+tags[tag]+"</td>";
-						markup+="<td>機率論</td>";
+						if(code.gender=11){
+							markup+="<td>墮落為魔物</td>";
+						}
+						else if(code.gender=12){
+							markup+="<td>舊傷復發</td>";
+						}
+						else if(code.gender=13){
+							markup+="<td>引退</td>";
+						}
+						else if(code.gender==14){
+							markup+="<td>操作者的智商</td>";
+						}
+						else if(code.gender==15){
+							markup+="<td>機率論</td>";
+						}
+						else if(code.gender==16){
+							markup+="<td>微積分</td>";
+						}
+						else{
+							markup+="<td>未知</td>";
+						}
 						markup+="<td>"+code.lv+"</td>";
-						markup+="<td><a href='https://www.youtube.com/watch?v=OFRrQU5Yxdw&list=PLzRLTL4wcSuC7KiqN4AuzuoaFaeRHa6ca&index=17'>"+"這裡我不知道要寫啥"+"</a></td>";
+						markup+="<td><a href='https://www.youtube.com/watch?v=OFRrQU5Yxdw&list=PLzRLTL4wcSuC7KiqN4AuzuoaFaeRHa6ca&index=17'>"+"問候此人"+"</a></td>";
 						markup+="</tr>";
 					}
 				}
@@ -80,6 +99,5 @@
 			}
 		}
 		window.addEventListener("load",start,false);
-		//document.getElementById("display").innerHTML = myJSON;
     </script>
 </html>
