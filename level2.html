@@ -496,14 +496,14 @@
 					mb=1;
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*1.35);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對小木頭怪使用了<span class='aboriginal'>【原住民爆擊的啦】</span><br>造成了"+damage+"點傷害!<br>小木頭怪對你造成了0點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test使用了<span class='aboriginal'>原著民爆擊的啦</span><br>造成了"+damage+"點傷害!";
 					enemy.HP-=damage;
 				}
 				else if(state.gender==3){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50)));
 					var heal=Math.floor(damage/10);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對小木頭怪用<span class='aboriginal'>【奪取你的靈魂】</span><br>造成了"+damage+"點傷害!<br>你回復了"+heal+"點生命值<br>小木頭怪對你造成了0點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>吸血</span><br>造成了"+damage+"點傷害!<br>你回復了"+heal+"點生命值";
 					state.HP=Math.min(state.MAXHP,state.HP+heal);
 					state.SP-=10;
 					enemy.HP-=damage;
@@ -511,14 +511,14 @@
 				else if(state.gender==4){
 					step++;
 					var heal=Math.floor(state.MAXHP/2);
-					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>【超量治癒】</span><br>你回復了"+heal+"點生命值<br>小木頭怪對你造成了0點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>超量治癒</span><br>你回復了"+heal+"點生命值";
 					state.HP+=heal;
 					state.SP-=15;
 				}
 				else if(state.gender==5){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*combo);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對小木頭怪用<span class='aboriginal'>【嚶嚶嚶拿小拳拳捶你胸口】</span><br>造成了"+damage+"點傷害!<br>小木頭怪對你造成了0點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>連擊星</span><br>造成了"+damage+"點傷害!";
 					combo+=0.1;
 					state.SP-=5;
 					enemy.HP-=damage;
@@ -526,28 +526,28 @@
 				else if(state.gender==6){
 					step++;
 					var healSP=Math.floor(state.MAXSP/3);
-					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>【氣定神閒】</span><br>你回復了"+healSP+"點精神<br>小木頭怪對你造成了0點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>氣定神閒</span><br>你回復了"+healSP+"點精神!";
 					state.SP=Math.min(state.SP+healSP,state.MAXSP);
 				}
 				else if(state.gender==7){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*combo);
 					damage = Math.floor(damage*(1+0.01*(state.MAXHP-state.HP)));
-					talk.innerHTML = "第"+step+"回合<br>"+"你對小木頭怪用<span class='aboriginal'>【復仇反擊】</span><br>造成了"+damage+"點傷害!<br>小木頭怪對你造成了0點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>復仇反擊</span><br>造成了"+damage+"點傷害!";
 					state.SP-=8;
 					enemy.HP-=damage;
 				}
 				else if(state.gender==8){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*0.85);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對小木頭怪用<span class='aboriginal'>【客+1擊】</span><br>造成了"+damage+"點傷害!<br>你偷了一塊錢<br>小木頭怪對你造成了0點傷害!";
-					money+=1;
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>客+1及</span><br>造成了"+damage+"點傷害!<br>你偷了三塊錢";
+					money+=3;
 					enemy.HP-=damage;
 					state.SP-=1;
 				}
 				else if(state.gender==9){
 					step++;
-					talk.innerHTML = "第"+step+"回合<br>"+"你對小木頭怪用<span class='aboriginal'>【看破紅塵】</span><br>你無視了他的防禦<br>小木頭怪對你造成了0點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>看破</span><br>你無視了他的防禦";
 					state.SP-=10;
 					enemy.def=0;
 				}
@@ -684,6 +684,16 @@
 					backpack.teaegg++;
 					localStorage.setItem("&backpack",JSON.stringify(backpack));
 				}
+				else if(kr==7){
+					talk.innerHTML = "你發現了紅色的果實，你發揮勤儉的美德把它吃掉了(攻擊+1)";
+					state.atk+=1;
+					localStorage.setItem(player_name,JSON.stringify(state));
+				}
+				else if(kr==8){
+					talk.innerHTML = "你發現了藍色的果實，你發揮勤儉的美德把它吃掉了(防禦+1)";
+					state.def+=1;
+					localStorage.setItem(player_name,JSON.stringify(state));
+				}
 				else{
 					talk.innerHTML = "你在箱子裡找到一張紙條，上面寫著'裡面的東西已經被太陽拿走了^^'...";
 				}
@@ -732,9 +742,15 @@
 					document.getElementById("progress").innerHTML=p;
 					if(p==16){
 						document.getElementById("progress").innerHTML="end";
-						talk.innerHTML = "恭喜你通過了初級挑戰!";
+						talk.innerHTML = "恭喜你通過了初級關卡(獎勵100$)!";
+						if(localStorage.getItem("&Level_2")=='0'){
+							talk.innerHTML = "恭喜你首次通關初級關卡(獎勵500$)!";
+							money+=400;
+						}
+						money+=100
+	
 						localStorage.setItem("$",money);
-						localStorage.setItem("&Level_1",1);
+						localStorage.setItem("&Level_2",1);
 						amt();
 						back.value="光榮撤退";
 						quitalt=1;
@@ -869,6 +885,7 @@
 				quitalt=0;
 			}
 			function start(){
+				alert("從這裡開始出現的敵人會開始對你發動攻擊；相對的關卡的報酬也變豐富了，請自行拿捏好當中取捨");
 				oos.style.visibility="hidden";
 				kof.style.visibility="hidden";
 				document.getElementById("open").addEventListener("click",open,false);
