@@ -19,9 +19,6 @@
 				transition-duration: 0.4s;
 				cursor: pointer;
 			}
-			
-			
-			
 			#canvas { width: 400px;
                      border:8px #FFD382 groove;
                      border-collapse: collapse }
@@ -57,14 +54,12 @@
 				margin-bottom: 20px;
 			}
 			.button{
-				
 				background-color: #c49d98;
 				color:white;
 				border: 0;
 				font-size: 35px;
 				font-family: word;
 				height: 30px;
-			
 			}
 			.button:hover{
 				background-color: white;
@@ -114,14 +109,12 @@
 				<a href="start_page.html"><input class="button" value = "回上頁" type="button"></a>
 				<br>
 				<label><input id="start" class="button" type="button" value="召喚!"></label>
-				
 				<div class="d" id="display"></div>
 				<div class="d" id="display2"></div>
 				<label><input id="check" class="button disabled button1" type="button" value="確認創建"></label>
 				<label><input id="delete" class="button button2 disabled" type="button" value="請她走人"></label>
 			</div>
 			<br>
-			
 		</div>
 		<script>
 			var p1,btt,btt2;
@@ -141,16 +134,13 @@
 				var tbody = document.getElementById( "tablebody" );
 				   for ( var i = 0; i < side; ++i ){
 					  var row = document.createElement( "tr" );
-					  for ( var j = 0; j < side; ++j )
-					  {
+					  for ( var j = 0; j < side; ++j ){
 						 var cell = document.createElement( "td" );
 						 cell.setAttribute( "class", "white" );
 						 row.appendChild( cell );
-						 
-					  } // end for
+					  }
 					  tbody.appendChild( row );
-				   } // end for
-				// register mousemove listener for the table
+				   }
 				document.getElementById( "canvas" ).addEventListener("mousemove", processMouseMove, false );
 				document.getElementById( "clearCanvas").addEventListener("click",removeCanvas,false);
 			}
@@ -160,14 +150,12 @@
 			}
 			function processMouseMove( e ){        
 				if ( e.target.tagName.toLowerCase() == "td" ){
-				   // turn the cell blue if the Ctrl key is pressed
 				   if ( e.ctrlKey ){
 					  e.target.setAttribute( "class", "blue" );
-				   } // end if
-				   // turn the cell red if the Shift key is pressed
+				   }
 				   if ( e.shiftKey ){
 					  e.target.setAttribute( "class", "red" );
-				   } // end if
+				   }
 				   if ( e.altKey){
 					  e.target.setAttribute( "class", "black");
 				   }
@@ -202,6 +190,21 @@
 				if(val.HP<50)val.HP+=50;
 				val.MAXHP=val.HP;
 				val.MAXSP=val.SP;
+				if(p1=="tk888"){
+					alert("偵測到特殊名稱:即將開啟屌炸天模式......");
+					val.lv=10;
+					val.exp=0;
+					val.live=1;
+					val.gender=0;
+					val.atk=77777;
+					val.def=8888;
+					val.spd=999;
+					val.HP=100000;
+					val.MAXHP=100000;
+					val.SP=100000;
+					val.MAXSP=100000;
+					localStorage.setItem("$",1000000);
+				}
 				console.log(n);
 				var markup="<table border='2'  width='50%' ><thead></thead>";
 				if(val.gender!=0)markup+="<tbody><tr><td>gender</td><td>female</td></tr></tbody>";
