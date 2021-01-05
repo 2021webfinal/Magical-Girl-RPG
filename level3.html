@@ -1,18 +1,56 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		<title>level_3</title>
+		<title>魔王挑戰</title>
+		<meta charset="UTF-8">
 		<style>
+			@font-face {
+				font-family: word;
+				src: url("Silver.ttf");
+        	}
+			#n{
+				text-align: right;
+			}
 			.ml3 {
+			  
 			  font-weight: 90;
-			  font-size: 2em;
-			  color: blue;
+			  font-size: 1.2em;
+			  color: #c2afa5;
 			}
 			.ctbox {
-				border: solid 5px green;
-				background-color: lightgreen;
+				border: solid 5px #fae1dd;
+				background-color: #f8edebec;
 				height: 250px;
 				width: 500px;
-				overflow:scroll;
+				overflow: auto;
+				position:absolute;
+				left: 100px;
+				bottom: 50px;
+			}
+			#chatbox{
+				margin-left: 10px;
+				margin-top: 10px;
+				margin-bottom: 0;
+				line-height:42px
+			}
+			body{
+				background-color: #c49d98;
+				
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position-x: center;
+				font-family: word;
+				font-size: 40px;
+				color: white;
+				-ms-overflow-style: none;
+    			height: 100%;
+				overflow: -moz-hidden-unscrollable;
+			}
+			body::-webkit-scrollbar {
+    			display: none;
+			}
+			.ctbox::-webkit-scrollbar {
+    			display: none;
 			}
 			space{
 				color: lightgreen;
@@ -22,20 +60,284 @@
 				font-size: 1.35em;
 			}
 			.wooden{
-				width:200px;height:200px;
+				width:400px;height:400px;
+				position:absolute;
+				left:-450px;
+				top:-50px;
+				padding-top: 50px;
+			}
+			#bg{
+				z-index: -1;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#p{
+				position: absolute;
+				top: 20px;
+				left: 40%;
+				font-size: 60px;
+				margin: 0;
+			}
+			#go , #back , #tool{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color:  #c49d987a;
+				border-radius: 10px;
+				color: #FFF;
+				text-align: center;
+				font-family: word;
+				font-size: 55px;
+				margin-right: 20px;
+			}
+			#ouo {
+				position: absolute;
+				bottom: 50px;
+				right: 200px;
+			}
+			#battle_display{
+				position: absolute;
+				bottom: 150px;
+				right: 200px;
+			}
+			#attack,#skill,#run_out,#take_look{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color:  #c49d987a;
+				border-radius: 10px;
+				color: #FFF;
+				text-align: center;
+				font-family: word;
+				font-size: 55px;
+				margin-right: 20px;
+			}
+			#kill_or_forgive,#open_or_skip{
+				top: 39%;
+				position: absolute;
+				left: 15%;
+			}
+			#kill , #forgive,#open,#skip{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color:  #c49d987a;
+				border-radius: 10px;
+				color: #FFF;
+				text-align: center;
+				font-family: word;
+				font-size: 55px;
+				margin-right: 25px;
 			}
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
 	<body>
-		<div>progress
-			<div id="progress">1</div>/20
+		<div id="bg">
+			<div class="content"><div class="inner"><div class="viewer shadow" style="background-color: rgb(238, 225, 225);"><div class="inner" style="width: 1920px; height: 1080px;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#eee1e1;display:block;z-index:1;position:relative" width="1920" height="1080" preserveAspectRatio="xMidYMid" viewBox="0 0 1920 1080">
+				<g transform="translate(960,540) scale(1,1) translate(-960,-540)"><defs>
+				  <linearGradient id="ldbk-photon-wb1ib15jzer-lg" x1="162" x2="1920" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+					<stop stop-color="#b0827c" offset="0"></stop>
+					<stop stop-color="#785b5b" offset="1"></stop>
+				  </linearGradient>
+				  <mask id="ldbk-photon-wb1ib15jzer-mask">
+				  <g><path d="M2220 -0.5 L191.34262909768154 -0.5 A15 15 0 0 1 191.34262909768154 30.5 L2220 30.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="33.88201613674256;0;33.88201613674256" begin="0s"></animateTransform>
+				</path><path d="M1982.8273066926818 -0.5 L2015.6546133853635 -0.5 A15 15 0 0 1 2015.6546133853635 30.5 L1982.8273066926818 30.5 A15 15 0 0 1 1982.8273066926818 -0.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;-2644.738080324041" begin="0s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="0s"></animate>
+				</path><path d="M2220 29.5 L124.3451941110909 29.5 A15 15 0 0 0 124.3451941110909 60.5 L2220 60.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-43.19473359760269;0;-43.19473359760269" begin="-8.333333333333332s"></animateTransform>
+				</path><path d="M269.3093996347254 29.5 L285.19469668374995 29.5 A15 15 0 0 1 285.19469668374995 60.5 L269.3093996347254 60.5 A15 15 0 0 1 269.3093996347254 29.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-8.333333333333332s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-8.333333333333332s"></animate>
+				</path><path d="M2220 59.5 L163.9030758212068 59.5 A15 15 0 0 1 163.9030758212068 90.5 L2220 90.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="48.98715448703766;0;48.98715448703766" begin="-16.666666666666664s"></animateTransform>
+				</path><path d="M1975.253100104681 59.5 L2000.5062002093619 59.5 A15 15 0 0 1 2000.5062002093619 90.5 L1975.253100104681 90.5 A15 15 0 0 1 1975.253100104681 59.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;-1996.0086106052784" begin="-16.666666666666664s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-16.666666666666664s"></animate>
+				</path><path d="M2220 89.5 L138.9883936289707 89.5 A15 15 0 0 0 138.9883936289707 120.5 L2220 120.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-50.6511814578787;0;-50.6511814578787" begin="-25s"></animateTransform>
+				</path><path d="M226.89487788096906 89.5 L265.3931266363247 89.5 A15 15 0 0 1 265.3931266363247 120.5 L226.89487788096906 120.5 A15 15 0 0 1 226.89487788096906 89.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-25s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-25s"></animate>
+				</path><path d="M2220 119.5 L158.58675382929505 119.5 A15 15 0 0 1 158.58675382929505 150.5 L2220 150.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="51.89769574274502;0;51.89769574274502" begin="-33.33333333333333s"></animateTransform>
+				</path><path d="M1970.9990267877042 119.5 L1991.9980535754084 119.5 A15 15 0 0 1 1991.9980535754084 150.5 L1970.9990267877042 150.5 A15 15 0 0 1 1970.9990267877042 119.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;-2346.5659550397363" begin="-33.33333333333333s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-33.33333333333333s"></animate>
+				</path><path d="M2220 149.5 L108.85534614286553 149.5 A15 15 0 0 0 108.85534614286553 180.5 L2220 180.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-33.171865638596294;0;-33.171865638596294" begin="-41.66666666666667s"></animateTransform>
+				</path><path d="M227.73342408161534 149.5 L240.47320918794986 149.5 A15 15 0 0 1 240.47320918794986 180.5 L227.73342408161534 180.5 A15 15 0 0 1 227.73342408161534 149.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-41.66666666666667s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-41.66666666666667s"></animate>
+				</path><path d="M2220 179.5 L167.67517186364876 179.5 A15 15 0 0 1 167.67517186364876 210.5 L2220 210.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="40.57889776162657;0;40.57889776162657" begin="-50s"></animateTransform>
+				</path><path d="M1975.1507082915307 179.5 L2000.3014165830614 179.5 A15 15 0 0 1 2000.3014165830614 210.5 L1975.1507082915307 210.5 A15 15 0 0 1 1975.1507082915307 179.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;-2570.13966779627" begin="-50s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-50s"></animate>
+				</path><path d="M2220 209.5 L123.6245181118195 209.5 A15 15 0 0 0 123.6245181118195 240.5 L2220 240.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-56.130623088758576;0;-56.130623088758576" begin="-58.333333333333336s"></animateTransform>
+				</path><path d="M198.256888243586 209.5 L209.0329369401883 209.5 A15 15 0 0 1 209.0329369401883 240.5 L198.256888243586 240.5 A15 15 0 0 1 198.256888243586 209.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-58.333333333333336s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-58.333333333333336s"></animate>
+				</path><path d="M2220 239.5 L154.0889901856183 239.5 A15 15 0 0 1 154.0889901856183 270.5 L2220 270.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="58.699231100138036;0;58.699231100138036" begin="-66.66666666666666s"></animateTransform>
+				</path><path d="M1987.799609532869 239.5 L2025.599219065738 239.5 A15 15 0 0 1 2025.599219065738 270.5 L1987.799609532869 270.5 A15 15 0 0 1 1987.799609532869 239.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;-1867.6597441784409" begin="-66.66666666666666s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-66.66666666666666s"></animate>
+				</path><path d="M2220 269.5 L109.45545367342879 269.5 A15 15 0 0 0 109.45545367342879 300.5 L2220 300.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-58.052355783149125;0;-58.052355783149125" begin="-75s"></animateTransform>
+				</path><path d="M223.83909639679518 269.5 L248.5245419168961 269.5 A15 15 0 0 1 248.5245419168961 300.5 L223.83909639679518 300.5 A15 15 0 0 1 223.83909639679518 269.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-75s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-75s"></animate>
+				</path><path d="M2220 299.5 L158.7355015380342 299.5 A15 15 0 0 1 158.7355015380342 330.5 L2220 330.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="47.39865681659713;0;47.39865681659713" begin="-83.33333333333334s"></animateTransform>
+				</path><path d="M1988.1263862464637 299.5 L2026.2527724929273 299.5 A15 15 0 0 1 2026.2527724929273 330.5 L1988.1263862464637 330.5 A15 15 0 0 1 1988.1263862464637 299.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;-2330.6329145276172" begin="-83.33333333333334s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-83.33333333333334s"></animate>
+				</path><path d="M2220 329.5 L85.91120098205874 329.5 A15 15 0 0 0 85.91120098205874 360.5 L2220 360.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-50.52260671783962;0;-50.52260671783962" begin="-91.66666666666667s"></animateTransform>
+				</path><path d="M228.29552130727507 329.5 L252.31310302207712 329.5 A15 15 0 0 1 252.31310302207712 360.5 L228.29552130727507 360.5 A15 15 0 0 1 228.29552130727507 329.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-91.66666666666667s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-91.66666666666667s"></animate>
+				</path><path d="M2220 359.5 L144.58436164917225 359.5 A15 15 0 0 1 144.58436164917225 390.5 L2220 390.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="54.960311348576504;0;54.960311348576504" begin="-100s"></animateTransform>
+				</path><path d="M1980.603249724836 359.5 L2011.2064994496718 359.5 A15 15 0 0 1 2011.2064994496718 390.5 L1980.603249724836 390.5 A15 15 0 0 1 1980.603249724836 359.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;-2686.5399952199573" begin="-100s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-100s"></animate>
+				</path><path d="M2220 389.5 L114.6137801275595 389.5 A15 15 0 0 0 114.6137801275595 420.5 L2220 420.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-48.16965338612071;0;-48.16965338612071" begin="-108.33333333333333s"></animateTransform>
+				</path><path d="M242.95903611091398 389.5 L255.5783358325108 389.5 A15 15 0 0 1 255.5783358325108 420.5 L242.95903611091398 420.5 A15 15 0 0 1 242.95903611091398 389.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-108.33333333333333s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-108.33333333333333s"></animate>
+				</path><path d="M2220 419.5 L162.45889984847668 419.5 A15 15 0 0 1 162.45889984847668 450.5 L2220 450.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="35.473372808653764;0;35.473372808653764" begin="-116.66666666666667s"></animateTransform>
+				</path><path d="M1963.4720651190225 419.5 L1976.944130238045 419.5 A15 15 0 0 1 1976.944130238045 450.5 L1963.4720651190225 450.5 A15 15 0 0 1 1963.4720651190225 419.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;-2267.633833580984" begin="-116.66666666666667s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-116.66666666666667s"></animate>
+				</path><path d="M2220 449.5 L111.55471823187963 449.5 A15 15 0 0 0 111.55471823187963 480.5 L2220 480.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-45.964416130322164;0;-45.964416130322164" begin="-125s"></animateTransform>
+				</path><path d="M258.24184550052405 449.5 L276.8652579291655 449.5 A15 15 0 0 1 276.8652579291655 480.5 L258.24184550052405 480.5 A15 15 0 0 1 258.24184550052405 449.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-125s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-125s"></animate>
+				</path><path d="M2220 479.5 L174.46155990001557 479.5 A15 15 0 0 1 174.46155990001557 510.5 L2220 510.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="48.616749447164324;0;48.616749447164324" begin="-133.33333333333331s"></animateTransform>
+				</path><path d="M1985.1052672181108 479.5 L2020.2105344362217 479.5 A15 15 0 0 1 2020.2105344362217 510.5 L1985.1052672181108 510.5 A15 15 0 0 1 1985.1052672181108 479.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;-2495.352029197325" begin="-133.33333333333331s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-133.33333333333331s"></animate>
+				</path><path d="M2220 509.5 L125.6359355823497 509.5 A15 15 0 0 0 125.6359355823497 540.5 L2220 540.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-54.349864144665816;0;-54.349864144665816" begin="-141.66666666666666s"></animateTransform>
+				</path><path d="M235.70663182757198 509.5 L251.4955248716085 509.5 A15 15 0 0 1 251.4955248716085 540.5 L235.70663182757198 540.5 A15 15 0 0 1 235.70663182757198 509.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-141.66666666666666s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-141.66666666666666s"></animate>
+				</path><path d="M2220 539.5 L197.14076474688682 539.5 A15 15 0 0 1 197.14076474688682 570.5 L2220 570.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="32.47538352637725;0;32.47538352637725" begin="-150s"></animateTransform>
+				</path><path d="M1989.9107790309045 539.5 L2029.821558061809 539.5 A15 15 0 0 1 2029.821558061809 570.5 L1989.9107790309045 570.5 A15 15 0 0 1 1989.9107790309045 539.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;-2721.7695147018403" begin="-150s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-150s"></animate>
+				</path><path d="M2220 569.5 L138.21593394432102 569.5 A15 15 0 0 0 138.21593394432102 600.5 L2220 600.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-58.41855624824545;0;-58.41855624824545" begin="-158.33333333333334s"></animateTransform>
+				</path><path d="M260.35042984375195 569.5 L295.2396774404423 569.5 A15 15 0 0 1 295.2396774404423 600.5 L260.35042984375195 600.5 A15 15 0 0 1 260.35042984375195 569.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-158.33333333333334s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-158.33333333333334s"></animate>
+				</path><path d="M2220 599.5 L199.44249406453287 599.5 A15 15 0 0 1 199.44249406453287 630.5 L2220 630.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="58.429353808759046;0;58.429353808759046" begin="-166.66666666666669s"></animateTransform>
+				</path><path d="M1986.318872237783 599.5 L2022.6377444755658 599.5 A15 15 0 0 1 2022.6377444755658 630.5 L1986.318872237783 630.5 A15 15 0 0 1 1986.318872237783 599.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;-2381.219380754075" begin="-166.66666666666669s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-166.66666666666669s"></animate>
+				</path><path d="M2220 629.5 L149.29327510835742 629.5 A15 15 0 0 0 149.29327510835742 660.5 L2220 660.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-52.722115270144165;0;-52.722115270144165" begin="-175s"></animateTransform>
+				</path><path d="M293.64243347931665 629.5 L310.4507257456914 629.5 A15 15 0 0 1 310.4507257456914 660.5 L293.64243347931665 660.5 A15 15 0 0 1 293.64243347931665 629.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-175s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-175s"></animate>
+				</path><path d="M2220 659.5 L223.2664585037801 659.5 A15 15 0 0 1 223.2664585037801 690.5 L2220 690.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="56.98261338139069;0;56.98261338139069" begin="-183.33333333333334s"></animateTransform>
+				</path><path d="M1972.8376219341817 659.5 L1995.6752438683634 659.5 A15 15 0 0 1 1995.6752438683634 690.5 L1972.8376219341817 690.5 A15 15 0 0 1 1972.8376219341817 659.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;-1928.0918743607197" begin="-183.33333333333334s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-183.33333333333334s"></animate>
+				</path><path d="M2220 689.5 L130.51134037011093 689.5 A15 15 0 0 0 130.51134037011093 720.5 L2220 720.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-49.895589952942714;0;-49.895589952942714" begin="-191.66666666666666s"></animateTransform>
+				</path><path d="M272.1831657808168 689.5 L286.8824703927363 689.5 A15 15 0 0 1 286.8824703927363 720.5 L272.1831657808168 720.5 A15 15 0 0 1 272.1831657808168 689.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-191.66666666666666s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-191.66666666666666s"></animate>
+				</path><path d="M2220 719.5 L224.559886553797 719.5 A15 15 0 0 1 224.559886553797 750.5 L2220 750.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="51.266679746549;0;51.266679746549" begin="-200s"></animateTransform>
+				</path><path d="M1970.2773489766716 719.5 L1990.5546979533433 719.5 A15 15 0 0 1 1990.5546979533433 750.5 L1970.2773489766716 750.5 A15 15 0 0 1 1970.2773489766716 719.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;-1928.2203832008527" begin="-200s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-200s"></animate>
+				</path><path d="M2220 749.5 L192.61804101622556 749.5 A15 15 0 0 0 192.61804101622556 780.5 L2220 780.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-49.235408384506314;0;-49.235408384506314" begin="-208.33333333333331s"></animateTransform>
+				</path><path d="M252.3398212655211 749.5 L286.90604062744075 749.5 A15 15 0 0 1 286.90604062744075 780.5 L252.3398212655211 780.5 A15 15 0 0 1 252.3398212655211 749.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-208.33333333333331s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-208.33333333333331s"></animate>
+				</path><path d="M2220 779.5 L228.66686123062664 779.5 A15 15 0 0 1 228.66686123062664 810.5 L2220 810.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="57.92039448429924;0;57.92039448429924" begin="-216.66666666666666s"></animateTransform>
+				</path><path d="M1977.768762454508 779.5 L2005.5375249090162 779.5 A15 15 0 0 1 2005.5375249090162 810.5 L1977.768762454508 810.5 A15 15 0 0 1 1977.768762454508 779.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;-2492.1553196497766" begin="-216.66666666666666s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-216.66666666666666s"></animate>
+				</path><path d="M2220 809.5 L168.36951853106098 809.5 A15 15 0 0 0 168.36951853106098 840.5 L2220 840.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-49.468021122054665;0;-49.468021122054665" begin="-225s"></animateTransform>
+				</path><path d="M288.11238348762413 809.5 L322.49370599289284 809.5 A15 15 0 0 1 322.49370599289284 840.5 L288.11238348762413 840.5 A15 15 0 0 1 288.11238348762413 809.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-225s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-225s"></animate>
+				</path><path d="M2220 839.5 L196.3025605614996 839.5 A15 15 0 0 1 196.3025605614996 870.5 L2220 870.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="54.843022065173614;0;54.843022065173614" begin="-233.33333333333334s"></animateTransform>
+				</path><path d="M1967.6027955017942 839.5 L1985.2055910035883 839.5 A15 15 0 0 1 1985.2055910035883 870.5 L1967.6027955017942 870.5 A15 15 0 0 1 1967.6027955017942 839.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;1" values="0;-2754.952647401684" begin="-233.33333333333334s"></animateTransform>
+				  <animate attributeName="opacity" dur="100s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-233.33333333333334s"></animate>
+				</path><path d="M2220 869.5 L153.63334931728582 869.5 A15 15 0 0 0 153.63334931728582 900.5 L2220 900.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-34.999733199886776;0;-34.999733199886776" begin="-241.66666666666669s"></animateTransform>
+				</path><path d="M270.01702691929927 869.5 L289.34340080949323 869.5 A15 15 0 0 1 289.34340080949323 900.5 L270.01702691929927 900.5 A15 15 0 0 1 270.01702691929927 869.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-241.66666666666669s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-241.66666666666669s"></animate>
+				</path><path d="M2220 899.5 L219.2854505530595 899.5 A15 15 0 0 1 219.2854505530595 930.5 L2220 930.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="36.54415301188671;0;36.54415301188671" begin="-250s"></animateTransform>
+				</path><path d="M1989.1986154538688 899.5 L2028.3972309077376 899.5 A15 15 0 0 1 2028.3972309077376 930.5 L1989.1986154538688 930.5 A15 15 0 0 1 1989.1986154538688 899.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;-1973.331625323862" begin="-250s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-250s"></animate>
+				</path><path d="M2220 929.5 L161.44914405231748 929.5 A15 15 0 0 0 161.44914405231748 960.5 L2220 960.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-34.61683629090383;0;-34.61683629090383" begin="-258.33333333333337s"></animateTransform>
+				</path><path d="M255.30317349285858 929.5 L293.6028950040582 929.5 A15 15 0 0 1 293.6028950040582 960.5 L255.30317349285858 960.5 A15 15 0 0 1 255.30317349285858 929.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-258.33333333333337s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-258.33333333333337s"></animate>
+				</path><path d="M2220 959.5 L204.17856522282295 959.5 A15 15 0 0 1 204.17856522282295 990.5 L2220 990.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="45.633990914741446;0;45.633990914741446" begin="-266.66666666666663s"></animateTransform>
+				</path><path d="M1962.0547675914124 959.5 L1974.1095351828249 959.5 A15 15 0 0 1 1974.1095351828249 990.5 L1962.0547675914124 990.5 A15 15 0 0 1 1962.0547675914124 959.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;-1925.2714429572295" begin="-266.66666666666663s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-266.66666666666663s"></animate>
+				</path><path d="M2220 989.5 L166.05028700635012 989.5 A15 15 0 0 0 166.05028700635012 1020.5 L2220 1020.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-54.92088958360543;0;-54.92088958360543" begin="-275s"></animateTransform>
+				</path><path d="M266.8900263196738 989.5 L287.064191560591 989.5 A15 15 0 0 1 287.064191560591 1020.5 L266.8900263196738 1020.5 A15 15 0 0 1 266.8900263196738 989.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-275s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-275s"></animate>
+				</path><path d="M2220 1019.5 L183.54573537464444 1019.5 A15 15 0 0 1 183.54573537464444 1050.5 L2220 1050.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="100s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="32.02352812081031;0;32.02352812081031" begin="-283.3333333333333s"></animateTransform>
+				</path><path d="M1985.0940460873576 1019.5 L2020.1880921747152 1019.5 A15 15 0 0 1 2020.1880921747152 1050.5 L1985.0940460873576 1050.5 A15 15 0 0 1 1985.0940460873576 1019.5" fill="#000">
+				  <animateTransform attributeName="transform" type="translate" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;1" values="0;-2764.546741378662" begin="-283.3333333333333s"></animateTransform>
+				  <animate attributeName="opacity" dur="33.333333333333336s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-283.3333333333333s"></animate>
+				</path><path d="M2220 1049.5 L155.33009380207295 1049.5 A15 15 0 0 0 155.33009380207295 1080.5 L2220 1080.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" values="-32.28279806037579;0;-32.28279806037579" begin="-291.66666666666663s"></animateTransform>
+				</path><path d="M254.9011766741014 1049.5 L274.4759573165197 1049.5 A15 15 0 0 1 274.4759573165197 1080.5 L254.9011766741014 1080.5 A15 15 0 0 1 254.9011766741014 1049.5" fill="#fff">
+				  <animateTransform attributeName="transform" type="translate" dur="50s" repeatCount="indefinite" keyTimes="0;1" values="0;0" begin="-291.66666666666663s"></animateTransform>
+				  <animate attributeName="opacity" dur="50s" repeatCount="indefinite" keyTimes="0;0.3;1" values="1;1;0" begin="-291.66666666666663s"></animate>
+				</path>    </g>
+				  </mask>
+				</defs>
+				<rect x="0" y="0" width="1920" height="1080" fill="url(#ldbk-photon-wb1ib15jzer-lg)" mask="url(#ldbk-photon-wb1ib15jzer-mask)"></rect></g>
+				</svg></div></div></div></div></div>
 		</div>
-		<div><input id="go" type="button" value="前進"></div>
-		<div><input id="back" type="button" value="撤退"></div>
-		<div><input id="tool" type="button" value="道具"></div>
+		<div id="p">˗ˏˋ ​progress
+			<span id="progress">1</span> / 20 ˎˊ˗
+			<div id="n">
+				<div id="monster"  class="fight_screen"></div>
+				<div id="p1_state" class="fight_screen" ></div>
+			</div>
+			
+		</div>
+		<div id="ouo"><input id="go" type="button" value="前進">
+		<input id="back" type="button" value="撤退">
+		<input id="tool" type="button" value="道具"></div>
 		<div class="ctbox">
-			<p id="chatbox" class="ml3">進入關卡3</p>
+			<p id="chatbox" class="ml3">地獄路口↓</p>
 		</div>
 		<div id="open_or_skip" class="choose">
 			<input id="open" type="button" value="打開看看"></input>
@@ -46,19 +348,12 @@
 			<input id="skill" type="button" value="技能">
 			<input id="run_out" type="button" value="逃跑">
 			<input id="take_look" type="button" value="偵查">
-			<div id="p1_state">
-			</div>
-			<div id="monster">
-			</div>
 		</div>
 		<div id="kill_or_forgive" class="choose">
-			<input id="kill" type="button" value="剁!"></input>
-			<input id="forgive" type="button" value="放他走"></input>
+			<input id="kill" type="button" value="給予最後的制裁並汲取其能量"></input>
+			<input id="forgive" type="button" value="賦予神聖的慈悲使其回歸自然"></input>
 		</div>
 		<script>
-			var pd=localStorage.getItem("&philosopher's_stone");
-			var sanj=0;
-			var thh=localStorage.getItem("&thief");
 			var gogo=0;
 			var boss_f=0;
 			var combo=1;
@@ -83,6 +378,7 @@
 			var enemy={
 				HP,atk,def,spd,lv,exp,name
 			};
+			var n=document.getElementById("n");
 			function amt(){
 				var textWrapper = document.querySelector('.ml3');
 				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -91,12 +387,13 @@
 					targets: '.ml3 .letter',
 					opacity: [0,1],
 					duration: 10,
-					delay: (el, i) => 150 * (i+1)
+					delay: (el, i) => 90 * (i+1)
 				});
 			}
 			//以下戰鬥
 			function fight(){
 				bd.style.visibility= "visible";
+				n.style.visibility= "visible";
 				console.log(state);
 				if(boss_f==1){
 					enemy.name="瑞斯";
@@ -142,7 +439,7 @@
 					var dbhit=(state.spd-enemy.spd)/10;
 					var dbcheck=Math.random();
 					if(dbhit>dbcheck){
-						talk.innerHTML += "<br>你的速度太快了，對方根本來不及反應因此你多補了一刀!造成額外"+damage+"點傷害!";
+						talk.innerHTML += "<br>你的速度太快了，對方根本來不及反應，因此你多補了一刀!造成額外"+damage+"點傷害!";
 						enemy.HP-=damage;
 					}
 					enemy.HP-=damage;
@@ -175,7 +472,7 @@
 				}
 			}
 			function go_skill(){
-				if(state.gender==1||state.gender==0)alert("這個人啥也不會");
+				if(state.gender==1||state.gender==0)alert("這個人什麼也不會QAQ");
 				else if(mb==1){
 					stun();
 				}
@@ -183,14 +480,14 @@
 					mb=1;
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*1.35);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對"+state.name+"使用了<span class='aboriginal'>原著民爆擊的啦</span><br>造成了"+damage+"點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test使用了<span class='aboriginal'>【原住民爆擊的啦】</span><br>造成了"+damage+"點傷害!";
 					enemy.HP-=damage;
 				}
 				else if(state.gender==3){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50)));
 					var heal=Math.floor(damage/10);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對"+state.name+"用<span class='aboriginal'>吸血</span><br>造成了"+damage+"點傷害!<br>你回復了"+heal+"點生命值";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>【奪取你的靈魂】</span><br>造成了"+damage+"點傷害!<br>你回復了"+heal+"點生命值";
 					state.HP=Math.min(state.MAXHP,state.HP+heal);
 					state.SP-=10;
 					enemy.HP-=damage;
@@ -198,14 +495,14 @@
 				else if(state.gender==4){
 					step++;
 					var heal=Math.floor(state.MAXHP/2);
-					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>超量治癒</span><br>你回復了"+heal+"點生命值";
+					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>【超量治癒】</span><br>你回復了"+heal+"點生命值";
 					state.HP+=heal;
 					state.SP-=15;
 				}
 				else if(state.gender==5){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*combo);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對"+state.name+"用<span class='aboriginal'>連擊星</span><br>造成了"+damage+"點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>【嚶嚶嚶拿小拳拳捶你胸口】</span><br>造成了"+damage+"點傷害!";
 					combo+=0.1;
 					state.SP-=5;
 					enemy.HP-=damage;
@@ -213,28 +510,28 @@
 				else if(state.gender==6){
 					step++;
 					var healSP=Math.floor(state.MAXSP/3);
-					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>氣定神閒</span><br>你回復了"+healSP+"點精神!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你使用了<span class='aboriginal'>【氣定神閒】</span><br>你回復了"+healSP+"點精神!";
 					state.SP=Math.min(state.SP+healSP,state.MAXSP);
 				}
 				else if(state.gender==7){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*combo);
 					damage = Math.floor(damage*(1+0.01*(state.MAXHP-state.HP)));
-					talk.innerHTML = "第"+step+"回合<br>"+"你對"+state.name+"用<span class='aboriginal'>復仇反擊</span><br>造成了"+damage+"點傷害!";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>【復仇反擊】</span><br>造成了"+damage+"點傷害!";
 					state.SP-=8;
 					enemy.HP-=damage;
 				}
 				else if(state.gender==8){
 					step++;
 					var damage=Math.floor(Math.random()*(state.atk+100*(1+(state.lv-enemy.lv)*0.1)/(enemy.def+50))*0.85);
-					talk.innerHTML = "第"+step+"回合<br>"+"你對"+state.name+"用<span class='aboriginal'>客+1及</span><br>造成了"+damage+"點傷害!<br>你偷了三塊錢";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>【客+1擊】</span><br>造成了"+damage+"點傷害!<br>你偷了三塊錢";
 					money+=3;
 					enemy.HP-=damage;
 					state.SP-=1;
 				}
 				else if(state.gender==9){
 					step++;
-					talk.innerHTML = "第"+step+"回合<br>"+"你對"+state.name+"用<span class='aboriginal'>看破</span><br>你無視了他的防禦";
+					talk.innerHTML = "第"+step+"回合<br>"+"你對test用<span class='aboriginal'>【看破紅塵】</span><br>你無視了他的防禦";
 					state.SP-=10;
 					enemy.def=0;
 				}
@@ -284,16 +581,18 @@
 				}
 			}
 			function state_load(){
-				p1s.innerHTML= "魔法少女 "+player_name+"還剩下"+state.HP+"/"+state.MAXHP+"的生命值跟"+state.SP+"/"+state.MAXSP+"的san值";
+				p1s.innerHTML= "魔法少女 "+player_name+"還剩下:<br>"+state.HP+"/"+state.MAXHP+"的生命值跟"+state.SP+"/"+state.MAXSP+"的san值";
 				mons.innerHTML=enemy.name+"還有"+enemy.HP+"的生命值";
 				mons.innerHTML+="<img class='wooden' src='"+enemy.name+".png'>";
 				if(loser==1){
 					battle=0;
 					bd.style.visibility= "hidden";
+					n.style.visibility= "hidden";
 				}
 				else if(enemy.HP<=0){
 					battle=0;
 					bd.style.visibility= "hidden";
+					n.style.visibility= "hidden";
 					kof.style.visibility= "visible";
 					if(state.sin<-500){
 						forgave.style.visibility = "hidden";
@@ -345,34 +644,34 @@
 			//以上
 			function boss_fight(){
 				gogo=0;
-				talk.innerHTML = "BOSS巨垂-瑞斯出現了!!!";
+				talk.innerHTML = "BOSS巨錘-瑞斯出現了!!!";
 				boss_f=1;
 				amt();
 				fight();
 			}
 			function open(){
 				var kr=Math.floor(Math.random()*10);
-				if(kr==0&&thh!='1'){
+				if(kr==0){
 					var damage=Math.floor(state.MAXHP*0.2);
-					talk.innerHTML = "寶箱爆炸了...你受到了"+damage+"點傷害!";
+					talk.innerHTML = "寶箱爆炸了!!!你受到了"+damage+"點傷害!";
 					state.HP-=damage;
 					diejudge();
 				}
-				else if(kr==1&&thh!='1'){
+				else if(kr==1){
 					var damage=Math.floor(state.MAXSP*0.2);
-					talk.innerHTML = "寶箱飛出一堆蟑螂...你受到了"+damage+"點精神傷害!";
+					talk.innerHTML = "寶箱飛出一堆蟲蟲TAT你受到了"+damage+"點精神傷害!";
 					state.SP-=damage
 					sanjudge();
 				}
 				else if(kr==2){
-					talk.innerHTML = "這箱子裡啥都沒裝...";
+					talk.innerHTML = "這箱子裡什麼都沒裝...";
 				}
 				else if(kr==3){
-					talk.innerHTML = "這箱子裡面有好多錢ㄟ~($+150)";
+					talk.innerHTML = "這箱子裡面有好多錢欸~($+150)";
 					money+=150;
 				}
 				else if(kr==4){
-					talk.innerHTML = "你在箱子裡找到一個不知道放了多久的飯糰...";
+					talk.innerHTML = "你在箱子裡找到一個不知道放了多久的飯米團米團...";
 					backpack.riceball++;
 					localStorage.setItem("&backpack",JSON.stringify(backpack));
 				}
@@ -386,27 +685,8 @@
 					backpack.teaegg++;
 					localStorage.setItem("&backpack",JSON.stringify(backpack));
 				}
-				else if(kr==7){
-					talk.innerHTML = "你在箱子裡找到一碗因為放太久湯都乾掉的的牛肉麵...";
-					backpack.beefnoodles++;
-					localStorage.setItem("&backpack",JSON.stringify(backpack));
-				}
-				else if(kr==8){
-					talk.innerHTML = "你發現了紅色的藥水，你發揮勤儉的美德把它吃掉了(攻擊+1，HP上限+1)";
-					state.atk+=1;
-					state.MAXHP+=1;
-					state.HP+=1;
-					localStorage.setItem(player_name,JSON.stringify(state));
-				}
-				else if(kr==9){
-					talk.innerHTML = "你發現了藍色的藥水，你發揮勤儉的美德把它吃掉了(防禦+1，SP上限+1)";
-					state.def+=1;
-					state.MAXSP+=1;
-					state.SP+=1;
-					localStorage.setItem(player_name,JSON.stringify(state));
-				}
 				else{
-					talk.innerHTML = "你在箱子裡找到一張紙條，上面寫著'裡面的東西已經被太陽拿走了^^'......";
+					talk.innerHTML = "你在箱子裡找到一張紙條，上面寫著「裡面的東西已經被太陽拿走了^^」...";
 				}
 				amt();
 				oos.style.visibility="hidden";
@@ -420,7 +700,7 @@
 				gogo=0;
 				var r=Math.floor(Math.random()*4);
 				if(r==0){
-					talk.innerHTML = "遭遇隨堂考!";
+					talk.innerHTML = "遭遇怪物!";
 					battle=1;
 					fight();
 				}	
@@ -429,7 +709,7 @@
 					money+=50;
 				}
 				else if(r==2){
-					talk.innerHTML = "啥都沒看到";
+					talk.innerHTML = "什麼都沒看到";
 				}
 				else{
 					talk.innerHTML = "發現了奇怪的箱子!";
@@ -453,29 +733,21 @@
 					document.getElementById("progress").innerHTML=p;
 					if(p==21){
 						document.getElementById("progress").innerHTML="end";
-						talk.innerHTML = "這到底....這到底甚麼閃現.....齁齁齁齁齁齁";
+						talk.innerHTML = "轉頭吧，看看你的身後，我始終伴你左右...";
 						localStorage.setItem("$",money);
+						localStorage.setItem("&Level_1",1);
 						amt();
-						back.value="光榮撤退";
+						back.value="凱旋而歸";
 						quitalt=1;
 					}
 					else if(p==20){
-						if(pd=='1'){
-							state.HP=Math.min(state.HP+3,state.MAXHP);
-							state.SP=Math.min(state.SP+1,state.MAXSP);
-						}
 						talk.innerHTML = "前進中...";
 						gogo=1;
 						amt();
-						battle=1;
 						setTimeout(boss_fight,1000);
 						quitalt=0;
 					}
 					else if(p<20){
-						if(pd=='1'){
-							state.HP=Math.min(state.HP+3,state.MAXHP);
-							state.SP=Math.min(state.SP+1,state.MAXSP);
-						}
 						talk.innerHTML = "前進中...";
 						gogo=1;
 						amt();
@@ -483,14 +755,14 @@
 						quitalt=0;
 					}
 					else{
-						talk.innerHTML = "這前面啥都沒有了";
+						talk.innerHTML = "這前面什麼都沒有了";
 						amt();
 						quitalt=1;
 					}
 				}
 			}
 			function go_home(){
-				talk.innerHTML = "你確定要離開ㄇ?這樣你一毛都拿不到喔(確定請再次點擊撤退紐)";
+				talk.innerHTML = "你是否確定要離開?(確定請再次點擊撤退鈕)";
 				amt();
 				++quitalt;
 				if(quitalt==2){
@@ -508,16 +780,10 @@
 				else if(state.SP<=0){
 					var l=Math.random();
 					if(l<0.6){
-						if(sanj==0){
-							alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
-							sanj=1;
-						}
+						alert("魔法少女"+player_name+"的狀況看起來不太好，建議快點回家");
 						state.HP-=5;
 						alert("魔法少女"+player_name+"對自己造成了5點傷害");
 					}
-				}
-				else{
-					sanj=0;
 				}
 				localStorage.setItem(player_name,JSON.stringify(state));
 				diejudge();
@@ -537,7 +803,6 @@
 					else{
 						alert("由於沒有茶葉蛋，魔法少女"+player_name+"化成了碎片消失在空中...");
 						state.live=0;
-						state.gender=16;
 						localStorage.setItem(player_name,JSON.stringify(state));
 						window.location.href="start_page.html";
 					}
@@ -549,10 +814,10 @@
 				}
 				else{
 					if(backpack.riceball+backpack.redtea+backpack.teaegg+backpack.beefnoodles==0){
-						alert("你翻了一下包包，然後發現你啥都沒帶");
+						alert("你翻了一下包包，然後發現你什麼都沒帶");
 					}
 					else{
-						u = parseInt(window.prompt( "你要吃啥?\n0.隨便阿\n1.過期飯糰\n2.HP藥劑\n3.鳳凰の卵\n4.涼麵"));
+						u = parseInt(window.prompt( "你要吃什麼?\n0.隨便阿\n1.過期飯糰\n2.HP藥劑\n3.鳳凰の卵\n4.涼麵"));
 						if(u>4||u<1){
 							alert("你好像又不餓了，收起了背包");
 						}
@@ -606,7 +871,10 @@
 			}
 			function start(){
 				if(localStorage.getItem("Is_of_level3")!='1'){
-					alert("接下來的戰鬥將會逐漸母湯，但是加油，勝利就在眼前了!");
+					alert("「歡迎來到......屬於我們的極樂世界。」");
+					alert("低沉的聲音從左側胸口傳出。");
+					alert("「或許是出現幻聽了吧？」你這麼想著，但是右手還是不禁摸了摸胸前，似乎還能感受到剛剛聲音發出的震動。")
+					alert("你深吸了一口氣，醞釀好魔力，警戒的向深處走去。")
 					localStorage.setItem("Is_of_level3",1);
 				}
 				oos.style.visibility="hidden";
@@ -620,6 +888,7 @@
 				document.getElementById("skill").addEventListener("click",go_skill,false);
 				document.getElementById("run_out").addEventListener("click",runaway,false);
 				bd.style.visibility= "hidden";
+				n.style.visibility= "hidden";
 				money=localStorage.getItem("$");
 				money=parseInt(money);
 				document.getElementById("go").addEventListener("click",go_step,false);

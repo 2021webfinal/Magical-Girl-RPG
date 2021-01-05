@@ -344,7 +344,7 @@
 			</div>
 		<div class="ctbox">
 			<p id="chatbox" class="ml3">進入初級挑戰˙ˇ˙</p>
-			<div id="msg_end" style="height:0px; overflow:hidden"></div>
+			
 		</div>
 		<div id="battle_display" >
 			<input id="attack" type="button" value="攻擊">
@@ -740,9 +740,11 @@
 						talk.innerHTML = "恭喜你通過了初級關卡(獎勵100$)!";
 						if(localStorage.getItem("&Level_2")=='0'){
 							talk.innerHTML = "恭喜你首次通關初級關卡(獎勵500$)!";
+							alert("「期待你的到來\nH」");
 							money+=400;
 						}
 						money+=100
+	
 						localStorage.setItem("$",money);
 						localStorage.setItem("&Level_2",1);
 						amt();
@@ -757,7 +759,6 @@
 						talk.innerHTML = "前進中...";
 						gogo=1;
 						amt();
-						battle=1;
 						setTimeout(boss_fight,1000);
 						quitalt=0;
 					}
@@ -913,6 +914,7 @@
 				document.getElementById("skill").addEventListener("click",go_skill,false);
 				document.getElementById("run_out").addEventListener("click",runaway,false);
 				bd.style.visibility= "hidden";
+				n.style.visibility= "hidden";
 				money=localStorage.getItem("$");
 				money=parseInt(money);
 				document.getElementById("go").addEventListener("click",go_step,false);
