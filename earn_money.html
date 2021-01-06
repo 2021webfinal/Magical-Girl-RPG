@@ -1,5 +1,5 @@
 <head>
-    <title>15money</title>
+    <title>15hard</title>
     <meta charset="utf-8" />
     <style type="text/css">
 		@font-face {
@@ -19,7 +19,7 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			background-color: #c49d98;
+			background-color: black;
 			background-image: url("background2.png");
 			background-size: contain;
 			background-repeat: no-repeat;
@@ -33,6 +33,7 @@
 			top:150px;
 		}
 		table {
+			background-color: black;
 			border-collapse: collapse;
 			border: 5px solid black;
 		}
@@ -57,11 +58,11 @@
             width: 80px;
             height: 50px;
 		}
-		img {
-			position:absolute;
-			top:0;
-			left:0;
-			width: 580px;
+		.smal{
+			width: 50px;
+		}
+		.heart{
+			width: 100px;
 		}
     </style>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -129,12 +130,6 @@
 				$.each(result, function(i, field){
 					bonus+=field;
 				});
-				$("img").css("display","inline");
-				console.log(bonus);
-				mg.src="loading.gif";
-				setTimeout(function(){
-					$("img").css("display","none");
-				},1000);
 				bstart();
 			});
 		}
@@ -144,12 +139,13 @@
 			for(var i=0;i<4;++i)
                 for(var j=0;j<4;++j){
 					var tmp="";
+					document.getElementById("cell"+i+j).innerHTML=tmp;
 					while(bonus[rand+it]!=','){
 						tmp+=bonus[rand+it];
 						++it;
 					}
 					++it;
-					document.getElementById("cell"+i+j).innerHTML=tmp;
+					if(tmp!="")document.getElementById("cell"+i+j).innerHTML="<img src='"+tmp+".png' class='heart'>";
 				}
 		}
         function judge(x,y){
@@ -177,19 +173,19 @@
             for(var i=0;i<4;++i){
                 for(var j=0;j<4;++j){
                     if(count<10)
-                        document.getElementById("cell"+i+j).innerHTML='0'+count;
+                        document.getElementById("cell"+i+j).innerHTML="<img src='0"+count+".png' class='heart'>";
                     else
-                        document.getElementById("cell"+i+j).innerHTML=count;
+                        document.getElementById("cell"+i+j).innerHTML="<img src='"+count+".png' class='heart'>";
                     ++count;
                 }
             }
             var rd=Math.floor(Math.random()*2);
             if(rd==0){
-                document.getElementById("cell33").innerHTML="12";
+                document.getElementById("cell33").innerHTML="<img src='12.png' class='heart'>";
                 document.getElementById("cell23").innerHTML="";
             }
             else{
-                document.getElementById("cell33").innerHTML="15";
+                document.getElementById("cell33").innerHTML="<img src='15.png' class='heart'>";
                 document.getElementById("cell32").innerHTML="";
             }
             judge(0,0);
@@ -203,8 +199,12 @@
                         continue;
                     }
                     else{
-                        if(Number(document.getElementById("cell"+i+j).innerHTML)!=count)
-                            win=0;
+						if(count<10){
+							if(document.getElementById("cell"+i+j).innerHTML!='<img src="0'+count+'.png" class="heart">')win=0;
+						}
+						else{
+							if(document.getElementById("cell"+i+j).innerHTML!='<img src="'+count+'.png" class="heart">')win=0;
+						}
                         ++count;
                     }
                 }
@@ -218,7 +218,7 @@
 				wd.play();
                 alert("挖你好棒喔，給你錢");
 				var money=localStorage.getItem("$");
-				localStorage.setItem("$",parseInt(money)+100);
+				localStorage.setItem("$",parseInt(money)+1000);
 				window.location.href='start_page.html';
 			}
         }
@@ -231,7 +231,6 @@
 		}
         function doClick(x,y){
 			click_time++;
-			console.log(click_time);
 			if(click_time%100==0){
 				alert("你已經點了我"+click_time+"次了，點爽沒?");
 			}
