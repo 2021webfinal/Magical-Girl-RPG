@@ -19,7 +19,7 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			background-color: black;
+			background-color: #c49d98;
 			background-image: url("background2.png");
 			background-size: contain;
 			background-repeat: no-repeat;
@@ -71,10 +71,10 @@
 </head>
 <body>
 	<audio id="getaudio">
-            <source src="offlimits.mp3" type="audio/mpeg">
+        <source src="offlimits.mp3" type="audio/mpeg">
     </audio>
 	<audio id="winaudio">
-            <source src="applause.mp3" type="audio/mpeg">
+        <source src="applause.mp3" type="audio/mpeg">
     </audio>
 	<div id="all">
 		<table id="board">
@@ -153,12 +153,18 @@
                 for(var j=0;j<4;++j)
                     if(document.getElementById("cell"+i+j).innerHTML=="")
                         zx=i,zy=j;
-            if(zx==x&&zy==y)
+            if(zx==x&&zy==y){
                 document.getElementById("msg").innerHTML="我看倒有點像稿紙";
-            else if(Math.abs(zx-x)<=1&&Math.abs(zy-y)<=1&&!(Math.abs(zy-y)==1&&Math.abs(zx-x)==1))
+				document.getElementById("msg").style.color="white";
+			}
+            else if(Math.abs(zx-x)<=1&&Math.abs(zy-y)<=1&&!(Math.abs(zy-y)==1&&Math.abs(zx-x)==1)){
                 document.getElementById("msg").innerHTML="這一格好像能點";
-            else
-                document.getElementById("msg").innerHTML="真像一塊塊綠豆糕";
+				document.getElementById("msg").style.color="green";
+			}
+            else{
+                document.getElementById("msg").innerHTML="真像一塊塊紅豆糕";
+				document.getElementById("msg").style.color="red";
+			}
         }
         $("td").hover(function() {
             var id=$(this).prop("id");
@@ -245,5 +251,4 @@
 		window.addEventListener("load",importData,false);
     </script>
 </body>
-
 </html>
