@@ -4,8 +4,8 @@
     <title>英靈殿堂</title>
 	<style type="text/CSS">
 		@font-face {
-					font-family: word;
-					src: url("Silver.ttf");
+			font-family: word;
+			src: url("Silver.ttf");
 		}
 		@font-face {
             font-family: loading;
@@ -35,8 +35,7 @@
 			right: 100px;
 			position: absolute;
 			z-index: 1;
-			
-        }
+		}
 		body{
             background-color: #c49d98; 
             font-family: word;
@@ -44,9 +43,8 @@
 			font-size: 55px;
         }
 		body::-webkit-scrollbar {
-    			display: none;
+    		display: none;
 		}
-		
 		.one, .ouo{
 				left: 100px;
 				position:absolute;
@@ -59,8 +57,6 @@
 				display: block;
 				border-spacing: 0;
 				white-space: nowrap;
-
-			
 			}
 			.one tr{
 				border: 1px solid #c49d98;
@@ -89,7 +85,6 @@
 			}
 			.ouo tr{
 				border: 1px solid #c49d98;
-					
 			}
 			.ouo td{
 				border: 3px solid #FFF;
@@ -98,7 +93,6 @@
 				border-radius: 10px;
 				color: #FFF;
 				text-align: center;	
-						
 			}
 			.ouo input{
 				background-color: #ffffff00;
@@ -117,7 +111,6 @@
 			a{
 				text-decoration: none;
 				color:white;
-
 			}
 		#rip{
 			position: absolute;
@@ -632,23 +625,22 @@
 				tags[i]=localStorage.key(i);
 			}
 			tags.sort();
-			var markup = "<table><thead><th>名 字</th><th>死 因</th><th>等 級</th><th>數據詳細</th></thead>";
+			var markup = "<table><thead><th>名 字</th><th>死 因</th><th>等 級</th><th>數據詳細(ATK/DEF/SPD)</th></thead>";
 			for(var tag in tags){
 				var check=localStorage.getItem(tags[tag]);
 				if(check[0]=='{'){
 					var code=JSON.parse(check);
-					console.log(code);
 					if(code.live==0){
 						ck=1;
 						markup+="<tr>";
 						markup+="<td>"+tags[tag]+"</td>";
-						if(code.gender=11){
+						if(code.gender==11){
 							markup+="<td class='reason'>墮落為魔物</td>";
 						}
-						else if(code.gender=12){
+						else if(code.gender==12){
 							markup+="<td class='reason'>舊傷復發</td>";
 						}
-						else if(code.gender=13){
+						else if(code.gender==13){
 							markup+="<td class='reason'>引退</td>";
 						}
 						else if(code.gender==14){
@@ -664,7 +656,12 @@
 							markup+="<td class='reason'>未知</td>";
 						}
 						markup+="<td>"+code.lv+"</td>";
-						markup+="<td width='200px'><a href='https://www.youtube.com/watch?v=OFRrQU5Yxdw&list=PLzRLTL4wcSuC7KiqN4AuzuoaFaeRHa6ca&index=17'>"+"問候此人"+"</a></td>";
+						if(code.gender==14){
+							markup+="<td width='200px'><a href='https://www.youtube.com/watch?v=OFRrQU5Yxdw&list=PLzRLTL4wcSuC7KiqN4AuzuoaFaeRHa6ca&index=17'>"+"問候(彩)此人(蛋)"+"</a></td>";
+						}
+						else{
+							markup+="<td width='200px' id='idct'>"+code.atk+"/"+code.def+"/"+code.spd+"</td>";
+						}
 						markup+="</tr>";
 					}
 				}
@@ -672,17 +669,14 @@
 			markup += "</table>";
 			document.getElementById("display").innerHTML = markup;
 		}
-		
 		function start(){
 			var remoAB=document.getElementById("removeAllButton");
 			remoAB.addEventListener("click",remove,false);
 			load();
-		
 			if(ck==1){
 				document.getElementById("rip").innerHTML="讓我們為死者默哀...";
 			}
 		}
-		
 		window.addEventListener("load",start,false);
     </script>
 </html>
