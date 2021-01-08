@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>END</title>
+    <style>
+        @font-face {
+				font-family: word;
+				src: url("Silver.ttf");
+        	}
+        @media only screen and (max-width: 1600px) {
+            img{
+                width: 1536px;
+                height: 864px;
+            }
+        }
+       .ctbox{
+            position:absolute;
+			left: 33%;
+			bottom: 180px;
+            text-align: center;
+            z-index: 3;
+            width: 500px;
+            
+       }
+       #chatbox{
+        position:absolute;
+        z-index: 3;
+       }
+       body{
+			background-color: #c49d98;
+            font-size: 40px;
+			color: white;
+            font-family: word;
+       }
+       img{
+           position: absolute;
+           top: 0px;
+           left: 0px;
+           z-index: 0;
+       }
+       body::-webkit-scrollbar {
+    			display: none;
+			}
+            
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script>
+            var png=['ab0.png'];
+            
+			var tmp_chat = 0;
+			var player_name=localStorage.getItem("start_adventure");
+            var img = document.getElementsByTagName("img");
+            function amt(){
+				var textWrapper = document.querySelector('.ml3');
+				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+				anime.timeline({loop: false})
+				.add({
+					targets: '.ml3 .letter',
+					opacity: [0,1],
+					easing: "easeInOutQuad",
+					duration: 10,
+					delay: (el, i) => 90 * (i+1)
+				});
+			}
+            function change(){
+                var talk = document.getElementById("chatbox");
+                var pic = document.getElementById("img");
+                if(tmp_chat==0){
+                    talk.innerHTML = "我…"+player_name+"，三年之內一個朋友都沒交到，就這麼從中學畢業了。";
+                    amt();
+                }
+                if(tmp_chat==1){
+                    talk.innerHTML = "等到我發現我沒朋友時，已經被同學討厭了。";
+                    amt();
+                }
+                if(tmp_chat==2){
+                    talk.innerHTML = "我想要改變…";
+                    amt();
+                }
+                if(tmp_chat==3){
+                    talk.innerHTML = "我想要成為快樂又開朗的人…";
+                    amt();
+                }
+                if(tmp_chat==4){
+                    talk.innerHTML = "我想要找回我自己。";
+                    amt();
+                }
+                if(tmp_chat==5){
+                    talk.innerHTML = "結業式的那天傍晚，我向母親闡述這些一直在內心深處的秘密。";
+                    amt();
+                }
+                if(tmp_chat==6){
+                    talk.innerHTML = "「媽媽，我想學化妝…。」";
+                    amt();
+                }
+                if(tmp_chat==6){
+                    pic.src="a0.png";
+                    talk.innerHTML = "『我最親愛的"+player_name+"，想改變自己的話，要從心開始喔。』";
+                    amt();
+                }
+                if(tmp_chat==7){
+                    pic.src="ab0.png";
+                    talk.innerHTML = "「重新開始…？什麼意思啊？」";
+                    amt();
+                }
+                if(tmp_chat==8){
+                    pic.src="a0.png";
+                    talk.innerHTML = "『等到那一天，你就會知道的。』";
+                    amt();
+                }
+                if(tmp_chat==9){
+                    pic.src="ab0.png";
+                    talk.innerHTML = "母親最後的笑容有些哀傷、欣慰、思念，和……瘋狂。";
+                    amt();
+                }
+                if(tmp_chat==10){
+                    pic.src="ab0.png";
+                    talk.innerHTML = "而當時天真的我以為這一天永遠不會到來。";
+                    amt();
+                }
+                if(tmp_chat==11){
+                    talk.innerHTML = "...";
+                    amt();
+                    window.location.href="adventure.html";
+                }
+                tmp_chat++;
+            }
+            function start(){
+				amt();
+                document.getElementById("img").addEventListener("click", change,false); 
+                
+                
+			}
+            window.addEventListener( "load", start, false );
+    </script>
+</head>
+<body>
+    <div class="ctbox">
+        <p id="chatbox" class="ml3">...</p>
+    </div>
+    <img src="ab0.png" id="img">
+</body>
+</html>
