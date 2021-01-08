@@ -99,6 +99,7 @@
 				border-radius: 500px;
 			}
 		</style>
+		<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 	</head>
 	<body>
 		<div id="The_game_title"><a href="變身.RPG-00857114.pptx"><span data-item="Rohit" id="t">變身</span></a><span id="rpg">.rpg</span></div>
@@ -112,6 +113,12 @@
 		</div>
 		<div id="money_display"></div>
 		<script>
+			$('#t').hover(function(){
+				$('#rpg').html('.ppt');
+				},function(){
+				$('#rpg').html('.rpg');
+				}
+			);
 			var riceball,redtea,teaegg,beefnoodles;
 			var tool={
 				riceball,redtea,teaegg,beefnoodles
