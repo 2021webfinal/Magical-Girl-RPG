@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
     <title>END</title>
     <style>
         @font-face {
@@ -21,11 +20,10 @@
             text-align: center;
             z-index: 3;
             width: 500px;
-            
        }
        #chatbox{
-        position:absolute;
-        z-index: 3;
+			position:absolute;
+			z-index: 3;
        }
        body{
 			background-color: #c49d98;
@@ -42,14 +40,12 @@
        body::-webkit-scrollbar {
     			display: none;
 			}
-            
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script>
-  
-            
 			var tmp_chat = 0;
 			var player_name=localStorage.getItem("start_adventure");
+			var state=JSON.parse(localStorage.getItem(player_name));
             var img = document.getElementsByTagName("img");
             function amt(){
 				var textWrapper = document.querySelector('.ml3');
@@ -117,15 +113,18 @@
                 if(tmp_chat==11){
                     talk.innerHTML = "...";
                     amt();
-                    window.location.href="adventure.html";
+					alert("獲得了'賢者之石':之後的角色在冒險中行動時將逐漸恢復HP和SP(效果不可疊加)");
+					localStorage.setItem("&philosopher's_stone",1);
+					state.live=0;
+					state.gender=12;
+					localStorage.setItem(player_name,JSON.stringify(state));
+                    window.location.href="index.html";
                 }
                 tmp_chat++;
             }
             function start(){
 				amt();
-                document.getElementById("img").addEventListener("click", change,false); 
-                
-                
+                document.getElementById("img").addEventListener("click", change,false);     
 			}
             window.addEventListener( "load", start, false );
     </script>
