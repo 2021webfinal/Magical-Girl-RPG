@@ -28,11 +28,14 @@
 			background-position-x: center;
 			overflow: -moz-hidden-unscrollable;
 		}
-		#all{
+	
+		body::-webkit-scrollbar {
+    			display: none;
+			}	#all{
 			position:absolute;
 			top:150px;
 		}
-		table {
+		#board {
 			background-color: black;
 			border-collapse: collapse;
 			border: 5px solid black;
@@ -43,7 +46,8 @@
         }
         caption {
             font-size: 3em;
-            color: gray;
+            color: rgb(255, 255, 255);
+			font-family: word;
         }
         td {
             font-size: 4em;
@@ -64,6 +68,49 @@
 		.heart{
 			width: 100px;
 		}
+		#ouo{
+				margin-top: 20px;
+				
+			}
+			#ouo td:hover{
+				background-color: white;
+				color: #c49d98;
+			}
+			a:hover{
+				color: #c49d98;
+			}
+			#ouo table{
+				border-collapse: separate;
+				display: block;
+				border-spacing: 0;
+			}
+			#ouo tr{
+				border: 1px solid #c49d98;
+			}
+			#ouo td{
+				border: 3px solid #FFF;
+				padding: 10px 30px;
+				background-color: #c49d98;
+				border-radius: 10px;
+				color: #FFF;
+				text-align: center;
+				
+			}
+			.bu{
+				background-color: #c49d98;
+				color:white;
+				border: 0;
+				font-family: word;
+				font-size: 25px;
+			}
+			.bu:hover{
+				background-color: white;
+				color: #c49d98;
+			}
+			a{
+				color: white;
+				text-decoration: none;
+			}
     </style>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript">
@@ -78,7 +125,7 @@
     </audio>
 	<div id="all">
 		<table id="board">
-			<caption>別碰，我怕癢</caption>
+			<caption>別 碰 ， 我 怕 癢</caption>
 			<tbody>
 				<tr>
 					<td onclick="doClick( 0, 0 )" id="cell00"></td>
@@ -107,10 +154,26 @@
 			</tbody>
 		</table>
 		<p>
-			<button ><a href="start_page.html">回首頁</a></button>
-			<button onclick="gotoLastStep()" id="laststepBtn">作弊</button>
-			<button onclick="importData()" id="importBtn">重玩</button>
-			<button onclick="switchBGM()" id="bgmBtn">開/關BGM</button>
+			<table id="ouo">
+				<tr>
+					<td>
+						<button class="bu"><a href="start_page.html">回首頁</a></button>
+					</td>
+					<td>
+						<button class="bu" onclick="gotoLastStep()" id="laststepBtn">作弊</button>
+					</td>
+					<td>
+						<button class="bu" onclick="importData()" id="importBtn">重玩</button>
+					</td>
+					<td>
+						<button class="bu" onclick="switchBGM()" id="bgmBtn">開/關BGM</button>
+					</td>
+				</tr>
+			</table>	
+			
+			
+			
+			
 		</p>
 		<div id="msg"></div>
 		<img id="ldin">
