@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>END</title>
+    <style>
+        @font-face {
+				font-family: word;
+				src: url("Silver.ttf");
+        	}
+        @media only screen and (max-width: 1600px) {
+            img{
+                width: 1536px;
+                height: 864px;
+            }
+        }
+       .ctbox{
+            position:absolute;
+			left: 33%;
+			bottom: 180px;
+            text-align: center;
+            z-index: 3;
+            width: 500px;
+            
+       }
+       #chatbox{
+        position:absolute;
+        z-index: 3;
+       }
+       body{
+			background-color: #c49d98;
+            font-size: 40px;
+			color: white;
+            font-family: word;
+       }
+       img{
+           position: absolute;
+           top: 0px;
+           left: 0px;
+           z-index: 0;
+       }
+       body::-webkit-scrollbar {
+    			display: none;
+			}
+            
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script>
+  
+            
+			var tmp_chat = 0;
+			var player_name=localStorage.getItem("start_adventure");
+            var img = document.getElementsByTagName("img");
+            function amt(){
+				var textWrapper = document.querySelector('.ml3');
+				textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+				anime.timeline({loop: false})
+				.add({
+					targets: '.ml3 .letter',
+					opacity: [0,1],
+					easing: "easeInOutQuad",
+					duration: 10,
+					delay: (el, i) => 90 * (i+1)
+				});
+			}
+            function change(){
+                var talk = document.getElementById("chatbox");
+                var pic = document.getElementById("img");
+                if(tmp_chat==0){
+                    talk.innerHTML = "「呼──」";
+                    amt();
+                }
+                if(tmp_chat==1){
+                    talk.innerHTML = "跑到盡頭了！";
+                    amt();
+                }
+                if(tmp_chat==2){
+                    talk.innerHTML = "我回頭看，前一秒剛跨出的那片森林已不復存在。";
+                    amt();
+                }
+                if(tmp_chat==3){
+                    pic.src="aa0.png";
+                    talk.innerHTML = "「是夢吧。」";
+                    amt();
+                }
+                if(tmp_chat==4){
+                    pic.src="ab0.png";
+                    talk.innerHTML = "我這麼想。";
+                    amt();
+                }
+                if(tmp_chat==5){
+                    talk.innerHTML = "哪裡還有什麼魔物，身後只有一條乾淨而筆直的道路，";
+                    amt();
+                }
+                if(tmp_chat==6){
+                    pic.src="ab1.png";
+                    talk.innerHTML = "再也熟悉不過的，通往回家的路。";
+                    amt();
+                }
+                if(tmp_chat==7){
+                    talk.innerHTML = "到家開門前，我想著。";
+                    amt();
+                }
+                if(tmp_chat==8){
+                    talk.innerHTML = "母親說的對，也許在新的學校、新的班級，我也只需要保持著自我，重新開始我的生活。";
+                    amt();
+                }
+                if(tmp_chat==9){
+                    pic.src="a0.png"
+                    talk.innerHTML = "但我不知道的是，那張被我放在口袋深處的紙條，上面寫著：";
+                    amt();
+                }
+                if(tmp_chat==10){
+                    talk.innerHTML = "「魔法少女考核：失敗。」";
+                    amt();
+                }
+                if(tmp_chat==11){
+                    talk.innerHTML = "...";
+                    amt();
+                    window.location.href="adventure.html";
+                }
+                tmp_chat++;
+            }
+            function start(){
+				amt();
+                document.getElementById("img").addEventListener("click", change,false); 
+                
+                
+			}
+            window.addEventListener( "load", start, false );
+    </script>
+</head>
+<body>
+    <div class="ctbox">
+        <p id="chatbox" class="ml3">...</p>
+    </div>
+    <img src="ab0.png" id="img">
+</body>
+</html>
