@@ -14,6 +14,10 @@
 			font-family: word;
 			src: url("Silver.ttf");
 		}
+		#all{
+			position:absolute;
+			right:400px;
+		}
 		body {
 			display: flex;
 			flex-direction: column;
@@ -28,7 +32,6 @@
 			background-position-x: center;
 			overflow: -moz-hidden-unscrollable;
 		}
-	
 		body::-webkit-scrollbar {
     			display: none;
 			}	#all{
@@ -69,48 +72,48 @@
 			width: 100px;
 		}
 		#ouo{
-				margin-top: 20px;
-				
-			}
-			#ouo td:hover{
-				background-color: white;
-				color: #c49d98;
-			}
-			a:hover{
-				color: #c49d98;
-			}
-			#ouo table{
-				border-collapse: separate;
-				display: block;
-				border-spacing: 0;
-			}
-			#ouo tr{
-				border: 1px solid #c49d98;
-			}
-			#ouo td{
-				border: 3px solid #FFF;
-				padding: 10px 30px;
-				background-color: #c49d98;
-				border-radius: 10px;
-				color: #FFF;
-				text-align: center;
-				
-			}
-			.bu{
-				background-color: #c49d98;
-				color:white;
-				border: 0;
-				font-family: word;
-				font-size: 25px;
-			}
-			.bu:hover{
-				background-color: white;
-				color: #c49d98;
-			}
-			a{
-				color: white;
-				text-decoration: none;
-			}
+			position:relative;
+			left:-75px;
+			margin-top: 20px;	
+		}
+		#ouo td:hover{
+			background-color: white;
+			color: #c49d98;
+		}
+		a:hover{
+			color: #c49d98;
+		}
+		#ouo table{
+			border-collapse: separate;
+			display: block;
+			border-spacing: 0;
+		}
+		#ouo tr{
+			border: 1px solid #c49d98;
+		}
+		#ouo td{
+			border: 3px solid #FFF;
+			padding: 10px 30px;
+			background-color: #c49d98;
+			border-radius: 10px;
+			color: #FFF;
+			text-align: center;
+		}
+		.bu{
+			background-color: #c49d98;
+			color:white;
+			border: 0;
+			font-family: word;
+			font-size: 25px;
+		}
+		.bu:hover{
+			background-color: white;
+			color: #c49d98;
+		}
+		a{
+			color: white;
+			text-decoration: none;
+		}
     </style>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript">
@@ -169,11 +172,7 @@
 						<button class="bu" onclick="switchBGM()" id="bgmBtn">開/關BGM</button>
 					</td>
 				</tr>
-			</table>	
-			
-			
-			
-			
+			</table>			
 		</p>
 		<div id="msg"></div>
 		<img id="ldin">
