@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
     <title>END</title>
     <style>
         @font-face {
-				font-family: word;
-				src: url("Silver.ttf");
-        	}
+			font-family: word;
+			src: url("Silver.ttf");
+        }
         @media only screen and (max-width: 1600px) {
             img{
                 width: 1536px;
@@ -21,7 +20,6 @@
             text-align: center;
             z-index: 3;
             width: 500px;
-            
        }
        #chatbox{
         position:absolute;
@@ -40,16 +38,14 @@
            z-index: 0;
        }
        body::-webkit-scrollbar {
-    			display: none;
-			}
-            
+    		display: none;
+		}
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script>
-  
-            
 			var tmp_chat = 0;
 			var player_name=localStorage.getItem("start_adventure");
+			var state=JSON.parse(localStorage.getItem(player_name));
             var img = document.getElementsByTagName("img");
             function amt(){
 				var textWrapper = document.querySelector('.ml3');
@@ -123,15 +119,18 @@
                 if(tmp_chat==12){
                     talk.innerHTML = "...";
                     amt();
-                    window.location.href="adventure.html";
+					localStorage.setItem("&thief",1);
+					state.live=0;
+					state.gender=11;
+					localStorage.setItem(player_name,JSON.stringify(state));
+					alert("獲得了'盜賊の小手':之後的角色開寶箱時將不會再遇到不利事件");
+                    window.location.href="index.html";
                 }
                 tmp_chat++;
             }
             function start(){
 				amt();
-                document.getElementById("img").addEventListener("click", change,false); 
-                
-                
+                document.getElementById("img").addEventListener("click", change,false);    
 			}
             window.addEventListener( "load", start, false );
     </script>
