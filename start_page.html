@@ -130,17 +130,17 @@
 				if(name.value=="&go_to_HE"){
 					alert("密碼輸入成功-即將跳轉至Happy_End");
 					localStorage.setItem("&end",1);
-					location.href="end.html";
+					location.href="END-HE.html";
 				}
 				else if(name.value=="&go_to_NE"){
 					alert("密碼輸入成功-即將跳轉至Normal_End");
 					localStorage.setItem("&end",2);
-					location.href="end.html";
+					location.href="END-OE.html";
 				}
 				else if(name.value=="&go_to_BE"){
 					alert("密碼輸入成功-即將跳轉至Bad_End");
 					localStorage.setItem("&end",3);
-					location.href="end.html";
+					location.href="END-BE.html";
 				}
 				else if(!idn){
 					console.log(idn);
